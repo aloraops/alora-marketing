@@ -1,22 +1,29 @@
 {
-  "name": "stealth-web",
+  "name": "alora-marketing",
   "version": "1.0.0",
+  "description": "Marketing website for Alora - AI-powered supply chain operations platform",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx http-server -p 3000 -o",
+    "build": "tsc",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aloraops/stealth-web.git"
+    "url": "git+https://github.com/aloraops/alora-marketing.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "alora",
+    "supply-chain",
+    "marketing-site",
+    "static-site"
+  ],
+  "author": "Alora",
+  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/aloraops/stealth-web/issues"
+    "url": "https://github.com/aloraops/alora-marketing/issues"
   },
-  "homepage": "https://github.com/aloraops/stealth-web#readme",
-  "description": "",
+  "homepage": "https://aloraops.ai",
   "devDependencies": {
     "typescript": "^5.7.3"
   }
