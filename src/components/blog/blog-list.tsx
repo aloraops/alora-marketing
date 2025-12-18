@@ -83,7 +83,7 @@ export function BlogList({ posts }: BlogListProps) {
   return (
     <>
       {/* Search and Filters */}
-      <section className="py-8 border-b border-border">
+      <section className="py-4 border-b border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             {/* Search Input */}
@@ -125,7 +125,7 @@ export function BlogList({ posts }: BlogListProps) {
       </section>
 
       {/* Blog Posts */}
-      <section className="py-12 lg:py-16">
+      <section className="py-6 lg:py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {paginatedPosts.length === 0 ? (
             <div className="mx-auto max-w-2xl text-center py-12">
