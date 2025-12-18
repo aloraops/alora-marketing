@@ -36,7 +36,8 @@ export function getAllPosts(): BlogPostMeta[] {
 
   const fileNames = fs.readdirSync(postsDirectory);
   const allPosts = fileNames
-    .filter((fileName) => fileName.endsWith('.mdx'))
+    // Exclude files starting with _ (templates/examples) and non-mdx files
+    .filter((fileName) => fileName.endsWith('.mdx') && !fileName.startsWith('_'))
     .map((fileName) => {
       const slug = fileName.replace(/\.mdx$/, '');
       const fullPath = path.join(postsDirectory, fileName);
@@ -93,6 +94,7 @@ export function getAllSlugs(): string[] {
 
   return fs
     .readdirSync(postsDirectory)
-    .filter((fileName) => fileName.endsWith('.mdx'))
+    // Exclude files starting with _ (templates/examples)
+    .filter((fileName) => fileName.endsWith('.mdx') && !fileName.startsWith('_'))
     .map((fileName) => fileName.replace(/\.mdx$/, ''));
 }

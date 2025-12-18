@@ -1,0 +1,229 @@
+---
+title: "Example Article: How to Use All Blog Features"
+description: "This is a template article showing all available formatting options. It won't appear on the live site (files starting with _ are hidden)."
+date: "2024-12-15"
+author: "Alora Team"
+category: "Best Practices"
+image: "/images/blog/thumb-best-practices.svg"
+---
+
+This example article demonstrates all the formatting features available for blog posts. Use it as a reference when writing your own articles.
+
+**Note:** This article won't appear on the live website because its filename starts with `_`. Any file starting with underscore is treated as a template/draft.
+
+---
+
+## Basic Text Formatting
+
+Regular paragraph text looks like this. Keep paragraphs focused on one idea for better readability.
+
+**Bold text** is great for emphasis. *Italic text* works for subtle emphasis or introducing terms. You can also combine ***bold and italic*** when needed.
+
+Here's a [link to the Alora website](https://aloraops.com) and an [external link to Google](https://google.com).
+
+---
+
+## Headings
+
+Use headings to organize your content. The article title is automatically an H1, so start with H2 for main sections.
+
+### This is an H3 Subheading
+
+Use H3 for subsections within a main section.
+
+#### This is an H4
+
+Use H4 sparingly, only for deep nesting when absolutely necessary.
+
+---
+
+## Lists
+
+### Bullet Lists
+
+Use bullet lists for items without a specific order:
+
+- First item in the list
+- Second item with more detail
+- Third item
+  - Nested item (indent with 2 spaces)
+  - Another nested item
+- Back to top level
+
+### Numbered Lists
+
+Use numbered lists for sequential steps or ranked items:
+
+1. First step in the process
+2. Second step follows
+3. Third step completes the sequence
+   1. Sub-step A
+   2. Sub-step B
+4. Final step
+
+---
+
+## Blockquotes
+
+Use blockquotes for customer testimonials, important callouts, or citations:
+
+> "Alora reduced our email processing time by 80% in the first month. The team finally has visibility into what's actually happening with our orders."
+>
+> — Operations Manager, Medical Device Company
+
+You can also use blockquotes for important notes:
+
+> **Important:** Always verify supplier confirmations against the original PO before marking as confirmed.
+
+---
+
+## Tables
+
+Tables are great for comparing options or presenting structured data:
+
+| Feature | Traditional Approach | With Alora |
+|---------|---------------------|------------|
+| Email Processing | Manual, 4+ hours/day | Automated, minutes |
+| Risk Visibility | Reactive, after problems | Proactive, predictive |
+| Data Accuracy | ~60% (human error) | ~95% (AI-verified) |
+| Coverage | Sample-based review | All orders, all lines |
+
+Another example with different alignment:
+
+| Metric | Value | Improvement |
+|:-------|:-----:|------------:|
+| Processing Time | 15 min | 90% faster |
+| Error Rate | 2% | 85% reduction |
+| Coverage | 100% | Up from 30% |
+
+---
+
+## Code Blocks
+
+For technical content, you can include code examples:
+
+Inline code looks like `this variable` or `config.yaml`.
+
+Multi-line code blocks with syntax highlighting:
+
+```json
+{
+  "supplier": "Acme Corp",
+  "po_number": "PO-4521",
+  "status": "confirmed",
+  "delivery_date": "2024-12-20"
+}
+```
+
+```python
+# Example Python code
+def calculate_risk_score(po_line):
+    factors = get_risk_factors(po_line)
+    return sum(factors) / len(factors)
+```
+
+---
+
+## Images
+
+### Basic Image
+
+Add images with descriptive alt text for accessibility:
+
+![Supply chain dashboard showing PO tracking](/images/blog/thumb-supply-chain.svg)
+
+### Image with Caption
+
+Add a caption using italics on the next line:
+
+![AI-powered analytics dashboard](/images/blog/thumb-analytics.svg)
+*The Alora dashboard provides real-time visibility into supply chain operations.*
+
+### Image Guidelines
+
+- Upload images to `public/images/blog/`
+- Use descriptive filenames: `po-tracking-dashboard.png`
+- Recommended width: 1200px (auto-resized)
+- Keep under 500KB (compress at tinypng.com)
+- PNG for screenshots, JPG for photos
+
+---
+
+## Horizontal Rules
+
+Use three dashes to create a horizontal divider between sections:
+
+---
+
+## Combining Elements
+
+You can combine multiple elements for rich content:
+
+### The Challenge: Manual Email Processing
+
+Most procurement teams spend **4+ hours daily** just reading supplier emails. The problems compound:
+
+1. **Volume overwhelm** — Hundreds of emails per day
+2. **Hidden information** — Key data buried in attachments
+3. **No prioritization** — Everything feels urgent
+
+> "We were drowning in emails. Important delays got lost in the noise."
+
+| Before Alora | After Alora |
+|--------------|-------------|
+| Manual triage | Auto-classified |
+| 4 hours/day | 30 minutes/day |
+| Reactive | Proactive |
+
+The solution? Automated email intelligence that extracts, classifies, and prioritizes.
+
+---
+
+## Call to Action
+
+End articles with a clear next step for readers:
+
+---
+
+*Ready to see how Alora can transform your procurement operations? [Book a demo](/contact) to see it in action with your own data.*
+
+---
+
+## Frontmatter Reference
+
+Every article needs this metadata at the top:
+
+```yaml
+---
+title: "Your Article Title"
+description: "1-2 sentence summary for previews and SEO"
+date: "2024-12-15"
+author: "Sharon Ilan"
+category: "Supply Chain"
+image: "/images/blog/thumb-supply-chain.svg"  # Optional
+---
+```
+
+### Available Categories
+- Supply Chain
+- AI & Technology
+- Procurement
+- Manufacturing
+- Industry Trends
+- Best Practices
+- Case Studies
+- Product Updates
+
+### Available Authors
+- Sharon Ilan
+- Yuval Blyakhman
+- Idan Ben-Ami
+- Alora Team
+
+### Pre-made Thumbnail Images
+- `/images/blog/thumb-supply-chain.svg`
+- `/images/blog/thumb-ai-technology.svg`
+- `/images/blog/thumb-procurement.svg`
+- `/images/blog/thumb-manufacturing.svg`
+- `/images/blog/thumb-best-practices.svg`
+- `/images/blog/thumb-analytics.svg`

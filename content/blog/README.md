@@ -238,9 +238,13 @@ Use lowercase, hyphen-separated names:
 - `ai-procurement-trends-2024.mdx`
 - `case-study-medical-device-company.mdx`
 
+**Drafts & Templates:** Prefix with `_` to hide from the live site:
+- `_draft-new-feature-announcement.mdx` — Won't appear on website
+- `_example-article.mdx` — Reference template with all features
+
 **Avoid:**
 - Spaces in filenames
-- Special characters (except hyphens)
+- Special characters (except hyphens and leading underscore)
 - Very long names (keep under 50 characters)
 
 ---

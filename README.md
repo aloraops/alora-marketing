@@ -40,6 +40,8 @@ Blog posts are written in Markdown files and automatically appear on the site.
 3. Write your content in Markdown
 4. Commit and push — the site deploys automatically
 
+**Example article:** See [`content/blog/_example-article.mdx`](./content/blog/_example-article.mdx) for a comprehensive example showing all features (images, tables, quotes, code blocks, etc.). Files starting with `_` are hidden from the live site.
+
 **Detailed instructions:** See [`content/blog/README.md`](./content/blog/README.md) for:
 - Complete file template
 - Available categories and authors
@@ -54,6 +56,8 @@ Blog posts are written in Markdown files and automatically appear on the site.
 - `/images/blog/thumb-manufacturing.svg`
 - `/images/blog/thumb-best-practices.svg`
 - `/images/blog/thumb-analytics.svg`
+
+**Hiding articles:** Prefix filename with `_` (e.g., `_draft-article.mdx`) to keep it out of the live site while working on it.
 
 ---
 
