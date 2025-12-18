@@ -138,26 +138,37 @@ def calculate_risk_score(po_line):
 
 ## Images
 
-### Basic Image
+> **Tip:** To see how images look when published, check any article on the live blog.
 
-Add images with descriptive alt text for accessibility:
+### Adding an Image
 
+1. Upload your image to the `public/images/blog/` folder
+2. Add this line in your article where you want the image:
+
+```markdown
+![Description of the image](/images/blog/your-image-name.png)
+```
+
+**Example:**
+```markdown
 ![Supply chain dashboard showing PO tracking](/images/blog/thumb-supply-chain.svg)
+```
 
-### Image with Caption
+### Adding an Image with Caption
 
-Add a caption using italics on the next line:
+Put italic text on the line right after the image:
 
-![AI-powered analytics dashboard](/images/blog/thumb-analytics.svg)
-*The Alora dashboard provides real-time visibility into supply chain operations.*
+```markdown
+![Dashboard screenshot](/images/blog/dashboard.png)
+*This caption appears below the image.*
+```
 
 ### Image Guidelines
 
-- Upload images to `public/images/blog/`
-- Use descriptive filenames: `po-tracking-dashboard.png`
-- Recommended width: 1200px (auto-resized)
-- Keep under 500KB (compress at tinypng.com)
-- PNG for screenshots, JPG for photos
+- **Where to upload:** `public/images/blog/` folder
+- **Naming:** Use lowercase with hyphens: `po-tracking-dashboard.png`
+- **Size:** Keep under 500KB (compress at [tinypng.com](https://tinypng.com))
+- **Format:** PNG for screenshots, JPG for photos
 
 ---
 
