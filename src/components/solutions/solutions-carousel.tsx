@@ -198,7 +198,7 @@ export function SolutionsCarousel() {
       {/* Carousel Content */}
       <div
         ref={containerRef}
-        className="overflow-hidden px-4 cursor-grab active:cursor-grabbing"
+        className="overflow-hidden px-4 cursor-grab active:cursor-grabbing h-[420px]"
       >
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
@@ -217,7 +217,7 @@ export function SolutionsCarousel() {
             dragElastic={0.2}
             onDragEnd={handleDragEnd}
           >
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-start h-auto">
               {/* Content Side */}
               <div className={page === 1 ? 'order-2' : ''}>
                 <motion.div
@@ -257,11 +257,12 @@ export function SolutionsCarousel() {
               </div>
 
               {/* Card Side */}
-              <div className={page === 1 ? 'order-1' : ''}>
+              <div className={`flex items-start ${page === 1 ? 'order-1' : ''}`}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
+                  className="w-full"
                 >
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-6">
