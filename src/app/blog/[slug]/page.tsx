@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
 import { getPostBySlug, getAllSlugs } from '@/lib/blog';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -179,7 +180,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <article className="prose prose-lg max-w-none">
-            <MDXRemote source={post.content} components={components} />
+            <MDXRemote
+              source={post.content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkGfm],
+                },
+              }}
+            />
           </article>
         </div>
       </section>
