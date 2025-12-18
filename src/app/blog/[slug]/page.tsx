@@ -143,17 +143,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Article Header */}
       <section className="bg-muted/30 py-8 lg:py-12">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Blog
-          </Link>
-
-          <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-4">
-            {post.category}
-          </span>
+          <div className="flex items-center gap-4 mb-6">
+            <Link
+              href="/blog"
+              className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="mr-1.5 h-4 w-4" />
+              Back to Blog
+            </Link>
+            <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+              {post.category}
+            </span>
+          </div>
 
           <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             {post.title}
