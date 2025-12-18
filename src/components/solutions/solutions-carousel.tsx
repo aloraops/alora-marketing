@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -111,27 +111,50 @@ export function SolutionsCarousel() {
     setPage([index, direction]);
   }, [page]);
 
-  // Handle mouse wheel (horizontal scroll)
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    // Prevent rapid-fire scrolling
-    if (isScrolling.current) return;
+  // Handle mouse wheel (horizontal scroll) - using native event for preventDefault
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-    // Use deltaX for horizontal scroll, or deltaY if shift is held
-    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    const handleWheel = (e: WheelEvent) => {
+      // Use deltaX for horizontal scroll, or deltaY for vertical
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
 
-    if (Math.abs(delta) > 30) {
-      isScrolling.current = true;
-      if (delta > 0 && page < solutions.length - 1) {
-        paginate(1);
-      } else if (delta < 0 && page > 0) {
-        paginate(-1);
+      // Only handle if it's a horizontal scroll gesture
+      if (!isHorizontalScroll && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Let vertical scrolls pass through
+        return;
       }
-      // Debounce
-      setTimeout(() => {
-        isScrolling.current = false;
-      }, 500);
-    }
-  }, [page, paginate]);
+
+      // Prevent rapid-fire scrolling
+      if (isScrolling.current) {
+        e.preventDefault();
+        return;
+      }
+
+      if (Math.abs(delta) > 20) {
+        const canGoNext = delta > 0 && page < solutions.length - 1;
+        const canGoPrev = delta < 0 && page > 0;
+
+        // Always prevent default for horizontal scrolls in the carousel area
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (canGoNext || canGoPrev) {
+          isScrolling.current = true;
+          setPage([page + (canGoNext ? 1 : -1), canGoNext ? 1 : -1]);
+          // Debounce
+          setTimeout(() => {
+            isScrolling.current = false;
+          }, 500);
+        }
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
+  }, [page]);
 
   // Handle drag/swipe gestures
   const handleDragEnd = useCallback((e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -176,7 +199,6 @@ export function SolutionsCarousel() {
       <div
         ref={containerRef}
         className="overflow-hidden px-4 cursor-grab active:cursor-grabbing"
-        onWheel={handleWheel}
       >
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
