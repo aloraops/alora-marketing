@@ -1,0 +1,37 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#F8FAFC"/>
+
+  <!-- Grid -->
+  <defs>
+    <pattern id="agrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#agrid)"/>
+
+  <!-- Chart area -->
+  <rect x="150" y="120" width="500" height="280" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Bar chart -->
+  <rect x="200" y="280" width="50" height="80" rx="4" fill="#2b553c" opacity="0.3"/>
+  <rect x="270" y="240" width="50" height="120" rx="4" fill="#2b553c" opacity="0.4"/>
+  <rect x="340" y="200" width="50" height="160" rx="4" fill="#2b553c" opacity="0.5"/>
+  <rect x="410" y="180" width="50" height="180" rx="4" fill="#2b553c" opacity="0.6"/>
+  <rect x="480" y="160" width="50" height="200" rx="4" fill="#2b553c" opacity="0.8"/>
+  <rect x="550" y="150" width="50" height="210" rx="4" fill="#2b553c"/>
+
+  <!-- Trend line -->
+  <path d="M225 280 L295 240 L365 200 L435 180 L505 160 L575 150" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="575" cy="150" r="6" fill="#10B981"/>
+
+  <!-- Axis labels -->
+  <rect x="180" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="250" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="320" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="390" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="460" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="530" y="380" width="30" height="8" rx="2" fill="#94A3B8" opacity="0.5"/>
+
+  <!-- Arrow indicator -->
+  <path d="M680 200 L680 150 L720 175 Z" fill="#10B981" opacity="0.6"/>
+</svg>

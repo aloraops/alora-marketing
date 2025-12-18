@@ -1,0 +1,52 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#FEF3C7"/>
+
+  <!-- Grid background -->
+  <defs>
+    <pattern id="mgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FDE68A" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#mgrid)"/>
+
+  <!-- Factory/assembly line representation -->
+  <rect x="100" y="280" width="600" height="8" rx="4" fill="#F59E0B" opacity="0.3"/>
+
+  <!-- Assembly stations -->
+  <rect x="150" y="200" width="80" height="80" rx="8" fill="#F59E0B" opacity="0.2"/>
+  <rect x="165" y="220" width="50" height="40" rx="4" fill="#F59E0B" opacity="0.4"/>
+
+  <rect x="300" y="200" width="80" height="80" rx="8" fill="#F59E0B" opacity="0.2"/>
+  <rect x="315" y="220" width="50" height="40" rx="4" fill="#F59E0B" opacity="0.4"/>
+  <circle cx="340" cy="240" r="10" fill="#F59E0B" opacity="0.6"/>
+
+  <rect x="450" y="200" width="80" height="80" rx="8" fill="#F59E0B" opacity="0.2"/>
+  <rect x="465" y="220" width="50" height="40" rx="4" fill="#F59E0B" opacity="0.4"/>
+
+  <rect x="600" y="200" width="80" height="80" rx="8" fill="#F59E0B" opacity="0.2"/>
+  <rect x="615" y="220" width="50" height="40" rx="4" fill="#F59E0B" opacity="0.4"/>
+
+  <!-- Movement arrows -->
+  <path d="M240 284 L280 284" stroke="#F59E0B" stroke-width="2" opacity="0.5"/>
+  <path d="M275 280 L285 284 L275 288" fill="#F59E0B" opacity="0.5"/>
+
+  <path d="M390 284 L430 284" stroke="#F59E0B" stroke-width="2" opacity="0.5"/>
+  <path d="M425 280 L435 284 L425 288" fill="#F59E0B" opacity="0.5"/>
+
+  <path d="M540 284 L580 284" stroke="#F59E0B" stroke-width="2" opacity="0.5"/>
+  <path d="M575 280 L585 284 L575 288" fill="#F59E0B" opacity="0.5"/>
+
+  <!-- Gears -->
+  <circle cx="200" cy="380" r="30" fill="#F59E0B" opacity="0.2"/>
+  <circle cx="200" cy="380" r="18" fill="#F59E0B" opacity="0.3"/>
+  <circle cx="200" cy="380" r="8" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.4"/>
+
+  <circle cx="260" cy="400" r="22" fill="#F59E0B" opacity="0.2"/>
+  <circle cx="260" cy="400" r="14" fill="#F59E0B" opacity="0.3"/>
+  <circle cx="260" cy="400" r="6" fill="none" stroke="#F59E0B" stroke-width="2" opacity="0.4"/>
+
+  <!-- Floating boxes (products) -->
+  <rect x="550" y="350" width="25" height="25" rx="3" fill="#F59E0B" opacity="0.3"/>
+  <rect x="590" y="360" width="20" height="20" rx="3" fill="#F59E0B" opacity="0.25"/>
+  <rect x="620" y="340" width="22" height="22" rx="3" fill="#F59E0B" opacity="0.35"/>
+</svg>

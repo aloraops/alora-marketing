@@ -17,6 +17,7 @@ description: "A brief summary of the article (1-2 sentences, shown in previews)"
 date: "2024-12-15"
 author: "Sharon Ilan"
 category: "Supply Chain"
+image: "/images/blog/your-thumbnail.png"
 ---
 
 Your article content goes here...
@@ -25,6 +26,8 @@ Your article content goes here...
 
 More content...
 ```
+
+> **Note:** The `image` field is optional. If omitted, a subtle gradient placeholder will be shown on the blog listing page.
 
 ## Frontmatter Fields
 
@@ -35,6 +38,31 @@ More content...
 | `date` | Yes | Publication date in YYYY-MM-DD format |
 | `author` | Yes | Author name (see options below) |
 | `category` | Yes | Article category (see options below) |
+| `image` | No | Card thumbnail image (see below) |
+
+### Adding a Card Thumbnail Image
+
+The `image` field sets the thumbnail shown on blog listing cards. If not provided, a subtle gradient placeholder is used.
+
+**Step 1:** Upload your image to `public/images/blog/`
+
+**Step 2:** Add to frontmatter:
+```yaml
+---
+title: "Your Article Title"
+description: "Brief summary..."
+date: "2024-12-15"
+author: "Sharon Ilan"
+category: "Supply Chain"
+image: "/images/blog/your-thumbnail.png"
+---
+```
+
+**Thumbnail Guidelines:**
+- Recommended size: 800×500px (16:10 aspect ratio)
+- Keep under 200KB for fast loading
+- Use `.png` for graphics/illustrations, `.jpg` for photos
+- Simple, clean visuals work best at small sizes
 
 ### Available Categories
 

@@ -1,0 +1,44 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#ECFDF5"/>
+
+  <!-- Subtle pattern -->
+  <defs>
+    <pattern id="bpdots" width="25" height="25" patternUnits="userSpaceOnUse">
+      <circle cx="12.5" cy="12.5" r="1" fill="#A7F3D0"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#bpdots)"/>
+
+  <!-- Checklist representation -->
+  <rect x="280" y="100" width="240" height="300" rx="12" fill="#10B981" opacity="0.1"/>
+  <rect x="300" y="120" width="200" height="260" rx="8" fill="white" opacity="0.8"/>
+
+  <!-- Checklist items -->
+  <rect x="320" y="150" width="20" height="20" rx="4" fill="#10B981" opacity="0.3"/>
+  <path d="M325 160 L330 165 L340 155" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="355" y="155" width="120" height="10" rx="3" fill="#10B981" opacity="0.2"/>
+
+  <rect x="320" y="190" width="20" height="20" rx="4" fill="#10B981" opacity="0.3"/>
+  <path d="M325 200 L330 205 L340 195" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="355" y="195" width="100" height="10" rx="3" fill="#10B981" opacity="0.2"/>
+
+  <rect x="320" y="230" width="20" height="20" rx="4" fill="#10B981" opacity="0.3"/>
+  <path d="M325 240 L330 245 L340 235" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="355" y="235" width="110" height="10" rx="3" fill="#10B981" opacity="0.2"/>
+
+  <rect x="320" y="270" width="20" height="20" rx="4" fill="#10B981" opacity="0.15"/>
+  <rect x="355" y="275" width="90" height="10" rx="3" fill="#10B981" opacity="0.15"/>
+
+  <rect x="320" y="310" width="20" height="20" rx="4" fill="#10B981" opacity="0.15"/>
+  <rect x="355" y="315" width="105" height="10" rx="3" fill="#10B981" opacity="0.15"/>
+
+  <!-- Star/badge -->
+  <circle cx="600" cy="180" r="45" fill="#10B981" opacity="0.15"/>
+  <circle cx="600" cy="180" r="30" fill="#10B981" opacity="0.25"/>
+  <path d="M600 155 L605 170 L620 170 L608 180 L613 195 L600 185 L587 195 L592 180 L580 170 L595 170 Z" fill="#10B981" opacity="0.5"/>
+
+  <!-- Floating elements -->
+  <circle cx="150" cy="150" r="20" fill="#10B981" opacity="0.15"/>
+  <circle cx="180" cy="350" r="15" fill="#10B981" opacity="0.1"/>
+  <circle cx="650" cy="350" r="25" fill="#10B981" opacity="0.1"/>
+</svg>

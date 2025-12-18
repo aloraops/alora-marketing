@@ -1,0 +1,41 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#FDF4FF"/>
+
+  <!-- Subtle line pattern -->
+  <defs>
+    <pattern id="lines" width="50" height="50" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="50" x2="50" y2="0" stroke="#F5D0FE" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#lines)"/>
+
+  <!-- Document/clipboard shapes -->
+  <rect x="280" y="100" width="140" height="180" rx="8" fill="#A855F7" opacity="0.15"/>
+  <rect x="295" y="115" width="110" height="150" rx="4" fill="#A855F7" opacity="0.25"/>
+  <rect x="310" y="140" width="80" height="8" rx="2" fill="#A855F7" opacity="0.5"/>
+  <rect x="310" y="160" width="60" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <rect x="310" y="178" width="70" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <rect x="310" y="196" width="50" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <circle cx="330" cy="235" r="12" fill="#A855F7" opacity="0.6"/>
+
+  <rect x="450" y="140" width="140" height="180" rx="8" fill="#A855F7" opacity="0.15"/>
+  <rect x="465" y="155" width="110" height="150" rx="4" fill="#A855F7" opacity="0.25"/>
+  <rect x="480" y="180" width="80" height="8" rx="2" fill="#A855F7" opacity="0.5"/>
+  <rect x="480" y="200" width="60" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <rect x="480" y="218" width="70" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <rect x="480" y="236" width="50" height="6" rx="2" fill="#A855F7" opacity="0.4"/>
+  <circle cx="500" cy="275" r="12" fill="#A855F7" opacity="0.6"/>
+
+  <!-- Arrow connecting documents -->
+  <path d="M420 220 L435 220" stroke="#A855F7" stroke-width="3" opacity="0.6"/>
+  <path d="M430 215 L440 220 L430 225" fill="#A855F7" opacity="0.6"/>
+
+  <!-- Floating elements -->
+  <rect x="150" y="300" width="60" height="80" rx="6" fill="#A855F7" opacity="0.1"/>
+  <rect x="160" y="320" width="40" height="4" rx="1" fill="#A855F7" opacity="0.3"/>
+  <rect x="160" y="330" width="30" height="4" rx="1" fill="#A855F7" opacity="0.25"/>
+
+  <rect x="620" y="280" width="60" height="80" rx="6" fill="#A855F7" opacity="0.1"/>
+  <rect x="630" y="300" width="40" height="4" rx="1" fill="#A855F7" opacity="0.3"/>
+  <rect x="630" y="310" width="30" height="4" rx="1" fill="#A855F7" opacity="0.25"/>
+</svg>

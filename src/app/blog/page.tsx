@@ -3,30 +3,27 @@ import { BlogList } from '@/components/blog/blog-list';
 
 export const metadata = {
   title: 'Blog - Insights & Updates | Alora',
-  description: 'Thoughts on supply chain operations, AI in manufacturing, and building better procurement workflows.',
+  description:
+    'Thoughts on supply chain operations, AI in manufacturing, and building better procurement workflows.',
 };
 
 export default function BlogPage() {
   const posts = getAllPosts();
+  const categories = Array.from(new Set(posts.map((p) => p.category)));
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="bg-muted/30 py-8 lg:py-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Insights & Updates
-            </h1>
-            <p className="mt-3 text-muted-foreground">
-              Thoughts on supply chain operations, AI in manufacturing, and building
-              better procurement workflows.
-            </p>
-          </div>
+    <main className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+          <h1 className="text-2xl font-semibold text-foreground">Blog</h1>
+          <p className="mt-1 text-muted-foreground">
+            Insights on supply chain, AI, and procurement.
+          </p>
         </div>
       </section>
 
-      <BlogList posts={posts} />
-    </>
+      <BlogList posts={posts} categories={categories} />
+    </main>
   );
 }

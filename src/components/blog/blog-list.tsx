@@ -2,13 +2,13 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Fuse from 'fuse.js';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, User, ArrowRight, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 
-export interface BlogPostMeta {
+interface BlogPostMeta {
   slug: string;
   title: string;
   description: string;
@@ -21,42 +21,47 @@ export interface BlogPostMeta {
 
 interface BlogListProps {
   posts: BlogPostMeta[];
+  categories: string[];
 }
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 12;
 
-export function BlogList({ posts }: BlogListProps) {
+// Get a subtle placeholder gradient
+function getPlaceholderGradient(title: string): string {
+  const gradients = [
+    'from-emerald-50 to-teal-100',
+    'from-blue-50 to-indigo-100',
+    'from-slate-50 to-gray-100',
+    'from-green-50 to-emerald-100',
+    'from-sky-50 to-blue-100',
+  ];
+  const index = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return gradients[index % gradients.length];
+}
+
+export function BlogList({ posts, categories }: BlogListProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Get unique categories
-  const categories = useMemo(() => {
-    return ['All', ...Array.from(new Set(posts.map(p => p.category)))];
-  }, [posts]);
 
   // Configure Fuse.js for fuzzy search
   const fuse = useMemo(() => {
     return new Fuse(posts, {
       keys: ['title', 'description', 'author', 'category'],
       threshold: 0.4,
-      includeScore: true,
     });
   }, [posts]);
 
-  // Filter and search posts
+  // Filter posts
   const filteredPosts = useMemo(() => {
-    let result: BlogPostMeta[] = posts;
+    let result = posts;
 
-    // Apply fuzzy search if query exists
     if (searchQuery.trim()) {
-      const results = fuse.search(searchQuery);
-      result = results.map(r => r.item);
+      result = fuse.search(searchQuery).map((r) => r.item);
     }
 
-    // Apply category filter
     if (selectedCategory !== 'All') {
-      result = result.filter(p => p.category === selectedCategory);
+      result = result.filter((p) => p.category === selectedCategory);
     }
 
     return result;
@@ -69,193 +74,186 @@ export function BlogList({ posts }: BlogListProps) {
     currentPage * POSTS_PER_PAGE
   );
 
-  // Reset to page 1 when search or category changes
+  const handleFilterChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setCurrentPage(1);
   };
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-  };
-
   return (
-    <>
-      {/* Search and Filters */}
-      <section className="py-4 border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            {/* Search Input */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-
-            {/* Category Filter */}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => handleCategoryChange(category)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            {/* Results count */}
-            <div className="mt-4 text-sm text-muted-foreground">
-              {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
-              {searchQuery && ` for "${searchQuery}"`}
-            </div>
-          </div>
+    <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+      {/* Filters Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+        {/* Category Pills */}
+        <div className="flex flex-wrap gap-2 flex-1">
+          <button
+            onClick={() => handleFilterChange('All')}
+            className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+              selectedCategory === 'All'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            All
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleFilterChange(category)}
+              className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                selectedCategory === category
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
-      </section>
 
-      {/* Blog Posts */}
-      <section className="py-6 lg:py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {paginatedPosts.length === 0 ? (
-            <div className="mx-auto max-w-2xl text-center py-12">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                <Search className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <h2 className="mt-6 text-xl font-semibold text-foreground">
-                No articles found
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                Try adjusting your search or filter to find what you&apos;re looking for.
-              </p>
-              <Button
-                variant="outline"
-                className="mt-4"
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('All');
-                }}
+        {/* Search */}
+        <div className="relative w-full sm:w-64">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            className="pl-9 h-9"
+          />
+        </div>
+      </div>
+
+      {/* Results info */}
+      {(searchQuery || selectedCategory !== 'All') && (
+        <p className="text-sm text-muted-foreground mb-6">
+          {filteredPosts.length} result{filteredPosts.length !== 1 ? 's' : ''}
+          {searchQuery && ` for "${searchQuery}"`}
+          {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+        </p>
+      )}
+
+      {/* Empty State */}
+      {filteredPosts.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-muted-foreground">No articles found.</p>
+          <Button
+            variant="link"
+            className="mt-2"
+            onClick={() => {
+              setSearchQuery('');
+              setSelectedCategory('All');
+            }}
+          >
+            Clear filters
+          </Button>
+        </div>
+      ) : (
+        <>
+          {/* Article Grid */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {paginatedPosts.map((post, index) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block"
               >
-                Clear filters
-              </Button>
-            </div>
-          ) : (
-            <div className="mx-auto max-w-4xl">
-              <div className="grid gap-3">
-                {paginatedPosts.map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`}>
-                    <Card className="border-0 shadow-sm transition-shadow hover:shadow-md">
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between gap-4">
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-3 text-xs text-muted-foreground mb-1">
-                              <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                                {post.category}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                {new Date(post.date).toLocaleDateString('en-US', {
-                                  month: 'short',
-                                  day: 'numeric',
-                                  year: 'numeric',
-                                })}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {post.readingTime}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <User className="h-3 w-3" />
-                                {post.author}
-                              </span>
-                            </div>
-                            <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h2>
-                            <p className="mt-1 text-sm text-muted-foreground line-clamp-1">
-                              {post.description}
-                            </p>
-                          </div>
-                          <span className="inline-flex items-center text-sm font-medium text-primary shrink-0">
-                            <ArrowRight className="h-4 w-4" />
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="mt-12 flex items-center justify-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                    disabled={currentPage === 1}
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                    Previous
-                  </Button>
-
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                      // Show first, last, current, and pages around current
-                      const showPage =
-                        page === 1 ||
-                        page === totalPages ||
-                        Math.abs(page - currentPage) <= 1;
-
-                      const showEllipsis =
-                        (page === 2 && currentPage > 3) ||
-                        (page === totalPages - 1 && currentPage < totalPages - 2);
-
-                      if (showEllipsis && !showPage) {
-                        return <span key={page} className="px-2 text-muted-foreground">...</span>;
-                      }
-
-                      if (!showPage) return null;
-
-                      return (
-                        <Button
-                          key={page}
-                          variant={currentPage === page ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => setCurrentPage(page)}
-                          className="w-9"
-                        >
-                          {page}
-                        </Button>
-                      );
-                    })}
+                <article className="h-full rounded-lg p-3 -m-3 transition-colors hover:bg-muted/50">
+                  {/* Thumbnail */}
+                  <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-3 bg-muted">
+                    {post.image ? (
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div
+                        className={`w-full h-full bg-gradient-to-br ${getPlaceholderGradient(post.title)} group-hover:scale-105 transition-transform duration-300`}
+                      />
+                    )}
+                    {/* Latest badge on first post */}
+                    {index === 0 && currentPage === 1 && selectedCategory === 'All' && !searchQuery && (
+                      <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-medium bg-primary text-primary-foreground rounded">
+                        Latest
+                      </span>
+                    )}
                   </div>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                    disabled={currentPage === totalPages}
-                  >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              )}
+                  {/* Meta */}
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
+                    <span>{post.category}</span>
+                    <span>·</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h2>
+
+                  {/* Author and Date */}
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {post.author} · {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </p>
+                </article>
+              </Link>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-1">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setCurrentPage(1)}
+                disabled={currentPage === 1}
+              >
+                <ChevronsLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+
+              <span className="text-sm text-muted-foreground px-3">
+                {currentPage} / {totalPages}
+              </span>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setCurrentPage(totalPages)}
+                disabled={currentPage === totalPages}
+              >
+                <ChevronsRight className="h-4 w-4" />
+              </Button>
             </div>
           )}
-        </div>
-      </section>
-    </>
+        </>
+      )}
+    </div>
   );
 }

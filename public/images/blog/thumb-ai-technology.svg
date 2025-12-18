@@ -1,0 +1,39 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#F0F9FF"/>
+
+  <!-- Subtle circuit pattern -->
+  <defs>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1.5" fill="#BAE6FD"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#dots)"/>
+
+  <!-- Central AI brain/chip -->
+  <rect x="320" y="170" width="160" height="160" rx="20" fill="#0EA5E9" opacity="0.1"/>
+  <rect x="340" y="190" width="120" height="120" rx="12" fill="#0EA5E9" opacity="0.2"/>
+  <rect x="360" y="210" width="80" height="80" rx="8" fill="#0EA5E9" opacity="0.3"/>
+  <rect x="380" y="230" width="40" height="40" rx="4" fill="#0EA5E9"/>
+
+  <!-- Connection lines radiating out -->
+  <line x1="320" y1="250" x2="150" y2="150" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+  <line x1="320" y1="250" x2="120" y2="280" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+  <line x1="320" y1="250" x2="180" y2="380" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+  <line x1="480" y1="250" x2="650" y2="130" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+  <line x1="480" y1="250" x2="680" y2="260" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+  <line x1="480" y1="250" x2="620" y2="400" stroke="#0EA5E9" stroke-width="2" opacity="0.3"/>
+
+  <!-- Endpoint nodes -->
+  <circle cx="150" cy="150" r="15" fill="#0EA5E9" opacity="0.4"/>
+  <circle cx="120" cy="280" r="12" fill="#0EA5E9" opacity="0.3"/>
+  <circle cx="180" cy="380" r="18" fill="#0EA5E9" opacity="0.35"/>
+  <circle cx="650" cy="130" r="14" fill="#0EA5E9" opacity="0.4"/>
+  <circle cx="680" cy="260" r="16" fill="#0EA5E9" opacity="0.35"/>
+  <circle cx="620" cy="400" r="12" fill="#0EA5E9" opacity="0.3"/>
+
+  <!-- Small decorative elements -->
+  <circle cx="250" cy="100" r="5" fill="#0EA5E9" opacity="0.2"/>
+  <circle cx="550" cy="80" r="4" fill="#0EA5E9" opacity="0.25"/>
+  <circle cx="700" cy="180" r="6" fill="#0EA5E9" opacity="0.2"/>
+  <circle cx="100" cy="400" r="5" fill="#0EA5E9" opacity="0.2"/>
+</svg>

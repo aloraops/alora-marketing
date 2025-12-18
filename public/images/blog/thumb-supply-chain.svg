@@ -1,0 +1,39 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#F0FDF4"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D1FAE5" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <!-- Supply chain nodes -->
+  <circle cx="150" cy="250" r="40" fill="#10B981" opacity="0.2"/>
+  <circle cx="150" cy="250" r="25" fill="#10B981" opacity="0.4"/>
+  <circle cx="150" cy="250" r="12" fill="#10B981"/>
+
+  <circle cx="400" cy="180" r="40" fill="#10B981" opacity="0.2"/>
+  <circle cx="400" cy="180" r="25" fill="#10B981" opacity="0.4"/>
+  <circle cx="400" cy="180" r="12" fill="#10B981"/>
+
+  <circle cx="400" cy="320" r="40" fill="#10B981" opacity="0.2"/>
+  <circle cx="400" cy="320" r="25" fill="#10B981" opacity="0.4"/>
+  <circle cx="400" cy="320" r="12" fill="#10B981"/>
+
+  <circle cx="650" cy="250" r="40" fill="#10B981" opacity="0.2"/>
+  <circle cx="650" cy="250" r="25" fill="#10B981" opacity="0.4"/>
+  <circle cx="650" cy="250" r="12" fill="#10B981"/>
+
+  <!-- Connecting lines -->
+  <line x1="175" y1="235" x2="375" y2="190" stroke="#10B981" stroke-width="2" stroke-dasharray="8 4" opacity="0.5"/>
+  <line x1="175" y1="265" x2="375" y2="310" stroke="#10B981" stroke-width="2" stroke-dasharray="8 4" opacity="0.5"/>
+  <line x1="425" y1="190" x2="625" y2="240" stroke="#10B981" stroke-width="2" stroke-dasharray="8 4" opacity="0.5"/>
+  <line x1="425" y1="310" x2="625" y2="260" stroke="#10B981" stroke-width="2" stroke-dasharray="8 4" opacity="0.5"/>
+
+  <!-- Small floating elements -->
+  <rect x="280" y="120" width="20" height="20" rx="4" fill="#10B981" opacity="0.3" transform="rotate(15 290 130)"/>
+  <rect x="520" y="350" width="15" height="15" rx="3" fill="#10B981" opacity="0.3" transform="rotate(-10 527 357)"/>
+  <rect x="200" y="380" width="18" height="18" rx="4" fill="#10B981" opacity="0.2" transform="rotate(25 209 389)"/>
+</svg>
