@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback, useRef } from 'react';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -96,6 +96,8 @@ const slideVariants = {
 
 export function SolutionsCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isScrolling = useRef(false);
 
   const paginate = useCallback((newDirection: number) => {
     const newPage = page + newDirection;
@@ -108,6 +110,38 @@ export function SolutionsCarousel() {
     const direction = index > page ? 1 : -1;
     setPage([index, direction]);
   }, [page]);
+
+  // Handle mouse wheel (horizontal scroll)
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    // Prevent rapid-fire scrolling
+    if (isScrolling.current) return;
+
+    // Use deltaX for horizontal scroll, or deltaY if shift is held
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+
+    if (Math.abs(delta) > 30) {
+      isScrolling.current = true;
+      if (delta > 0 && page < solutions.length - 1) {
+        paginate(1);
+      } else if (delta < 0 && page > 0) {
+        paginate(-1);
+      }
+      // Debounce
+      setTimeout(() => {
+        isScrolling.current = false;
+      }, 500);
+    }
+  }, [page, paginate]);
+
+  // Handle drag/swipe gestures
+  const handleDragEnd = useCallback((e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold && page < solutions.length - 1) {
+      paginate(1);
+    } else if (info.offset.x > swipeThreshold && page > 0) {
+      paginate(-1);
+    }
+  }, [page, paginate]);
 
   const solution = solutions[page];
   const Icon = solution.icon;
@@ -139,7 +173,11 @@ export function SolutionsCarousel() {
       </div>
 
       {/* Carousel Content */}
-      <div className="overflow-hidden px-4">
+      <div
+        ref={containerRef}
+        className="overflow-hidden px-4 cursor-grab active:cursor-grabbing"
+        onWheel={handleWheel}
+      >
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={page}
@@ -152,6 +190,10 @@ export function SolutionsCarousel() {
               x: { type: 'spring', stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 },
             }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
           >
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               {/* Content Side */}
