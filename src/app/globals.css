@@ -145,3 +145,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* High Contrast Mode */
+.high-contrast {
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted-foreground: #000000;
+  --primary: #1a3a28;
+  --border: #000000;
+}
+
+.high-contrast .text-muted-foreground {
+  color: #333333;
+}
+
+.high-contrast a {
+  text-decoration: underline;
+}
+
+/* Reduced Motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

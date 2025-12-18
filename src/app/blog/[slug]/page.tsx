@@ -89,6 +89,38 @@ const components = {
   strong: (props: React.HTMLAttributes<HTMLElement>) => (
     <strong className="font-semibold text-foreground" {...props} />
   ),
+  table: (props: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="my-6 w-full overflow-x-auto">
+      <table
+        className="w-full border-collapse border border-border text-sm"
+        {...props}
+      />
+    </div>
+  ),
+  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className="bg-muted" {...props} />
+  ),
+  tbody: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <tbody {...props} />
+  ),
+  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr className="border-b border-border" {...props} />
+  ),
+  th: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th
+      className="border border-border px-4 py-2 text-left font-semibold text-foreground"
+      {...props}
+    />
+  ),
+  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td
+      className="border border-border px-4 py-2 text-muted-foreground"
+      {...props}
+    />
+  ),
+  hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
+    <hr className="my-8 border-border" {...props} />
+  ),
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

@@ -63,7 +63,13 @@ export function Header() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 lg:items-center">
+          <a
+            href="https://app.aloraops.com/login"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Sign In
+          </a>
           <Button asChild>
             <Link href="/contact">Book a Demo</Link>
           </Button>
@@ -84,7 +90,14 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
-            <div className="mt-4 pt-4 border-t border-border">
+            <div className="mt-4 pt-4 border-t border-border space-y-3">
+              <a
+                href="https://app.aloraops.com/login"
+                className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-accent hover:text-foreground text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sign In
+              </a>
               <Button asChild className="w-full">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   Book a Demo

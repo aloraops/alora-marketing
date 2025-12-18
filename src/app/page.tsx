@@ -74,7 +74,7 @@ export default function HomePage() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-white/30 text-white hover:bg-white/10"
+                  className="border-white text-white hover:bg-white/10 bg-transparent"
                 >
                   <Link href="/solutions">Learn More</Link>
                 </Button>
