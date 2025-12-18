@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* Alora Brand Colors */
+:root {
+  --radius: 0.5rem;
+
+  /* Core Alora brand colors */
+  --background: #fcfdfc;
+  --foreground: #1a2720;
+
+  --card: #ffffff;
+  --card-foreground: #1a2720;
+
+  --popover: #ffffff;
+  --popover-foreground: #1a2720;
+
+  /* Primary - Alora Green */
+  --primary: #2b553c;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #f5f5f5;
+  --secondary-foreground: #4e6056;
+
+  /* Muted */
+  --muted: #f5f5f5;
+  --muted-foreground: #4e6056;
+
+  /* Accent - Light green for hover states */
+  --accent: #eafdee;
+  --accent-foreground: #2b553c;
+
+  /* Destructive */
+  --destructive: #dc2626;
+
+  /* Borders and inputs */
+  --border: #d2dbd6;
+  --input: #d2dbd6;
+  --ring: #2b553c;
+
+  /* Charts - Alora palette */
+  --chart-1: #2b553c;
+  --chart-2: #3d6b4f;
+  --chart-3: #4d8060;
+  --chart-4: #6b9e7d;
+  --chart-5: #89bc9a;
+
+  /* Sidebar */
+  --sidebar: #eafdee;
+  --sidebar-foreground: #1a2720;
+  --sidebar-primary: #2b553c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d2dbd6;
+  --sidebar-accent-foreground: #1a2720;
+  --sidebar-border: #d2dbd6;
+  --sidebar-ring: #2b553c;
+}
+
+/* Dark mode - optional, can enhance later */
+.dark {
+  --background: #1a2720;
+  --foreground: #f5f5f5;
+  --card: #253530;
+  --card-foreground: #f5f5f5;
+  --popover: #253530;
+  --popover-foreground: #f5f5f5;
+  --primary: #4d8060;
+  --primary-foreground: #ffffff;
+  --secondary: #2b553c;
+  --secondary-foreground: #f5f5f5;
+  --muted: #2b553c;
+  --muted-foreground: #89bc9a;
+  --accent: #2b553c;
+  --accent-foreground: #eafdee;
+  --destructive: #dc2626;
+  --border: #3d6b4f;
+  --input: #3d6b4f;
+  --ring: #4d8060;
+  --chart-1: #4d8060;
+  --chart-2: #6b9e7d;
+  --chart-3: #89bc9a;
+  --chart-4: #a7d4b5;
+  --chart-5: #c5ecd0;
+  --sidebar: #253530;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #4d8060;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2b553c;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #3d6b4f;
+  --sidebar-ring: #4d8060;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

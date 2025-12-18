@@ -1,98 +1,36 @@
-# Alora Marketing Website
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Marketing website for Alora - AI-powered supply chain operations platform for complex hardware manufacturers.
+## Getting Started
 
-**Live Site:** https://aloraops.ai
-
-## Overview
-
-This is the static marketing website for Alora, built with vanilla HTML, CSS, and TypeScript. The site is designed to be fast, accessible, and easy to maintain.
-
-## Tech Stack
-
-- **HTML5** - Semantic markup
-- **CSS3** - Custom styles with modern features
-- **TypeScript** - Type-safe JavaScript
-- **Font Awesome** - Icons
-- **Google Fonts** - Sora & Open Sans typography
-
-## Project Structure
-
-```
-alora-marketing/
-├── index.html           # Main HTML page
-├── styles.css           # Global styles
-├── script.ts            # TypeScript source
-├── script.js            # Compiled JavaScript
-├── favicon.svg          # Site favicon
-├── fv/                  # Favicon variants
-├── CNAME                # GitHub Pages domain config
-└── package.json         # Dependencies and scripts
-```
-
-## Development
-
-### Prerequisites
-
-- Node.js 18+ and npm
-
-### Local Development
+First, run the development server:
 
 ```bash
-# Install dependencies
-npm install
-
-# Run local development server (opens at http://localhost:3000)
 npm run dev
-
-# Compile TypeScript
-npm run build
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Making Changes
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. Edit `index.html` for structure changes
-2. Edit `styles.css` for styling
-3. Edit `script.ts` for functionality (then run `npm run build`)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Deployment
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-The site is deployed via **GitHub Pages** to `aloraops.ai`.
+## Learn More
 
-### Automatic Deployment
+To learn more about Next.js, take a look at the following resources:
 
-Any push to the `main` branch automatically deploys to production.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Manual Deployment
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-1. Commit changes to `main` branch
-2. Push to GitHub
-3. GitHub Pages will automatically deploy
+## Deploy on Vercel
 
-## Content Source
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Website copy and messaging is maintained in the central docs repository:
-- **Primary Source:** `alora-docs/company/website-copy-wip/`
-- **Company Brief:** `alora-docs/company/website-copy-wip/COMPANY_BRIEF.md`
-
-## Branch Strategy
-
-- `main` - Production (auto-deploys to aloraops.ai)
-- `dev` - Development and staging
-- Feature branches: `feature/[name]` or `content/[name]`
-
-## Related Repositories
-
-| Repository | Description |
-|------------|-------------|
-| [alora-backend](https://github.com/aloraops/alora-backend) | Python FastAPI backend |
-| [alora-frontend](https://github.com/aloraops/alora-frontend) | Next.js 14+ frontend app |
-| [alora-docs](https://github.com/aloraops/alora-docs) | Centralized documentation |
-
-## Contact
-
-For questions about the marketing site or content updates, contact the team via the repository issues.
-
----
-
-**Built with ❤️ by the Alora team**
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
