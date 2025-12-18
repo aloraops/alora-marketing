@@ -151,42 +151,43 @@ export function BlogList({ posts }: BlogListProps) {
             </div>
           ) : (
             <div className="mx-auto max-w-4xl">
-              <div className="grid gap-6">
+              <div className="grid gap-3">
                 {paginatedPosts.map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`}>
                     <Card className="border-0 shadow-sm transition-shadow hover:shadow-md">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                          <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                            {post.category}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {new Date(post.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {post.readingTime}
-                          </span>
-                        </div>
-                        <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h2>
-                        <p className="mt-2 text-muted-foreground line-clamp-2">
-                          {post.description}
-                        </p>
-                        <div className="mt-4 flex items-center justify-between">
-                          <span className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <User className="h-4 w-4" />
-                            {post.author}
-                          </span>
-                          <span className="inline-flex items-center text-sm font-medium text-primary">
-                            Read more
-                            <ArrowRight className="ml-1 h-4 w-4" />
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-3 text-xs text-muted-foreground mb-1">
+                              <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                                {post.category}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                {new Date(post.date).toLocaleDateString('en-US', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  year: 'numeric',
+                                })}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {post.readingTime}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <User className="h-3 w-3" />
+                                {post.author}
+                              </span>
+                            </div>
+                            <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h2>
+                            <p className="mt-1 text-sm text-muted-foreground line-clamp-1">
+                              {post.description}
+                            </p>
+                          </div>
+                          <span className="inline-flex items-center text-sm font-medium text-primary shrink-0">
+                            <ArrowRight className="h-4 w-4" />
                           </span>
                         </div>
                       </CardContent>
