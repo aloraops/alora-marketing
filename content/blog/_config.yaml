@@ -1,0 +1,22 @@
+# Blog Configuration
+# Edit this file to manage categories and authors
+
+categories:
+  - Supply Chain
+  - AI & Technology
+  - Procurement
+  - Manufacturing
+  - Industry Trends
+  - Best Practices
+  - Case Studies
+  - Product Updates
+
+authors:
+  - name: Sharon Ilan
+    role: CEO & Co-founder
+  - name: Yuval Blyakhman
+    role: CTO & Co-founder
+  - name: Idan Ben-Ami
+    role: VP R&D & Co-founder
+  - name: Alora Team
+    role: ""
