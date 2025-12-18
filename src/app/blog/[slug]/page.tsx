@@ -46,13 +46,13 @@ export async function generateMetadata({
 // MDX components for styling
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className="text-3xl font-semibold tracking-tight mt-8 mb-4" {...props} />
+    <h1 className="text-3xl font-semibold tracking-tight mt-6 mb-3" {...props} />
   ),
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-2xl font-semibold tracking-tight mt-8 mb-4" {...props} />
+    <h2 className="text-2xl font-semibold tracking-tight mt-6 mb-3" {...props} />
   ),
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className="text-xl font-semibold tracking-tight mt-6 mb-3" {...props} />
+    <h3 className="text-xl font-semibold tracking-tight mt-4 mb-2" {...props} />
   ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className="text-muted-foreground leading-relaxed mb-4" {...props} />
@@ -120,7 +120,13 @@ const components = {
     />
   ),
   hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr className="my-8 border-border" {...props} />
+    <hr className="my-6 border-border" {...props} />
+  ),
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img
+      className="rounded-lg shadow-md my-6 w-full"
+      {...props}
+    />
   ),
 };
 
@@ -135,7 +141,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       {/* Article Header */}
-      <section className="bg-muted/30 py-16 lg:py-20">
+      <section className="bg-muted/30 py-8 lg:py-12">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <Link
             href="/blog"
@@ -177,7 +183,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       {/* Article Content */}
-      <section className="py-16 lg:py-20">
+      <section className="py-8 lg:py-10">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <article className="prose prose-lg max-w-none">
             <MDXRemote
@@ -212,7 +218,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       {/* CTA */}
-      <section className="bg-muted/30 py-16 lg:py-20">
+      <section className="bg-muted/30 py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">

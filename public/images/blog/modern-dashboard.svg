@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#f5f5f5"/>
+
+  <!-- Dashboard frame -->
+  <rect x="50" y="30" width="700" height="340" rx="8" fill="#fff" stroke="#d2dbd6" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="50" y="30" width="700" height="50" rx="8" fill="#2b553c"/>
+  <text x="80" y="62" font-family="system-ui" font-size="18" fill="#fff" font-weight="bold">Risk Dashboard</text>
+  <text x="680" y="60" font-family="system-ui" font-size="12" fill="#89bc9a">Live</text>
+  <circle cx="720" cy="55" r="5" fill="#4ade80"/>
+
+  <!-- Risk items -->
+  <rect x="70" y="100" width="660" height="50" rx="4" fill="#fef2f2" stroke="#fecaca"/>
+  <circle cx="95" cy="125" r="12" fill="#dc2626"/>
+  <text x="95" y="130" font-family="system-ui" font-size="12" fill="#fff" text-anchor="middle">1</text>
+  <text x="120" y="120" font-family="system-ui" font-size="14" fill="#1a2720" font-weight="bold">PO-4521 Motor Assembly</text>
+  <text x="120" y="138" font-family="system-ui" font-size="12" fill="#4e6056">Affects: Project Alpha, MedTech Inc</text>
+  <text x="650" y="125" font-family="system-ui" font-size="12" fill="#dc2626" text-anchor="end">Follow up →</text>
+
+  <rect x="70" y="160" width="660" height="50" rx="4" fill="#fefce8" stroke="#fef08a"/>
+  <circle cx="95" cy="185" r="12" fill="#eab308"/>
+  <text x="95" y="190" font-family="system-ui" font-size="12" fill="#fff" text-anchor="middle">2</text>
+  <text x="120" y="180" font-family="system-ui" font-size="14" fill="#1a2720" font-weight="bold">PO-4518 Control Board</text>
+  <text x="120" y="198" font-family="system-ui" font-size="12" fill="#4e6056">Affects: Project Beta, RoboCorp</text>
+  <text x="650" y="185" font-family="system-ui" font-size="12" fill="#eab308" text-anchor="end">Re-confirm →</text>
+
+  <rect x="70" y="220" width="660" height="50" rx="4" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <circle cx="95" cy="245" r="12" fill="#22c55e"/>
+  <text x="95" y="250" font-family="system-ui" font-size="12" fill="#fff" text-anchor="middle">3</text>
+  <text x="120" y="240" font-family="system-ui" font-size="14" fill="#1a2720" font-weight="bold">PO-4515 Housing Unit</text>
+  <text x="120" y="258" font-family="system-ui" font-size="12" fill="#4e6056">On track - delivery confirmed</text>
+  <text x="650" y="245" font-family="system-ui" font-size="12" fill="#22c55e" text-anchor="end">Monitor →</text>
+
+  <!-- Stats bar -->
+  <rect x="70" y="290" width="200" height="60" rx="4" fill="#f5f5f5"/>
+  <text x="90" y="315" font-family="system-ui" font-size="12" fill="#4e6056">High Risk</text>
+  <text x="90" y="335" font-family="system-ui" font-size="24" fill="#dc2626" font-weight="bold">12</text>
+
+  <rect x="290" y="290" width="200" height="60" rx="4" fill="#f5f5f5"/>
+  <text x="310" y="315" font-family="system-ui" font-size="12" fill="#4e6056">Medium Risk</text>
+  <text x="310" y="335" font-family="system-ui" font-size="24" fill="#eab308" font-weight="bold">28</text>
+
+  <rect x="510" y="290" width="220" height="60" rx="4" fill="#f5f5f5"/>
+  <text x="530" y="315" font-family="system-ui" font-size="12" fill="#4e6056">On Track</text>
+  <text x="530" y="335" font-family="system-ui" font-size="24" fill="#22c55e" font-weight="bold">1,960</text>
+</svg>
