@@ -7,7 +7,7 @@
  *
  * HOW TO TOGGLE PASSWORD PROTECTION ON/OFF:
  * ------------------------------------------
- * See instructions in src/middleware.ts or .env.local
+ * See instructions in src/proxy.ts or .env.local
  *
  * This page will only be enforced when ENABLE_PASSWORD_PROTECTION=true
  * When disabled, this page is still accessible but not required for site access
@@ -17,7 +17,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,7 +25,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lock, ArrowRight } from 'lucide-react';
 
-export default function PasswordPage() {
+function PasswordForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -156,5 +156,17 @@ export default function PasswordPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function PasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">Loading...</div>
+      </div>
+    }>
+      <PasswordForm />
+    </Suspense>
   );
 }
