@@ -112,6 +112,61 @@ The site is hosted on **Vercel** and deploys automatically when changes are push
 
 ---
 
+## Password Protection
+
+The site includes optional password protection to keep it private before launch.
+
+### Toggle Password Protection ON/OFF
+
+**Quick Toggle:**
+1. Open `.env.local` (create from `.env.example` if it doesn't exist)
+2. Set `ENABLE_PASSWORD_PROTECTION=true` to enable, `false` to disable
+3. Restart your dev server
+
+**For Production (Vercel):**
+1. Go to your Vercel project → Settings → Environment Variables
+2. Add or update `ENABLE_PASSWORD_PROTECTION`:
+   - Set to `true` to enable password protection
+   - Set to `false` to make the site public
+3. Add or update `SITE_PASSWORD` to your desired password
+4. Redeploy for changes to take effect
+
+### Environment Variables
+
+```bash
+# Enable/disable password protection
+ENABLE_PASSWORD_PROTECTION=true   # true = password required, false = public site
+
+# The password (only used when protection is enabled)
+SITE_PASSWORD=your-secret-password-here
+```
+
+### How It Works
+
+**When enabled (`ENABLE_PASSWORD_PROTECTION=true`):**
+- All visitors are redirected to a password page
+- After entering the correct password, a secure cookie is set (valid for 7 days)
+- Visitors can browse freely with the cookie
+- Works on ALL pages and routes (complete site protection)
+
+**When disabled (`ENABLE_PASSWORD_PROTECTION=false`):**
+- Site is publicly accessible
+- No password required
+- Password protection code remains in place but inactive
+
+### Implementation Files
+
+Password protection is implemented in these files (do not delete):
+- `src/proxy.ts` — Enforces password check on all routes (Next.js 16+ uses proxy instead of middleware)
+- `src/app/password/page.tsx` — Password entry page
+- `src/app/api/verify-password/route.ts` — Password verification API
+- `.env.local` — Configuration (gitignored, never committed)
+- `.env.example` — Template for configuration
+
+Each file contains detailed comments explaining the toggle mechanism.
+
+---
+
 ## Requesting Changes
 
 For changes that require development work:
