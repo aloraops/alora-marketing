@@ -1,0 +1,75 @@
+/**
+ * Shared Content
+ *
+ * Common content used across multiple pages: navigation, footer, CTAs, etc.
+ */
+
+export const brand = {
+  name: 'Alora',
+  tagline: 'AI-powered supply chain operations for complex hardware manufacturers.',
+  domain: 'aloraops.ai',
+  appUrl: 'https://app.aloraops.com',
+  contactEmail: 'hello@aloraops.ai',
+};
+
+export const navigation = {
+  main: [
+    { name: 'Solutions', href: '/solutions' },
+    { name: 'Company', href: '/company' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
+  ],
+  signIn: { name: 'Sign In', href: 'https://app.aloraops.com' },
+};
+
+export const footer = {
+  solutions: [
+    { name: 'PO Risk & Tracking', href: '/solutions#po-risk' },
+    { name: 'Build Readiness', href: '/solutions#build-readiness' },
+    { name: 'Vendor Scoring', href: '/solutions#vendor-scoring' },
+  ],
+  company: [
+    { name: 'About Us', href: '/company' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
+  ],
+  legal: [
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+  ],
+  copyright: 'Alora. All rights reserved.',
+};
+
+/**
+ * Icon name mapping
+ *
+ * Components should import icons from lucide-react based on these string names.
+ * This allows content files to reference icons by name without importing React components.
+ */
+export const iconNames = [
+  'ArrowRight',
+  'BarChart3',
+  'Briefcase',
+  'CheckCircle2',
+  'ClipboardList',
+  'Clock',
+  'Cpu',
+  'Database',
+  'Factory',
+  'HeartPulse',
+  'Lightbulb',
+  'Lock',
+  'Mail',
+  'Package',
+  'RefreshCw',
+  'Shield',
+  'TrendingUp',
+  'Users',
+  'Zap',
+  'AlertTriangle',
+  'Award',
+  'GraduationCap',
+  'Target',
+] as const;
+
+export type IconName = (typeof iconNames)[number];

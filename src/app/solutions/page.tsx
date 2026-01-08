@@ -19,6 +19,25 @@ import {
   Lock,
 } from 'lucide-react';
 
+// Content imports
+import * as content from '@content/solutions';
+
+// Icon mapping for dynamic rendering
+const icons = {
+  ClipboardList,
+  Zap,
+  Shield,
+  BarChart3,
+  Mail,
+  Database,
+  RefreshCw,
+  AlertTriangle,
+  Clock,
+  Lock,
+} as const;
+
+type IconName = keyof typeof icons;
+
 export default function SolutionsPage() {
   return (
     <>
@@ -28,13 +47,10 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                What Alora does for you
+                {content.hero.title}
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
-                All tools are powered by the same AI risk engine that turns
-                supply-chain events into ranked P/N risk and next moves. We start with
-                three core modules and continuously add new workflows on top of the
-                same engine.
+                {content.hero.description}
               </p>
             </div>
           </FadeIn>
@@ -47,15 +63,13 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                The Core
+                {content.aiEngine.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                AI Risk Engine
+                {content.aiEngine.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Alora ingests data from your ERP, email, and supplier updates. Our AI
-                engine analyzes every part number, scores risk, and delivers a
-                prioritized action plan.
+                {content.aiEngine.description}
               </p>
             </div>
           </FadeIn>
@@ -64,62 +78,34 @@ export default function SolutionsPage() {
           <div className="mt-16">
             <div className="mx-auto max-w-4xl">
               <StaggerContainer className="grid gap-8 md:grid-cols-5" staggerDelay={0.1}>
-                {[
-                  {
-                    step: '1',
-                    label: 'Ingest',
-                    icon: Database,
-                    desc: 'Pull data from ERP, email, and BOM sources',
-                  },
-                  {
-                    step: '2',
-                    label: 'Analyze',
-                    icon: BarChart3,
-                    desc: 'AI scores every part by risk and impact',
-                  },
-                  {
-                    step: '3',
-                    label: 'Prioritize',
-                    icon: ClipboardList,
-                    desc: 'Generate ranked worklist of actions',
-                  },
-                  {
-                    step: '4',
-                    label: 'Act',
-                    icon: Zap,
-                    desc: 'Get suggested next moves for each item',
-                  },
-                  {
-                    step: '5',
-                    label: 'Sync',
-                    icon: RefreshCw,
-                    desc: 'Push updates back to ERP automatically',
-                  },
-                ].map((item, i) => (
-                  <StaggerItem key={item.step}>
-                    <div className="relative text-center">
-                      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                        <item.icon className="h-7 w-7" />
-                      </div>
-                      <div className="mt-4">
-                        <span className="text-xs font-medium text-primary">
-                          Step {item.step}
-                        </span>
-                        <h3 className="mt-1 text-base font-semibold text-foreground">
-                          {item.label}
-                        </h3>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {item.desc}
-                        </p>
-                      </div>
-                      {i < 4 && (
-                        <div className="absolute right-0 top-7 hidden -translate-y-1/2 translate-x-1/2 md:block">
-                          <ArrowRight className="h-5 w-5 text-border" />
+                {content.aiEngine.steps.map((item, i) => {
+                  const Icon = icons[item.icon as IconName];
+                  return (
+                    <StaggerItem key={item.step}>
+                      <div className="relative text-center">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                          {Icon && <Icon className="h-7 w-7" />}
                         </div>
-                      )}
-                    </div>
-                  </StaggerItem>
-                ))}
+                        <div className="mt-4">
+                          <span className="text-xs font-medium text-primary">
+                            Step {item.step}
+                          </span>
+                          <h3 className="mt-1 text-base font-semibold text-foreground">
+                            {item.label}
+                          </h3>
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            {item.desc}
+                          </p>
+                        </div>
+                        {i < content.aiEngine.steps.length - 1 && (
+                          <div className="absolute right-0 top-7 hidden -translate-y-1/2 translate-x-1/2 md:block">
+                            <ArrowRight className="h-5 w-5 text-border" />
+                          </div>
+                        )}
+                      </div>
+                    </StaggerItem>
+                  );
+                })}
               </StaggerContainer>
             </div>
           </div>
@@ -132,10 +118,10 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center mb-12">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Core Solutions
+                {content.carousel.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Three modules, one engine
+                {content.carousel.title}
               </p>
             </div>
           </FadeIn>
@@ -149,47 +135,33 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Integration
+                {content.erpIntegration.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                No rip-and-replace
+                {content.erpIntegration.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Alora works with your existing ERP. We integrate, not replace.
-                Bidirectional sync keeps both systems in harmony.
+                {content.erpIntegration.description}
               </p>
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3" staggerDelay={0.15}>
-            {[
-              {
-                icon: Database,
-                title: 'Pull Data',
-                desc: 'Open orders, items, vendor master data from Priority, SAP, and more',
-              },
-              {
-                icon: RefreshCw,
-                title: 'Map & Sync',
-                desc: 'Configurable status mapping between systems, real-time updates',
-              },
-              {
-                icon: Zap,
-                title: 'Push Back',
-                desc: 'Delivery dates and confirmations flow back to ERP automatically',
-              },
-            ].map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="text-center">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <item.icon className="h-6 w-6" />
+            {content.erpIntegration.items.map((item) => {
+              const Icon = icons[item.icon as IconName];
+              return (
+                <StaggerItem key={item.title}>
+                  <div className="text-center">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      {Icon && <Icon className="h-6 w-6" />}
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -201,43 +173,29 @@ export default function SolutionsPage() {
             <FadeIn direction="right">
               <div>
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                  Email Intelligence
+                  {content.emailIntelligence.label}
                 </h2>
                 <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  AI-powered email processing
+                  {content.emailIntelligence.title}
                 </p>
                 <p className="mt-6 text-lg text-muted-foreground">
-                  Our AI pipeline converts unstructured supplier communications into
-                  structured data automatically.
+                  {content.emailIntelligence.description}
                 </p>
                 <div className="mt-8 space-y-6">
-                  {[
-                    {
-                      icon: Mail,
-                      title: 'Automatic Classification',
-                      desc: 'NEW_ORDER, UPDATE, RECEIPT, and more',
-                    },
-                    {
-                      icon: BarChart3,
-                      title: 'Data Extraction',
-                      desc: 'Structured data from PDFs, Excel, and attachments',
-                    },
-                    {
-                      icon: Clock,
-                      title: 'Order Updates',
-                      desc: 'Auto-create and update orders from supplier emails',
-                    },
-                  ].map((item) => (
-                    <div key={item.title} className="flex gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        <item.icon className="h-5 w-5" />
+                  {content.emailIntelligence.features.map((item) => {
+                    const Icon = icons[item.icon as IconName];
+                    return (
+                      <div key={item.title} className="flex gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                          {Icon && <Icon className="h-5 w-5" />}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground">{item.title}</h3>
+                          <p className="text-sm text-muted-foreground">{item.desc}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground">{item.title}</h3>
-                        <p className="text-sm text-muted-foreground">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </FadeIn>
@@ -249,10 +207,10 @@ export default function SolutionsPage() {
                       <Mail className="h-8 w-8 text-muted-foreground" />
                       <div className="flex-1">
                         <div className="text-sm font-medium text-foreground">
-                          supplier@vendor.com
+                          {content.emailIntelligence.demoEmail.from}
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          RE: PO-4521 Delivery Update
+                          {content.emailIntelligence.demoEmail.subject}
                         </div>
                       </div>
                       <ArrowRight className="h-5 w-5 text-primary" />
@@ -264,25 +222,15 @@ export default function SolutionsPage() {
                   <Card className="border-0 shadow-sm bg-primary/5">
                     <CardContent className="p-4">
                       <div className="text-xs font-medium text-primary mb-2">
-                        AI EXTRACTED
+                        {content.emailIntelligence.demoExtracted.label}
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div>
-                          <span className="text-muted-foreground">Type:</span>{' '}
-                          <span className="font-medium">UPDATE</span>
-                        </div>
-                        <div>
-                          <span className="text-muted-foreground">PO:</span>{' '}
-                          <span className="font-medium">4521</span>
-                        </div>
-                        <div>
-                          <span className="text-muted-foreground">New Date:</span>{' '}
-                          <span className="font-medium">Jan 15</span>
-                        </div>
-                        <div>
-                          <span className="text-muted-foreground">Qty:</span>{' '}
-                          <span className="font-medium">150 units</span>
-                        </div>
+                        {content.emailIntelligence.demoExtracted.fields.map((field) => (
+                          <div key={field.label}>
+                            <span className="text-muted-foreground">{field.label}:</span>{' '}
+                            <span className="font-medium">{field.value}</span>
+                          </div>
+                        ))}
                       </div>
                     </CardContent>
                   </Card>
@@ -299,48 +247,33 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Security & Trust
+                {content.security.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Security you can build on
+                {content.security.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Alora works with sensitive BOM, PO, and supplier data, so security is
-                built into the product. Your data stays your own and is never pooled
-                or shared across customers.
+                {content.security.description}
               </p>
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3" staggerDelay={0.15}>
-            {[
-              {
-                icon: Lock,
-                title: 'Data Protection',
-                desc: 'Enterprise-grade encryption at rest and in transit',
-              },
-              {
-                icon: Shield,
-                title: 'Access Control',
-                desc: 'Role-based permissions and audit logging',
-              },
-              {
-                icon: AlertTriangle,
-                title: 'Isolated Tenants',
-                desc: 'Complete data isolation between customers',
-              },
-            ].map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="text-center">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <item.icon className="h-6 w-6" />
+            {content.security.items.map((item) => {
+              const Icon = icons[item.icon as IconName];
+              return (
+                <StaggerItem key={item.title}>
+                  <div className="text-center">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      {Icon && <Icon className="h-6 w-6" />}
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -351,16 +284,15 @@ export default function SolutionsPage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Ready to transform your supply chain?
+                {content.cta.title}
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                See how Alora can turn your procurement chaos into clarity. Book a
-                demo to see the platform in action.
+                {content.cta.description}
               </p>
               <div className="mt-10">
                 <Button asChild size="lg">
                   <Link href="/contact">
-                    Book a Demo
+                    {content.cta.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

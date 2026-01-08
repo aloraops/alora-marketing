@@ -17,6 +17,24 @@ import {
   HeartPulse,
 } from 'lucide-react';
 
+// Content imports
+import * as content from '@content/home';
+
+// Icon mapping for dynamic rendering
+const icons = {
+  ClipboardList,
+  Package,
+  Users,
+  Zap,
+  Shield,
+  BarChart3,
+  Cpu,
+  Factory,
+  HeartPulse,
+} as const;
+
+type IconName = keyof typeof icons;
+
 export default function HomePage() {
   return (
     <>
@@ -42,20 +60,18 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Where every supply-chain event becomes{' '}
-                <span className="text-white/80">clear, ranked, and actionable</span>
+                {content.hero.headline}{' '}
+                <span className="text-white/80">{content.hero.headlineAccent}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="mt-6 text-lg leading-8 text-white/70 sm:text-xl">
-                Every change triggers impact. Alora captures it, measures it, ranks it,
-                and drives the next move — so your teams always know what to handle
-                first.
+                {content.hero.subheading}
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="mt-4 text-sm font-medium text-white/50">
-                Built for complex, BOM-driven hardware manufacturers.
+                {content.hero.icpLine}
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -66,7 +82,7 @@ export default function HomePage() {
                   className="bg-white text-primary hover:bg-white/90"
                 >
                   <Link href="/contact">
-                    Book a Demo
+                    {content.hero.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -76,7 +92,7 @@ export default function HomePage() {
                   size="lg"
                   className="border-white text-white hover:bg-white/10 bg-transparent"
                 >
-                  <Link href="/solutions">Learn More</Link>
+                  <Link href="/solutions">{content.hero.secondaryCta}</Link>
                 </Button>
               </div>
             </FadeIn>
@@ -90,27 +106,21 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                The Problem
+                {content.problem.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                The daily gap between data and decisions
+                {content.problem.title}
               </p>
             </div>
           </FadeIn>
           <div className="mx-auto mt-12 max-w-3xl">
             <FadeIn delay={0.1}>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Even with ERP, reports, and spreadsheets, procurement and planning
-                teams still struggle to answer basic questions at the start of the
-                day:
+                {content.problem.intro}
               </p>
             </FadeIn>
             <StaggerContainer className="mt-8 space-y-4" staggerDelay={0.1}>
-              {[
-                'Which lines should we focus on first?',
-                'Can we really build this order on time?',
-                'Which customers are at risk if certain parts slip?',
-              ].map((question, i) => (
+              {content.problem.questions.map((question, i) => (
                 <StaggerItem key={i}>
                   <div className="flex items-start gap-3 text-foreground font-medium">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm">
@@ -123,8 +133,7 @@ export default function HomePage() {
             </StaggerContainer>
             <FadeIn delay={0.4}>
               <p className="mt-8 text-muted-foreground">
-                Data is spread across ERP, Excel, and email. Deep, multi-level BOMs
-                make it hard to see which specific part really blocks a build.
+                {content.problem.outro}
               </p>
             </FadeIn>
           </div>
@@ -137,43 +146,38 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                The Solution
+                {content.solution.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                From any event to clear impact and action
+                {content.solution.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Alora ingests ERP, email, and BOM signals and runs an AI engine that
-                scores every part number. See which builds and customers are affected,
-                how much is at risk, and who owns the next move.
+                {content.solution.description}
               </p>
             </div>
           </FadeIn>
 
           {/* Flow Diagram */}
           <StaggerContainer className="mt-16 flex flex-wrap items-center justify-center gap-4" staggerDelay={0.1}>
-            {[
-              { label: 'Ingest', icon: Package, desc: 'ERP, Email, BOM' },
-              { label: 'Analyze', icon: BarChart3, desc: 'AI Risk Engine' },
-              { label: 'Prioritize', icon: ClipboardList, desc: 'Ranked Worklist' },
-              { label: 'Act', icon: Zap, desc: 'Clear Next Steps' },
-              { label: 'Sync', icon: Shield, desc: 'Update ERP' },
-            ].map((step, i) => (
-              <StaggerItem key={step.label} className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-                    <step.icon className="h-8 w-8" />
+            {content.solution.steps.map((step, i) => {
+              const Icon = icons[step.icon as IconName];
+              return (
+                <StaggerItem key={step.label} className="flex items-center gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+                      {Icon && <Icon className="h-8 w-8" />}
+                    </div>
+                    <span className="mt-2 text-sm font-semibold text-foreground">
+                      {step.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{step.desc}</span>
                   </div>
-                  <span className="mt-2 text-sm font-semibold text-foreground">
-                    {step.label}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{step.desc}</span>
-                </div>
-                {i < 4 && (
-                  <ArrowRight className="h-5 w-5 text-muted-foreground hidden sm:block" />
-                )}
-              </StaggerItem>
-            ))}
+                  {i < content.solution.steps.length - 1 && (
+                    <ArrowRight className="h-5 w-5 text-muted-foreground hidden sm:block" />
+                  )}
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -184,40 +188,15 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Measurable Impact
+                {content.metrics.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Results that matter
+                {content.metrics.title}
               </p>
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-6 lg:grid-cols-4" staggerDelay={0.1}>
-            {[
-              {
-                metric: '10×',
-                label: 'Faster',
-                desc: 'Decision Making',
-                detail: 'From weeks to same-day responses',
-              },
-              {
-                metric: '5%',
-                label: 'Reduction',
-                desc: 'in Revenue Risk',
-                detail: 'Act before delays hit production',
-              },
-              {
-                metric: '50%',
-                label: 'Less',
-                desc: 'Manual Work',
-                detail: 'Automated follow-ups and tracking',
-              },
-              {
-                metric: '80%',
-                label: 'Fewer',
-                desc: 'Blocked POs',
-                detail: 'Early confirmations + discrepancy flags',
-              },
-            ].map((stat) => (
+            {content.metrics.items.map((stat) => (
               <StaggerItem key={stat.metric}>
                 <Card className="text-center border-0 shadow-sm h-full">
                   <CardContent className="pt-6">
@@ -247,57 +226,41 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Solutions
+                {content.features.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                What Alora does for you
+                {content.features.title}
               </p>
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-3" staggerDelay={0.15}>
-            {[
-              {
-                title: 'PO Risk & Tracking',
-                desc: 'Turn open POs into a ranked TODO list, not a static report. See all PO lines ordered by risk and business impact.',
-                icon: ClipboardList,
-                href: '/solutions#po-risk',
-              },
-              {
-                title: 'CTB & Build Readiness',
-                desc: 'Know if you can really build — before the line is exposed. Connect part availability and risk to upcoming builds.',
-                icon: Package,
-                href: '/solutions#build-readiness',
-              },
-              {
-                title: 'Vendor Behavior & Scoring',
-                desc: "See how suppliers actually behave, not just what's written on the PO. Track real lead times vs. quoted.",
-                icon: Users,
-                href: '/solutions#vendor-scoring',
-              },
-            ].map((feature) => (
-              <StaggerItem key={feature.title}>
-                <Card className="border-0 shadow-sm transition-shadow hover:shadow-md h-full">
-                  <CardContent className="pt-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <feature.icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold text-foreground">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {feature.desc}
-                    </p>
-                    <Link
-                      href={feature.href}
-                      className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
-                    >
-                      Learn more
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            ))}
+            {content.features.items.map((feature) => {
+              const Icon = icons[feature.icon as IconName];
+              return (
+                <StaggerItem key={feature.title}>
+                  <Card className="border-0 shadow-sm transition-shadow hover:shadow-md h-full">
+                    <CardContent className="pt-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        {Icon && <Icon className="h-6 w-6" />}
+                      </div>
+                      <h3 className="mt-4 text-lg font-semibold text-foreground">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                        {feature.desc}
+                      </p>
+                      <Link
+                        href={feature.href}
+                        className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
+                      >
+                        Learn more
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -308,51 +271,33 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Built For
+                {content.industries.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Complex, BOM-driven hardware manufacturers
+                {content.industries.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Where a single part can put a whole build at risk
+                {content.industries.subtitle}
               </p>
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4" staggerDelay={0.1}>
-            {[
-              {
-                name: 'Medical Devices',
-                icon: HeartPulse,
-                desc: 'Regulated, multi-discipline assemblies',
-              },
-              {
-                name: 'Robotics',
-                icon: Cpu,
-                desc: 'Multi-level BOMs, tightly sequenced',
-              },
-              {
-                name: 'Defense',
-                icon: Shield,
-                desc: 'Complex assemblies, strict compliance',
-              },
-              {
-                name: 'Industrial',
-                icon: Factory,
-                desc: 'Engineer-to-order, high-value parts',
-              },
-            ].map((industry) => (
-              <StaggerItem key={industry.name}>
-                <div className="text-center">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <industry.icon className="h-7 w-7" />
+            {content.industries.items.map((industry) => {
+              const Icon = icons[industry.icon as IconName];
+              return (
+                <StaggerItem key={industry.name}>
+                  <div className="text-center">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      {Icon && <Icon className="h-7 w-7" />}
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-foreground">
+                      {industry.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{industry.desc}</p>
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{industry.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -363,21 +308,18 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                The Team
+                {content.teamTeaser.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Built by people who&apos;ve lived the problem
+                {content.teamTeaser.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
-                Our founders bring 20+ years of combined experience in supply chain
-                operations, AI/ML, and enterprise software. We&apos;ve managed $200M in
-                supplier deals, built surgical robotics, and created AI systems for
-                high-frequency trading.
+                {content.teamTeaser.description}
               </p>
               <div className="mt-8">
                 <Button asChild variant="outline">
                   <Link href="/company">
-                    Meet the Team
+                    {content.teamTeaser.cta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -393,22 +335,20 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                See Alora on your own data
+                {content.finalCta.title}
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                We usually start with a focused pilot around active POs and upcoming
-                builds — enough to prove value for procurement and planning without
-                heavy IT work.
+                {content.finalCta.description}
               </p>
               <div className="mt-10 flex items-center justify-center gap-4">
                 <Button asChild size="lg">
                   <Link href="/contact">
-                    Book a Demo
+                    {content.finalCta.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">Request a Pilot</Link>
+                  <Link href="/contact">{content.finalCta.secondaryCta}</Link>
                 </Button>
               </div>
             </div>

@@ -14,68 +14,17 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
-const solutions = [
-  {
-    id: 'po-risk',
-    number: 1,
-    icon: ClipboardList,
-    title: 'PO Risk & Tracking',
-    subtitle: 'Turn open POs into a ranked TODO list, not a static report.',
-    features: [
-      'See all PO lines ordered by risk and business impact',
-      'Understand which builds and customers each line affects',
-      'Get suggested next moves for risky lines (follow-up, escalate, re-confirm, split)',
-      'Track confirmation gaps, date slips, and mismatched lines',
-    ],
-    mockData: [
-      { po: 'PO-4521', part: 'Motor Assembly', risk: 'High', action: 'Follow up' },
-      { po: 'PO-4518', part: 'Control Board', risk: 'Medium', action: 'Re-confirm' },
-      { po: 'PO-4515', part: 'Housing Unit', risk: 'Low', action: 'Monitor' },
-    ],
-    cardTitle: 'PO Lines by Risk',
-    cardSubtitle: 'Updated 2 min ago',
-  },
-  {
-    id: 'build-readiness',
-    number: 2,
-    icon: Package,
-    title: 'CTB & Build Readiness',
-    subtitle: 'Know if you can really build — before the line is exposed.',
-    features: [
-      'Connect part availability and risk to upcoming builds and projects',
-      'Highlight shortages and bottlenecks at the BOM level',
-      'Show which orders and customers are at risk if nothing changes',
-      'See revenue exposure before it becomes a crisis',
-    ],
-    mockData: [
-      { build: 'Project Alpha', customer: 'MedTech Inc', status: 'At Risk', parts: '3 parts missing' },
-      { build: 'Project Beta', customer: 'RoboCorp', status: 'On Track', parts: 'All parts confirmed' },
-      { build: 'Project Gamma', customer: 'DefenseCo', status: 'Review', parts: '1 part delayed' },
-    ],
-    cardTitle: 'Build Readiness',
-    cardSubtitle: 'Next 30 days',
-  },
-  {
-    id: 'vendor-scoring',
-    number: 3,
-    icon: Users,
-    title: 'Vendor Behavior & Scoring',
-    subtitle: "See how suppliers actually behave, not just what's written on the PO.",
-    features: [
-      'Track real lead times vs. quoted, confirmation patterns, and slips',
-      'Score suppliers at the part level based on behavior and risk',
-      'Feed vendor scores into prioritization so risky suppliers surface first',
-      'Identify patterns before they become problems',
-    ],
-    mockData: [
-      { vendor: 'Precision Parts Co', score: 92, trend: 'up', metric: '+3 days avg' },
-      { vendor: 'Global Electronics', score: 78, trend: 'down', metric: '-5 days avg' },
-      { vendor: 'Industrial Supply', score: 85, trend: 'stable', metric: 'On target' },
-    ],
-    cardTitle: 'Vendor Performance',
-    cardSubtitle: 'Last 90 days',
-  },
-];
+// Content import
+import { carousel } from '@content/solutions';
+
+// Icon mapping
+const icons = {
+  ClipboardList,
+  Package,
+  Users,
+} as const;
+
+type IconName = keyof typeof icons;
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -101,7 +50,7 @@ export function SolutionsCarousel() {
 
   const paginate = useCallback((newDirection: number) => {
     const newPage = page + newDirection;
-    if (newPage >= 0 && newPage < solutions.length) {
+    if (newPage >= 0 && newPage < carousel.solutions.length) {
       setPage([newPage, newDirection]);
     }
   }, [page]);
@@ -134,7 +83,7 @@ export function SolutionsCarousel() {
       }
 
       if (Math.abs(delta) > 20) {
-        const canGoNext = delta > 0 && page < solutions.length - 1;
+        const canGoNext = delta > 0 && page < carousel.solutions.length - 1;
         const canGoPrev = delta < 0 && page > 0;
 
         // Always prevent default for horizontal scrolls in the carousel area
@@ -159,15 +108,15 @@ export function SolutionsCarousel() {
   // Handle drag/swipe gestures
   const handleDragEnd = useCallback((e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold && page < solutions.length - 1) {
+    if (info.offset.x < -swipeThreshold && page < carousel.solutions.length - 1) {
       paginate(1);
     } else if (info.offset.x > swipeThreshold && page > 0) {
       paginate(-1);
     }
   }, [page, paginate]);
 
-  const solution = solutions[page];
-  const Icon = solution.icon;
+  const solution = carousel.solutions[page];
+  const Icon = icons[solution.icon as IconName];
 
   return (
     <div className="relative">
@@ -189,7 +138,7 @@ export function SolutionsCarousel() {
           size="icon"
           className="h-12 w-12 rounded-full shadow-lg bg-background disabled:opacity-30"
           onClick={() => paginate(1)}
-          disabled={page === solutions.length - 1}
+          disabled={page === carousel.solutions.length - 1}
         >
           <ChevronRight className="h-6 w-6" />
         </Button>
@@ -227,7 +176,7 @@ export function SolutionsCarousel() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                      <Icon className="h-5 w-5" />
+                      {Icon && <Icon className="h-5 w-5" />}
                     </div>
                     <span className="text-sm font-semibold uppercase tracking-wide text-primary">
                       Solution {solution.number}
@@ -372,7 +321,7 @@ export function SolutionsCarousel() {
 
       {/* Dot Indicators */}
       <div className="flex justify-center gap-2 mt-8">
-        {solutions.map((_, i) => (
+        {carousel.solutions.map((_, i) => (
           <button
             key={i}
             onClick={() => goToSlide(i)}
@@ -386,7 +335,7 @@ export function SolutionsCarousel() {
 
       {/* Solution Labels */}
       <div className="flex justify-center gap-4 mt-4">
-        {solutions.map((s, i) => (
+        {carousel.solutions.map((s, i) => (
           <button
             key={s.id}
             onClick={() => goToSlide(i)}
