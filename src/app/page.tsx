@@ -174,9 +174,13 @@ export default function HomePage() {
                         </ul>
                       )}
                       {step.closing && (
-                        <p className="mt-4 text-muted-foreground leading-relaxed">
-                          {step.closing}
-                        </p>
+                        <div className="mt-4 space-y-2">
+                          {step.closing.map((line, j) => (
+                            <p key={j} className="text-muted-foreground leading-relaxed">
+                              {line}
+                            </p>
+                          ))}
+                        </div>
                       )}
                       {step.emphasis && (
                         <p className="mt-4 text-sm font-medium text-primary">

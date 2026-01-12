@@ -77,8 +77,10 @@ export const executionLoop = {
         'Suggested resolution paths',
         'And the ability to act immediately',
       ],
-      closing:
-        'Whether that means: Triggering supplier outreach, Routing work internally or Coordinating next steps. Actions can be executed automatically — always with a human in control. This is execution with leverage, not heroics.',
+      closing: [
+        'Whether that means: Triggering supplier outreach, Routing work internally or Coordinating next steps.',
+        'Actions can be executed automatically — always with a human in control.',
+      ],
       icon: 'Zap',
     },
   ],
