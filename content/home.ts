@@ -126,7 +126,7 @@ export const metrics = {
     {
       label: 'Decisions that stick',
       detail:
-        'Execution signals grounded to BOM and business impact replace alignment loops with confident decisions teams can act on immediately.',
+        'Signals grounded to BOM and business impact replace alignment loops with confident, actionable decisions.',
       icon: 'CheckCircle',
     },
     {

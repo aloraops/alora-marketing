@@ -266,27 +266,24 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.metrics.label}
-              </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.metrics.title}
-              </p>
+              </h2>
             </div>
           </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-6 lg:grid-cols-4" staggerDelay={0.1}>
+          <StaggerContainer className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-8 lg:grid-cols-4" staggerDelay={0.1}>
             {content.metrics.items.map((stat) => {
               const Icon = icons[stat.icon as IconName];
               return (
                 <StaggerItem key={stat.label}>
-                  <Card className="text-center border-0 shadow-sm h-full">
-                    <CardContent className="pt-6 flex flex-col h-full">
+                  <Card className="text-center border border-border/50 shadow-none h-full bg-transparent">
+                    <CardContent className="pt-6 pb-6 flex flex-col h-full">
                       {Icon && (
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                          <Icon className="h-6 w-6" />
+                        <div className="mx-auto mb-4">
+                          <Icon className="h-5 w-5 text-muted-foreground" />
                         </div>
                       )}
-                      <h3 className="text-lg font-semibold text-foreground">
+                      <h3 className="text-base font-semibold text-foreground">
                         {stat.label}
                       </h3>
                       <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
