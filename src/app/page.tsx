@@ -178,14 +178,14 @@ export default function HomePage() {
                           {step.followUp}
                         </p>
                       )}
-                      <p className="mt-4 text-sm font-medium text-primary">
-                        {step.emphasis}
-                      </p>
                       {step.footnote && (
-                        <p className="mt-2 text-xs text-muted-foreground italic">
+                        <p className="mt-4 text-muted-foreground italic">
                           {step.footnote}
                         </p>
                       )}
+                      <p className="mt-4 text-sm font-medium text-primary">
+                        {step.emphasis}
+                      </p>
                     </div>
                   </div>
                 </FadeIn>
