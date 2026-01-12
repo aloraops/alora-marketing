@@ -1,20 +1,24 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 import {
   ArrowRight,
-  ClipboardList,
-  Package,
-  Users,
-  Zap,
-  Shield,
-  BarChart3,
   Cpu,
   Factory,
   HeartPulse,
+  Shield,
+  Radio,
+  Layers,
+  Scale,
+  Zap,
+  Clock,
+  CheckCircle,
+  Unlock,
+  ChevronDown,
 } from 'lucide-react';
 
 // Content imports
@@ -22,20 +26,29 @@ import * as content from '@content/home';
 
 // Icon mapping for dynamic rendering
 const icons = {
-  ClipboardList,
-  Package,
-  Users,
-  Zap,
   Shield,
-  BarChart3,
   Cpu,
   Factory,
   HeartPulse,
+  Radio,
+  Layers,
+  Scale,
+  Zap,
+  Clock,
+  CheckCircle,
+  Unlock,
 } as const;
 
 type IconName = keyof typeof icons;
 
 export default function HomePage() {
+  const [openFaqItems, setOpenFaqItems] = useState<Record<string, boolean>>({});
+
+  const toggleFaq = (groupIndex: number, itemIndex: number) => {
+    const key = `${groupIndex}-${itemIndex}`;
+    setOpenFaqItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -75,7 +88,7 @@ export default function HomePage() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <div className="mt-10 flex items-center justify-center gap-4">
+              <div className="mt-10 flex items-center justify-center">
                 <Button
                   asChild
                   size="lg"
@@ -86,103 +99,159 @@ export default function HomePage() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white/10 bg-transparent"
-                >
-                  <Link href="/solutions">{content.hero.secondaryCta}</Link>
-                </Button>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Execution Loop Section */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.problem.label}
+                {content.executionLoop.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.problem.title}
+                {content.executionLoop.title}
               </p>
             </div>
           </FadeIn>
-          <div className="mx-auto mt-12 max-w-3xl">
-            <FadeIn delay={0.1}>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {content.problem.intro}
-              </p>
-            </FadeIn>
-            <StaggerContainer className="mt-8 space-y-4" staggerDelay={0.1}>
-              {content.problem.questions.map((question, i) => (
-                <StaggerItem key={i}>
-                  <div className="flex items-start gap-3 text-foreground font-medium">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm">
-                      ?
-                    </span>
-                    {question}
+
+          <div className="mx-auto mt-16 max-w-4xl space-y-12">
+            {content.executionLoop.steps.map((step, i) => {
+              const Icon = icons[step.icon as IconName];
+              return (
+                <FadeIn key={step.number} delay={i * 0.1}>
+                  <div className="relative flex gap-6">
+                    <div className="flex flex-col items-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
+                        {step.number}
+                      </div>
+                      {i < content.executionLoop.steps.length - 1 && (
+                        <div className="mt-4 h-full w-px bg-border" />
+                      )}
+                    </div>
+                    <div className="flex-1 pb-8">
+                      <div className="flex items-center gap-3">
+                        {Icon && <Icon className="h-5 w-5 text-primary" />}
+                        <h3 className="text-xl font-semibold text-foreground">
+                          {step.title}
+                        </h3>
+                      </div>
+                      <p className="mt-3 text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
+                      {step.details && (
+                        <ul className="mt-4 space-y-2">
+                          {step.details.map((detail, j) => (
+                            <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {step.options && (
+                        <ul className="mt-4 space-y-2">
+                          {step.options.map((option, j) => (
+                            <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                              {option}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {step.actions && (
+                        <ul className="mt-4 space-y-2">
+                          {step.actions.map((action, j) => (
+                            <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                              {action}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <p className="mt-4 text-sm font-medium text-primary">
+                        {step.emphasis}
+                      </p>
+                      {step.footnote && (
+                        <p className="mt-2 text-xs text-muted-foreground italic">
+                          {step.footnote}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-            <FadeIn delay={0.4}>
-              <p className="mt-8 text-muted-foreground">
-                {content.problem.outro}
-              </p>
-            </FadeIn>
+                </FadeIn>
+              );
+            })}
           </div>
+
+          <FadeIn delay={0.5}>
+            <p className="mx-auto mt-12 max-w-2xl text-center text-lg text-muted-foreground">
+              {content.executionLoop.closingLine}
+            </p>
+          </FadeIn>
+
+          {/* CTA after execution loop per spec */}
+          <FadeIn delay={0.6}>
+            <div className="mt-10 flex justify-center">
+              <Button asChild size="lg">
+                <Link href="/contact">
+                  {content.hero.primaryCta}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Solution Overview */}
+      {/* Adoption Journey Section */}
       <section className="bg-muted/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.solution.label}
+                {content.adoptionJourney.label}
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.solution.title}
-              </p>
-              <p className="mt-6 text-lg text-muted-foreground">
-                {content.solution.description}
+                {content.adoptionJourney.title}
               </p>
             </div>
           </FadeIn>
 
-          {/* Flow Diagram */}
-          <StaggerContainer className="mt-16 flex flex-wrap items-center justify-center gap-4" staggerDelay={0.1}>
-            {content.solution.steps.map((step, i) => {
-              const Icon = icons[step.icon as IconName];
-              return (
-                <StaggerItem key={step.label} className="flex items-center gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-                      {Icon && <Icon className="h-8 w-8" />}
+          <StaggerContainer className="mx-auto mt-16 grid max-w-5xl gap-6 lg:grid-cols-4" staggerDelay={0.1}>
+            {content.adoptionJourney.weeks.map((week) => (
+              <StaggerItem key={week.period}>
+                <Card className="h-full border-0 shadow-sm">
+                  <CardContent className="pt-6">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-primary">
+                        {week.period}
+                      </span>
+                      {week.tag && (
+                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                          {week.tag}
+                        </span>
+                      )}
                     </div>
-                    <span className="mt-2 text-sm font-semibold text-foreground">
-                      {step.label}
-                    </span>
-                    <span className="text-xs text-muted-foreground">{step.desc}</span>
-                  </div>
-                  {i < content.solution.steps.length - 1 && (
-                    <ArrowRight className="h-5 w-5 text-muted-foreground hidden sm:block" />
-                  )}
-                </StaggerItem>
-              );
-            })}
+                    <h3 className="mt-3 text-lg font-semibold text-foreground">
+                      {week.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {week.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* Metrics Section */}
+      {/* Impact / KPIs Section */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
@@ -196,66 +265,33 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-6 lg:grid-cols-4" staggerDelay={0.1}>
-            {content.metrics.items.map((stat) => (
-              <StaggerItem key={stat.metric}>
-                <Card className="text-center border-0 shadow-sm h-full">
-                  <CardContent className="pt-6">
-                    <div className="text-4xl font-bold text-primary lg:text-5xl">
-                      {stat.metric}
-                    </div>
-                    <div className="mt-1 text-lg font-semibold text-foreground">
-                      {stat.label}
-                    </div>
-                    <div className="text-sm font-medium text-muted-foreground">
-                      {stat.desc}
-                    </div>
-                    <div className="mt-2 text-xs text-muted-foreground">
-                      {stat.detail}
-                    </div>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Features Preview */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.features.label}
-              </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.features.title}
-              </p>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-3" staggerDelay={0.15}>
-            {content.features.items.map((feature) => {
-              const Icon = icons[feature.icon as IconName];
+            {content.metrics.items.map((stat) => {
+              const Icon = icons[stat.icon as IconName];
               return (
-                <StaggerItem key={feature.title}>
-                  <Card className="border-0 shadow-sm transition-shadow hover:shadow-md h-full">
+                <StaggerItem key={stat.label}>
+                  <Card className="text-center border-0 shadow-sm h-full">
                     <CardContent className="pt-6">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        {Icon && <Icon className="h-6 w-6" />}
+                      {Icon && (
+                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                          <Icon className="h-6 w-6" />
+                        </div>
+                      )}
+                      {stat.metric && (
+                        <div className="text-3xl font-bold text-primary lg:text-4xl">
+                          {stat.metric}
+                        </div>
+                      )}
+                      <div className="mt-1 text-lg font-semibold text-foreground">
+                        {stat.label}
                       </div>
-                      <h3 className="mt-4 text-lg font-semibold text-foreground">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                        {feature.desc}
-                      </p>
-                      <Link
-                        href={feature.href}
-                        className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
-                      >
-                        Learn more
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </Link>
+                      {stat.desc && (
+                        <div className="text-sm font-medium text-muted-foreground">
+                          {stat.desc}
+                        </div>
+                      )}
+                      <div className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                        {stat.detail}
+                      </div>
                     </CardContent>
                   </Card>
                 </StaggerItem>
@@ -265,8 +301,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section className="py-20 lg:py-28">
+      {/* Who We Serve / Industries Section */}
+      <section className="bg-muted/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
@@ -276,7 +312,7 @@ export default function HomePage() {
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.industries.title}
               </p>
-              <p className="mt-6 text-lg text-muted-foreground">
+              <p className="mt-4 text-lg text-muted-foreground italic">
                 {content.industries.subtitle}
               </p>
             </div>
@@ -293,7 +329,9 @@ export default function HomePage() {
                     <h3 className="mt-4 text-base font-semibold text-foreground">
                       {industry.name}
                     </h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{industry.desc}</p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {industry.desc}
+                    </p>
                   </div>
                 </StaggerItem>
               );
@@ -302,30 +340,97 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Team Teaser */}
+      {/* Trust & Security Section */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <FadeIn>
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                {content.trustAndSecurity.label}
+              </h2>
+              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                {content.trustAndSecurity.title}
+              </p>
+              <p className="mt-6 text-lg text-muted-foreground">
+                {content.trustAndSecurity.description}
+              </p>
+            </div>
+          </FadeIn>
+
+          <StaggerContainer className="mx-auto mt-12 grid max-w-2xl gap-4" staggerDelay={0.1}>
+            {content.trustAndSecurity.items.map((item, i) => (
+              <StaggerItem key={i}>
+                <div className="flex items-center gap-3 rounded-lg bg-muted/50 p-4">
+                  <CheckCircle className="h-5 w-5 text-primary shrink-0" />
+                  <span className="text-foreground">{item}</span>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <FadeIn delay={0.5}>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
+              {content.trustAndSecurity.footnote}
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
       <section className="bg-muted/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.teamTeaser.label}
+                {content.faq.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.teamTeaser.title}
-              </p>
-              <p className="mt-6 text-lg text-muted-foreground">
-                {content.teamTeaser.description}
-              </p>
-              <div className="mt-8">
-                <Button asChild variant="outline">
-                  <Link href="/company">
-                    {content.teamTeaser.cta}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
             </div>
           </FadeIn>
+
+          <div className="mx-auto mt-12 max-w-3xl space-y-10">
+            {content.faq.groups.map((group, groupIndex) => (
+              <FadeIn key={group.title} delay={groupIndex * 0.1}>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
+                    {group.title}
+                  </h3>
+                  <div className="space-y-2">
+                    {group.items.map((item, itemIndex) => {
+                      const key = `${groupIndex}-${itemIndex}`;
+                      const isOpen = openFaqItems[key];
+                      return (
+                        <div
+                          key={itemIndex}
+                          className="rounded-lg border bg-background"
+                        >
+                          <button
+                            onClick={() => toggleFaq(groupIndex, itemIndex)}
+                            className="flex w-full items-center justify-between p-4 text-left"
+                          >
+                            <span className="font-medium text-foreground pr-4">
+                              {item.question}
+                            </span>
+                            <ChevronDown
+                              className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${
+                                isOpen ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </button>
+                          {isOpen && (
+                            <div className="px-4 pb-4">
+                              <p className="text-sm text-muted-foreground leading-relaxed">
+                                {item.answer}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -340,15 +445,15 @@ export default function HomePage() {
               <p className="mt-6 text-lg text-muted-foreground">
                 {content.finalCta.description}
               </p>
-              <div className="mt-10 flex items-center justify-center gap-4">
+              <p className="mt-2 text-sm text-muted-foreground italic">
+                {content.finalCta.supportingLine}
+              </p>
+              <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">
                   <Link href="/contact">
                     {content.finalCta.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">{content.finalCta.secondaryCta}</Link>
                 </Button>
               </div>
             </div>
