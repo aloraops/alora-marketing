@@ -11,7 +11,7 @@ import { cta } from '@content/shared';
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
   { name: 'Company', href: '/company' },
-  { name: 'Blog', href: '/blog' },
+  // { name: 'Blog', href: '/blog' }, // Hidden for now
 ];
 
 export function Header() {
