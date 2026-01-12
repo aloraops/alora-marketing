@@ -77,7 +77,7 @@ export default function ContactPage() {
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Calendly - Book a Demo */}
+            {/* Calendly - Talk to Us */}
             <div>
               <Card className="border-0 shadow-sm h-full">
                 <CardHeader>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                       <Calendar className="h-5 w-5" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl">Book a Demo</CardTitle>
+                      <CardTitle className="text-xl">Talk to Us</CardTitle>
                       <p className="text-sm text-muted-foreground">
                         Schedule a time that works for you
                       </p>

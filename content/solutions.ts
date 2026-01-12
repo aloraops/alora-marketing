@@ -219,8 +219,8 @@ export const security = {
 };
 
 export const cta = {
-  title: 'Ready to transform your supply chain?',
+  title: 'Talk to us',
   description:
-    'See how Alora can turn your procurement chaos into clarity. Book a demo to see the platform in action.',
-  primaryCta: 'Book a Demo',
+    "A focused conversation about execution — we'll walk through how it actually works.",
+  primaryCta: 'Talk to us',
 };

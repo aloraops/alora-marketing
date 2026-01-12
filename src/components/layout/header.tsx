@@ -82,7 +82,7 @@ export function Header() {
             Sign In
           </a>
           <Button asChild>
-            <Link href="/contact">Book a Demo</Link>
+            <Link href="/contact">Talk to Us</Link>
           </Button>
         </div>
       </nav>
@@ -115,7 +115,7 @@ export function Header() {
               </a>
               <Button asChild className="w-full">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  Book a Demo
+                  Talk to Us
                 </Link>
               </Button>
             </div>

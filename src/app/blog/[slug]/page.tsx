@@ -231,7 +231,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="mt-8">
               <Button asChild>
                 <Link href="/contact">
-                  Book a Demo
+                  Talk to Us
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
