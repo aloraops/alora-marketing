@@ -314,18 +314,24 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.1}>
-            {content.industries.items.map((industry) => (
-              <StaggerItem key={industry.name}>
-                <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300">
-                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                    {industry.desc}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            {content.industries.items.map((industry) => {
+              const Icon = icons[industry.icon as IconName];
+              return (
+                <StaggerItem key={industry.name}>
+                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300">
+                    {Icon && (
+                      <Icon className="h-5 w-5 text-primary/50 group-hover:text-primary transition-colors duration-300 mb-3" />
+                    )}
+                    <h3 className="text-base font-semibold text-foreground">
+                      {industry.name}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {industry.desc}
+                    </p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
