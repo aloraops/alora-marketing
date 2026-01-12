@@ -71,16 +71,16 @@ export const executionLoop = {
     {
       number: '4',
       title: 'Execution moves — with leverage',
-      description:
-        "From there, execution doesn't stall. Teams get clearly prioritized actions, suggested resolution paths, and the ability to act immediately.",
-      emphasis: 'This is execution with leverage, not heroics.',
-      actions: [
-        'Triggering supplier outreach',
-        'Routing work internally',
-        'Updating systems',
-        'Coordinating next steps',
+      description: "From there, execution doesn't stall. Teams get:",
+      details: [
+        'Clearly prioritized actions',
+        'Suggested resolution paths',
+        'And the ability to act immediately',
       ],
+      followUp:
+        'Whether that means: Triggering supplier outreach, Routing work internally or Coordinating next steps.',
       footnote: 'Actions can be executed automatically — always with a human in control.',
+      emphasis: 'This is execution with leverage, not heroics.',
       icon: 'Zap',
     },
   ],

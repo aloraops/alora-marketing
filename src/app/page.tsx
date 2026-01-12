@@ -173,6 +173,11 @@ export default function HomePage() {
                           ))}
                         </ul>
                       )}
+                      {step.followUp && (
+                        <p className="mt-4 text-muted-foreground leading-relaxed">
+                          {step.followUp}
+                        </p>
+                      )}
                       <p className="mt-4 text-sm font-medium text-primary">
                         {step.emphasis}
                       </p>
