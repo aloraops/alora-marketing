@@ -42,7 +42,7 @@ export const whyThisTeam = {
 export const team = [
   {
     name: 'Sharon Ilan',
-    role: 'Co-Founder, CPO/COO',
+    role: 'Co-Founder, CEO',
     bio: 'Sharon brings deep supply chain expertise from building operations departments at surgical robotics companies and managing $200M in supplier deals at Better Place. She knows the customer pain firsthand.',
     highlights: [
       '$200M in supplier deals managed',
@@ -54,7 +54,7 @@ export const team = [
   },
   {
     name: 'Yuval Blyakhman',
-    role: 'Co-Founder, CEO',
+    role: 'Co-Founder, CPO',
     bio: 'Yuval rose from first employee to VP R&D at Human Xtensions, a surgical robotics company. He brings product vision and engineering leadership experience from complex, regulated industries.',
     highlights: [
       'First employee → VP R&D at Human Xtensions',
