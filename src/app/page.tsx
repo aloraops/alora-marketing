@@ -173,19 +173,16 @@ export default function HomePage() {
                           ))}
                         </ul>
                       )}
-                      {step.followUp && (
+                      {step.closing && (
                         <p className="mt-4 text-muted-foreground leading-relaxed">
-                          {step.followUp}
+                          {step.closing}
                         </p>
                       )}
-                      {step.footnote && (
-                        <p className="mt-4 text-muted-foreground italic">
-                          {step.footnote}
+                      {step.emphasis && (
+                        <p className="mt-4 text-sm font-medium text-primary">
+                          {step.emphasis}
                         </p>
                       )}
-                      <p className="mt-4 text-sm font-medium text-primary">
-                        {step.emphasis}
-                      </p>
                     </div>
                   </div>
                 </FadeIn>
