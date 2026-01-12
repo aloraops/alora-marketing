@@ -318,9 +318,9 @@ export default function HomePage() {
               const Icon = icons[industry.icon as IconName];
               return (
                 <StaggerItem key={industry.name}>
-                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300">
+                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300 text-center">
                     {Icon && (
-                      <Icon className="h-5 w-5 text-primary/50 group-hover:text-primary transition-colors duration-300 mb-3" />
+                      <Icon className="h-5 w-5 text-primary/50 group-hover:text-primary transition-colors duration-300 mb-3 mx-auto" />
                     )}
                     <h3 className="text-base font-semibold text-foreground">
                       {industry.name}
