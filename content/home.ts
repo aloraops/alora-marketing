@@ -95,30 +95,26 @@ export const adoptionJourney = {
     {
       period: 'Week 1',
       title: 'Connect & calibrate',
-      tag: 'read-only',
       description:
-        'Securely connect supplier emails, docs, and ERP (read-only). Alora aligns parts, suppliers, and naming, and starts digesting execution signals so early triggers appear with BOM context.',
+        'Connect supplier emails, docs, and ERP (read-only). Alora aligns parts and suppliers, and starts surfacing execution signals with BOM context.',
     },
     {
       period: 'Week 2',
-      title: 'Context & prioritization emerge',
-      tag: null,
+      title: 'Context emerges',
       description:
-        'As signals accumulate, Alora builds part-level context across BOMs, builds, and business impact. Noise drops, priorities sharpen, and teams use it daily to understand what actually matters.',
+        'Alora builds part-level context across BOMs and business impact. Noise drops, priorities sharpen, and teams see what actually matters.',
     },
     {
       period: 'Week 3',
       title: 'Assisted execution',
-      tag: 'human-controlled',
       description:
-        'Write options unlock where approved. Alora prepares mitigated actions and next steps, and teams execute faster — email, ERP, or internal workflows — always with a human in control.',
+        'Write options unlock where approved. Teams execute faster — email, ERP, or internal workflows — always with human control.',
     },
     {
       period: 'Always on',
-      title: 'Execution that keeps learning',
-      tag: null,
+      title: 'Keeps learning',
       description:
-        'As execution changes, Alora adapts. Teams expand usage over time, add automation where it proves value, and avoid system maintenance while prioritization and risk assessment keep improving.',
+        'As execution changes, Alora adapts. Teams expand usage and add automation where it proves value.',
     },
   ],
 };

@@ -228,32 +228,36 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <StaggerContainer className="mx-auto mt-16 grid max-w-5xl gap-6 lg:grid-cols-4" staggerDelay={0.1}>
-            {content.adoptionJourney.weeks.map((week) => (
-              <StaggerItem key={week.period}>
-                <Card className="h-full border-0 shadow-sm">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-2">
+          {/* Timeline */}
+          <div className="mx-auto mt-16 max-w-5xl">
+            {/* Timeline line - visible on lg screens */}
+            <div className="hidden lg:block relative">
+              <div className="absolute top-6 left-[12.5%] right-[12.5%] h-0.5 bg-border" />
+              <div className="absolute top-6 left-[12.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
+              <div className="absolute top-6 left-[37.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
+              <div className="absolute top-6 left-[62.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
+              <div className="absolute top-6 right-[12.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
+            </div>
+            <StaggerContainer className="grid gap-6 lg:grid-cols-4 lg:pt-12" staggerDelay={0.1}>
+              {content.adoptionJourney.weeks.map((week) => (
+                <StaggerItem key={week.period}>
+                  <Card className="h-full border-0 shadow-sm">
+                    <CardContent className="pt-6 text-center flex flex-col">
                       <span className="text-sm font-semibold text-primary">
                         {week.period}
                       </span>
-                      {week.tag && (
-                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                          {week.tag}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="mt-3 text-lg font-semibold text-foreground">
-                      {week.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {week.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                      <h3 className="mt-2 text-lg font-semibold text-foreground">
+                        {week.title}
+                      </h3>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
+                        {week.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
 
