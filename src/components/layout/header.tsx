@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { cta } from '@/content/shared';
 
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
@@ -82,7 +83,7 @@ export function Header() {
             Sign In
           </a>
           <Button asChild>
-            <Link href="/contact">Talk to Us</Link>
+            <Link href="/contact">{cta.primary}</Link>
           </Button>
         </div>
       </nav>
@@ -115,7 +116,7 @@ export function Header() {
               </a>
               <Button asChild className="w-full">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  Talk to Us
+                  {cta.primary}
                 </Link>
               </Button>
             </div>

@@ -5,6 +5,8 @@
  * Includes content for the solutions carousel component.
  */
 
+import { cta as sharedCta } from './shared';
+
 export const hero = {
   title: 'What Alora does for you',
   description:
@@ -219,8 +221,7 @@ export const security = {
 };
 
 export const cta = {
-  title: 'Talk to us',
-  description:
-    "A focused conversation about execution — we'll walk through how it actually works.",
-  primaryCta: 'Talk to us',
+  title: sharedCta.primary,
+  description: sharedCta.description,
+  primaryCta: sharedCta.primary,
 };

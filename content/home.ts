@@ -7,6 +7,8 @@
  * Edit this file to update homepage copy without touching the layout.
  */
 
+import { cta as sharedCta } from './shared';
+
 export const hero = {
   // Primary headline option (can swap between alternatives)
   headline: 'Where supply-chain risks become',
@@ -23,12 +25,12 @@ export const hero = {
   // - "Alora detects and prioritizes execution risk across parts, BOMs, and customer commitments – so teams act early, not in firefighting mode."
 
   icpLine: 'Built for complex, BOM-driven manufacturers where small changes cascade fast',
-  primaryCta: 'Talk to us',
-  secondaryCta: 'Learn More',
+  primaryCta: sharedCta.primary,
+  secondaryCta: sharedCta.secondary,
 };
 
 export const executionLoop = {
-  label: 'How execution actually works',
+  label: 'The Execution Loop',
   title: 'How execution actually works (when it works)',
   steps: [
     {
@@ -45,11 +47,6 @@ export const executionLoop = {
       description:
         'Every change is immediately analyzed at the part level, then grounded upward: Which BOMs are affected. Which builds and customers are exposed. What the execution risk actually is.',
       emphasis: 'Impact is clear — in minutes, not weeks.',
-      details: [
-        'Which BOMs are affected',
-        'Which builds and customers are exposed',
-        'What the execution risk actually is',
-      ],
       icon: 'Layers',
     },
     {
@@ -58,12 +55,6 @@ export const executionLoop = {
       description:
         'With context and risk understood, teams can finally work the problem — not just react to it. Options are evaluated: Expedite or wait. Use inventory or reallocate. Split builds or adjust schedules. Switch suppliers or absorb cost.',
       emphasis: 'Not everything is urgent — but the right things become obvious.',
-      options: [
-        'Expedite or wait',
-        'Use inventory or reallocate',
-        'Split builds or adjust schedules',
-        'Switch suppliers or absorb cost',
-      ],
       icon: 'Scale',
     },
     {
@@ -72,12 +63,6 @@ export const executionLoop = {
       description:
         "From there, execution doesn't stall. Teams get clearly prioritized actions, suggested resolution paths, and the ability to act immediately.",
       emphasis: 'This is execution with leverage, not heroics.',
-      actions: [
-        'Triggering supplier outreach',
-        'Routing work internally',
-        'Updating systems',
-        'Coordinating next steps',
-      ],
       footnote: 'Actions can be executed automatically — always with a human in control.',
       icon: 'Zap',
     },
@@ -231,12 +216,11 @@ export const trustAndSecurity = {
 // Removed old teamTeaser - can add back if needed for a different page
 
 export const finalCta = {
-  title: 'Talk to us',
-  description:
-    "A focused conversation about execution — we'll walk through how it actually works.",
-  supportingLine: "We'll start with one real execution flow and see if Alora is a fit.",
-  primaryCta: 'Talk to us',
-  secondaryCta: 'Learn More',
+  title: sharedCta.primary,
+  description: sharedCta.description,
+  supportingLine: sharedCta.supportingLine,
+  primaryCta: sharedCta.primary,
+  secondaryCta: sharedCta.secondary,
 };
 
 // FAQ section - new for homepage

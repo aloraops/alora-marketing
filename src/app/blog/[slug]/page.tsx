@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
 import { getPostBySlug, getAllSlugs } from '@/lib/blog';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
+import { cta } from '@/content/shared';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -231,7 +232,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="mt-8">
               <Button asChild>
                 <Link href="/contact">
-                  Talk to Us
+                  {cta.primary}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

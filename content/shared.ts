@@ -12,6 +12,17 @@ export const brand = {
   contactEmail: 'hello@aloraops.ai',
 };
 
+/**
+ * Primary CTA - used across site
+ * Single source of truth for main call-to-action text
+ */
+export const cta = {
+  primary: 'Talk to Us',
+  secondary: 'Learn More',
+  description: "A focused conversation about execution — we'll walk through how it actually works.",
+  supportingLine: "We'll start with one real execution flow and see if Alora is a fit.",
+};
+
 export const navigation = {
   main: [
     { name: 'Solutions', href: '/solutions' },
