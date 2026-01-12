@@ -43,6 +43,7 @@ type IconName = keyof typeof icons;
 
 export default function HomePage() {
   const [openFaqItems, setOpenFaqItems] = useState<Record<string, boolean>>({});
+  const [activeFaqGroup, setActiveFaqGroup] = useState(0);
 
   const toggleFaq = (groupIndex: number, itemIndex: number) => {
     const key = `${groupIndex}-${itemIndex}`;
@@ -373,59 +374,75 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-muted/30 py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.faq.label}
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                Frequently asked questions
               </h2>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-12 max-w-3xl space-y-10">
-            {content.faq.groups.map((group, groupIndex) => (
-              <FadeIn key={group.title} delay={groupIndex * 0.1}>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-4">
-                    {group.title}
-                  </h3>
-                  <div className="space-y-2">
-                    {group.items.map((item, itemIndex) => {
-                      const key = `${groupIndex}-${itemIndex}`;
-                      const isOpen = openFaqItems[key];
-                      return (
-                        <div
-                          key={itemIndex}
-                          className="rounded-lg border bg-background"
-                        >
-                          <button
-                            onClick={() => toggleFaq(groupIndex, itemIndex)}
-                            className="flex w-full items-center justify-between p-4 text-left"
-                          >
-                            <span className="font-medium text-foreground pr-4">
-                              {item.question}
-                            </span>
-                            <ChevronDown
-                              className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${
-                                isOpen ? 'rotate-180' : ''
-                              }`}
-                            />
-                          </button>
-                          {isOpen && (
-                            <div className="px-4 pb-4">
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {item.answer}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
+          {/* Category Tabs */}
+          <div className="mx-auto mt-10 max-w-4xl">
+            <div className="flex flex-wrap justify-center gap-2">
+              {content.faq.groups.map((group, index) => (
+                <button
+                  key={group.title}
+                  onClick={() => setActiveFaqGroup(index)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                    activeFaqGroup === index
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
+                  }`}
+                >
+                  {group.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ Accordion */}
+          <div className="mx-auto mt-10 max-w-3xl">
+            <div className="space-y-3">
+              {content.faq.groups[activeFaqGroup]?.items.map((item, itemIndex) => {
+                const key = `${activeFaqGroup}-${itemIndex}`;
+                const isOpen = openFaqItems[key];
+                return (
+                  <div
+                    key={itemIndex}
+                    className="rounded-lg border border-border/50 bg-white/50 overflow-hidden transition-all duration-200 hover:border-border/80"
+                  >
+                    <button
+                      onClick={() => toggleFaq(activeFaqGroup, itemIndex)}
+                      className="flex w-full items-center justify-between p-5 text-left"
+                    >
+                      <span className="font-medium text-foreground pr-4">
+                        {item.question}
+                      </span>
+                      <ChevronDown
+                        className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-200 ${
+                        isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
