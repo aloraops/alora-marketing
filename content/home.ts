@@ -132,7 +132,7 @@ export const metrics = {
     {
       label: 'Less manual work',
       detail:
-        'Automated tracking, follow-ups, and data alignment reduce manual execution work and shorten cycle times.',
+        'Automated tracking, follow-ups, and data alignment drive ~50% less manual execution work and materially shorten execution cycle times.',
       icon: 'Clock',
     },
     {
@@ -144,7 +144,7 @@ export const metrics = {
     {
       label: 'Revenue protected',
       detail:
-        'Early reaction to what actually matters helps preserve revenue at risk by avoiding late execution failures.',
+        'Early reaction to what actually matters helps preserve ~4% of revenue at risk by avoiding late execution failures.',
       icon: 'Shield',
     },
   ],
