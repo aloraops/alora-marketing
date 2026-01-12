@@ -14,7 +14,7 @@ export const hero = {
 export const mission = {
   label: 'Our Mission',
   statement:
-    "Connect BOM and part-level reality to business income, so every decision — from a buyer's next action to a board-level discussion — is grounded in the same, trusted picture.",
+    'To own part-level execution decisions in complex manufacturing, so teams act on what matters before small issues become business failures.',
 };
 
 export const whyThisTeam = {

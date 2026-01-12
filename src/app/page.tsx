@@ -216,7 +216,7 @@ export default function HomePage() {
       </section>
 
       {/* Adoption Journey Section */}
-      <section className="bg-muted/30 py-20 lg:py-28">
+      <section className="bg-gradient-to-b from-muted/40 via-muted/20 to-transparent py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
@@ -226,6 +226,7 @@ export default function HomePage() {
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.adoptionJourney.title}
               </p>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
             </div>
           </FadeIn>
 
@@ -233,21 +234,21 @@ export default function HomePage() {
           <div className="mx-auto mt-16 max-w-5xl">
             {/* Timeline line - visible on lg screens */}
             <div className="hidden lg:block relative">
-              <div className="absolute top-6 left-[12.5%] right-[12.5%] h-0.5 bg-border" />
-              <div className="absolute top-6 left-[12.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
-              <div className="absolute top-6 left-[37.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
-              <div className="absolute top-6 left-[62.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
-              <div className="absolute top-6 right-[12.5%] w-2 h-2 -mt-[3px] rounded-full bg-primary" />
+              <div className="absolute top-6 left-[12.5%] right-[12.5%] h-0.5 bg-border/60" />
+              <div className="absolute top-6 left-[12.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 left-[37.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 left-[62.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 right-[12.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
             </div>
             <StaggerContainer className="grid gap-6 lg:grid-cols-4 lg:pt-12" staggerDelay={0.1}>
               {content.adoptionJourney.weeks.map((week) => (
                 <StaggerItem key={week.period}>
-                  <Card className="h-full border-0 shadow-sm">
+                  <Card className="group h-full border border-border/40 bg-white/60 shadow-sm transition-all duration-200 hover:bg-white hover:border-border/60 hover:shadow-md">
                     <CardContent className="pt-6 text-center flex flex-col">
                       <span className="text-sm font-semibold text-primary">
                         {week.period}
                       </span>
-                      <h3 className="mt-2 text-lg font-semibold text-foreground">
+                      <h3 className="mt-2 text-lg font-semibold text-foreground/80 group-hover:text-foreground transition-colors duration-200">
                         {week.title}
                       </h3>
                       <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
@@ -338,7 +339,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust & Security Section */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-gradient-to-b from-muted/30 via-muted/20 to-transparent">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
@@ -348,25 +349,30 @@ export default function HomePage() {
               <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.trustAndSecurity.title}
               </p>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
               <p className="mt-6 text-lg text-muted-foreground">
                 {content.trustAndSecurity.description}
               </p>
             </div>
           </FadeIn>
 
-          <StaggerContainer className="mx-auto mt-12 grid max-w-2xl gap-4" staggerDelay={0.1}>
+          <StaggerContainer className="mx-auto mt-12 grid max-w-2xl gap-3" staggerDelay={0.1}>
             {content.trustAndSecurity.items.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="flex items-center gap-3 rounded-lg bg-muted/50 p-4">
-                  <CheckCircle className="h-5 w-5 text-primary shrink-0" />
-                  <span className="text-foreground">{item}</span>
+                <div className="group flex items-center gap-4 rounded-lg border border-border/40 bg-white/60 p-4 shadow-sm transition-all duration-200 hover:bg-white hover:border-border/60 hover:shadow-md">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 group-hover:bg-primary/15 transition-colors duration-200">
+                    <CheckCircle className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-foreground/80 group-hover:text-foreground transition-colors duration-200">
+                    {item}
+                  </span>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
 
-          <FadeIn delay={0.5}>
-            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
+          <FadeIn delay={0.4}>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground italic">
               {content.trustAndSecurity.footnote}
             </p>
           </FadeIn>
@@ -413,30 +419,44 @@ export default function HomePage() {
                 return (
                   <div
                     key={itemIndex}
-                    className="rounded-lg border border-border/50 bg-white/50 overflow-hidden transition-all duration-200 hover:border-border/80"
+                    className={`rounded-lg border overflow-hidden transition-all duration-300 ease-out ${
+                      isOpen
+                        ? 'border-border bg-white shadow-sm'
+                        : 'border-border/50 bg-white/50 hover:border-border/80 hover:bg-white/80'
+                    }`}
                   >
                     <button
                       onClick={() => toggleFaq(activeFaqGroup, itemIndex)}
-                      className="flex w-full items-center justify-between p-5 text-left"
+                      className="flex w-full items-center justify-between p-5 text-left group"
                     >
-                      <span className="font-medium text-foreground pr-4">
+                      <span className={`font-medium pr-4 transition-colors duration-200 ${
+                        isOpen ? 'text-foreground' : 'text-foreground/80 group-hover:text-foreground'
+                      }`}>
                         {item.question}
                       </span>
-                      <ChevronDown
-                        className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180' : ''
-                        }`}
-                      />
+                      <div className={`rounded-full p-1 transition-all duration-300 ease-out ${
+                        isOpen ? 'bg-primary/10' : 'bg-transparent'
+                      }`}>
+                        <ChevronDown
+                          className={`h-4 w-4 shrink-0 transition-all duration-300 ease-out ${
+                            isOpen ? 'rotate-180 text-primary' : 'text-muted-foreground'
+                          }`}
+                        />
+                      </div>
                     </button>
                     <div
-                      className={`grid transition-all duration-200 ${
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
                         isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
-                          {item.answer}
-                        </p>
+                        <div className={`transition-opacity duration-300 ease-out ${
+                          isOpen ? 'opacity-100' : 'opacity-0'
+                        }`}>
+                          <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                            {item.answer}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
