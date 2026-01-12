@@ -50,7 +50,7 @@ export const team = [
       'Built supply chain operations at Human Xtensions',
       'Unit 76 Intelligence, Operations Officer',
     ],
-    education: 'Industrial Engineering and Management',
+    education: 'Economics',
   },
   {
     name: 'Yuval Blyakhman',
