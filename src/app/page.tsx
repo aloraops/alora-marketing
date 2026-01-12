@@ -317,15 +317,15 @@ export default function HomePage() {
             {content.industries.items.map((industry) => {
               const Icon = icons[industry.icon as IconName];
               return (
-                <StaggerItem key={industry.name}>
-                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300 text-center">
+                <StaggerItem key={industry.name} className="h-full">
+                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300 text-center h-full flex flex-col">
                     {Icon && (
                       <Icon className="h-5 w-5 text-primary/50 group-hover:text-primary transition-colors duration-300 mb-3 mx-auto" />
                     )}
                     <h3 className="text-base font-semibold text-foreground">
                       {industry.name}
                     </h3>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
                       {industry.desc}
                     </p>
                   </div>
