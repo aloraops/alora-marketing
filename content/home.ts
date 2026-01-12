@@ -45,16 +45,27 @@ export const executionLoop = {
       number: '2',
       title: 'Context and risk are built automatically, in minutes',
       description:
-        'Every change is immediately analyzed at the part level, then grounded upward: Which BOMs are affected. Which builds and customers are exposed. What the execution risk actually is.',
+        'Every change is immediately analyzed at the part level, then grounded upward:',
       emphasis: 'Impact is clear — in minutes, not weeks.',
+      details: [
+        'Which BOMs are affected',
+        'Which builds and customers are exposed',
+        'What the execution risk actually is',
+      ],
       icon: 'Layers',
     },
     {
       number: '3',
       title: 'Decisions are evaluated, not guessed',
       description:
-        'With context and risk understood, teams can finally work the problem — not just react to it. Options are evaluated: Expedite or wait. Use inventory or reallocate. Split builds or adjust schedules. Switch suppliers or absorb cost.',
+        'With context and risk understood, teams can finally work the problem — not just react to it. Options are evaluated:',
       emphasis: 'Not everything is urgent — but the right things become obvious.',
+      options: [
+        'Expedite or wait',
+        'Use inventory or reallocate',
+        'Split builds or adjust schedules',
+        'Switch suppliers or absorb cost',
+      ],
       icon: 'Scale',
     },
     {
@@ -63,6 +74,12 @@ export const executionLoop = {
       description:
         "From there, execution doesn't stall. Teams get clearly prioritized actions, suggested resolution paths, and the ability to act immediately.",
       emphasis: 'This is execution with leverage, not heroics.',
+      actions: [
+        'Triggering supplier outreach',
+        'Routing work internally',
+        'Updating systems',
+        'Coordinating next steps',
+      ],
       footnote: 'Actions can be executed automatically — always with a human in control.',
       icon: 'Zap',
     },
