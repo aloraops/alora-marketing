@@ -300,40 +300,32 @@ export default function HomePage() {
       </section>
 
       {/* Who We Serve / Industries Section */}
-      <section className="bg-muted/30 py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.industries.label}
-              </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.industries.title}
-              </p>
-              <p className="mt-4 text-lg text-muted-foreground italic">
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
                 {content.industries.subtitle}
               </p>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
             </div>
           </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4" staggerDelay={0.1}>
-            {content.industries.items.map((industry) => {
-              const Icon = icons[industry.icon as IconName];
-              return (
-                <StaggerItem key={industry.name}>
-                  <div className="text-center">
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      {Icon && <Icon className="h-7 w-7" />}
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold text-foreground">
-                      {industry.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {industry.desc}
-                    </p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
+          <StaggerContainer className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.1}>
+            {content.industries.items.map((industry) => (
+              <StaggerItem key={industry.name}>
+                <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300">
+                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {industry.name}
+                  </h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    {industry.desc}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
         </div>
       </section>
