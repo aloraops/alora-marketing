@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
 import { getPostBySlug, getAllSlugs } from '@/lib/blog';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
-import { cta } from '@/content/shared';
+import { cta } from '@content/shared';
 
 interface BlogPostPageProps {
   params: Promise<{

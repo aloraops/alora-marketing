@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar, Send, CheckCircle2, Loader2 } from 'lucide-react';
-import { cta } from '@/content/shared';
+import { cta } from '@content/shared';
 
 // Note: Metadata must be in a separate file for client components
 // or use generateMetadata in a parent layout

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { cta } from '@/content/shared';
+import { cta } from '@content/shared';
 
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
