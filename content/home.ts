@@ -100,7 +100,7 @@ export const adoptionJourney = {
     },
     {
       period: 'Week 2',
-      title: 'Context emerges',
+      title: 'Context & prioritization emerge',
       description:
         'Alora builds part-level context across BOMs and business impact. Noise drops, priorities sharpen, and teams see what actually matters.',
     },
@@ -112,7 +112,7 @@ export const adoptionJourney = {
     },
     {
       period: 'Always on',
-      title: 'Keeps learning',
+      title: 'Execution that keeps learning',
       description:
         'As execution changes, Alora adapts. Teams expand usage and add automation where it proves value.',
     },
