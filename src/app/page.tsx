@@ -280,28 +280,18 @@ export default function HomePage() {
               return (
                 <StaggerItem key={stat.label}>
                   <Card className="text-center border-0 shadow-sm h-full">
-                    <CardContent className="pt-6">
+                    <CardContent className="pt-6 flex flex-col h-full">
                       {Icon && (
                         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                           <Icon className="h-6 w-6" />
                         </div>
                       )}
-                      {stat.metric && (
-                        <div className="text-3xl font-bold text-primary lg:text-4xl">
-                          {stat.metric}
-                        </div>
-                      )}
-                      <div className="mt-1 text-lg font-semibold text-foreground">
+                      <h3 className="text-lg font-semibold text-foreground">
                         {stat.label}
-                      </div>
-                      {stat.desc && (
-                        <div className="text-sm font-medium text-muted-foreground">
-                          {stat.desc}
-                        </div>
-                      )}
-                      <div className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                      </h3>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
                         {stat.detail}
-                      </div>
+                      </p>
                     </CardContent>
                   </Card>
                 </StaggerItem>

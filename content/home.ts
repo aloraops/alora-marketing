@@ -124,35 +124,27 @@ export const metrics = {
   title: 'Execution impact',
   items: [
     {
-      metric: '',
       label: 'Decisions that stick',
-      desc: '',
       detail:
         'Execution signals grounded to BOM and business impact replace alignment loops with confident decisions teams can act on immediately.',
       icon: 'CheckCircle',
     },
     {
-      metric: '~50%',
       label: 'Less manual work',
-      desc: '',
       detail:
-        'Automated tracking, follow-ups, and data alignment drive ~50% less manual execution work and materially shorten execution cycle times.',
+        'Automated tracking, follow-ups, and data alignment reduce manual execution work and shorten cycle times.',
       icon: 'Clock',
     },
     {
-      metric: '',
       label: 'Execution unblocked',
-      desc: '',
       detail:
         'Early detection of PO–OC–Invoice discrepancies prevents blocked approvals, last-minute expedites, and avoidable production stops.',
       icon: 'Unlock',
     },
     {
-      metric: '~4%',
       label: 'Revenue protected',
-      desc: 'of revenue at risk',
       detail:
-        'Early reaction to what actually matters helps preserve ~4% of revenue at risk by avoiding late execution failures.',
+        'Early reaction to what actually matters helps preserve revenue at risk by avoiding late execution failures.',
       icon: 'Shield',
     },
   ],
