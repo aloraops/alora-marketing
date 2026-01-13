@@ -101,13 +101,26 @@ Place images in `public/` and reference them with `/image-name.png`
 
 ## Git Workflow
 
-This repo uses direct commits to `main`. After making changes:
+This repo uses direct commits to `main`.
+
+### CRITICAL: Always Build Before Committing
+
+**You MUST run `npm run build` and verify it passes before committing.** This is deployed to Vercel which will fail on TypeScript errors.
 
 ```bash
+# 1. ALWAYS run build first
+npm run build
+
+# 2. Only if build succeeds, then commit
 git add .
 git commit -m "Description of changes"
 git push
 ```
+
+If the build fails, fix the errors before committing. Common issues:
+- TypeScript type errors (missing properties, wrong types)
+- Import errors (missing files, wrong paths)
+- Unused variables or imports
 
 ## Tech Stack
 
