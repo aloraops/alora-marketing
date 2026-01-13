@@ -24,7 +24,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-backdrop-blur backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
@@ -82,7 +82,7 @@ export function Header() {
           >
             Sign In
           </a>
-          <Button asChild>
+          <Button asChild className="bg-brand-cyan text-brand-cyan-foreground hover:bg-brand-cyan/90">
             <Link href="/contact">{cta.primary}</Link>
           </Button>
         </div>
@@ -114,7 +114,7 @@ export function Header() {
               >
                 Sign In
               </a>
-              <Button asChild className="w-full">
+              <Button asChild className="w-full bg-brand-cyan text-brand-cyan-foreground hover:bg-brand-cyan/90">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   {cta.primary}
                 </Link>

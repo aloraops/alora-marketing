@@ -1,0 +1,140 @@
+/**
+ * Alora Design System - Component Tokens
+ *
+ * Component-specific tokens that build on semantic tokens.
+ * Use these for component-level customization.
+ *
+ * Last updated: 2026-01-13
+ */
+
+:root {
+  /* ----------------------------------------
+   * Buttons
+   * ---------------------------------------- */
+  --button-primary-bg: var(--primary);
+  --button-primary-fg: var(--primary-foreground);
+  --button-primary-hover: color-mix(in srgb, var(--primary) 90%, black);
+
+  --button-secondary-bg: var(--secondary);
+  --button-secondary-fg: var(--secondary-foreground);
+  --button-secondary-hover: color-mix(in srgb, var(--secondary) 80%, var(--primary));
+
+  --button-ghost-hover-bg: var(--accent);
+  --button-ghost-hover-fg: var(--accent-foreground);
+
+  /* Inverted button (for use on dark backgrounds like hero) */
+  --button-inverted-bg: var(--primitive-white);
+  --button-inverted-fg: var(--primary);
+  --button-inverted-hover: rgba(255, 255, 255, 0.9);
+
+  /* ----------------------------------------
+   * Cards
+   * ---------------------------------------- */
+  --card-bg: var(--card);
+  --card-bg-elevated: var(--card);
+  --card-bg-subtle: color-mix(in srgb, var(--card) 60%, transparent);
+  --card-border: var(--border);
+  --card-border-hover: color-mix(in srgb, var(--border) 60%, var(--foreground));
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* ----------------------------------------
+   * Header
+   * ---------------------------------------- */
+  --header-bg: var(--backdrop-blur);
+  --header-border: color-mix(in srgb, var(--border) 50%, transparent);
+
+  /* ----------------------------------------
+   * Footer
+   * ---------------------------------------- */
+  --footer-bg: color-mix(in srgb, var(--muted) 30%, transparent);
+  --footer-border: var(--border);
+
+  /* ----------------------------------------
+   * Form Inputs
+   * ---------------------------------------- */
+  --input-bg: var(--background);
+  --input-border: var(--input);
+  --input-border-focus: var(--ring);
+  --input-placeholder: var(--muted-foreground);
+
+  /* ----------------------------------------
+   * Hero Section (always dark background)
+   * Uses dark-mode color variants for contrast
+   * ---------------------------------------- */
+  --hero-bg: var(--gradient-hero);
+  --hero-text: var(--primitive-white);
+  --hero-text-secondary: rgba(255, 255, 255, 0.85);
+  --hero-text-muted: rgba(255, 255, 255, 0.75);
+  --hero-accent: var(--primitive-pink-300);
+  --hero-button-bg: var(--primitive-cyan-300);
+  --hero-button-text: var(--primitive-green-1000);
+  --hero-pattern-opacity: 0.03;
+
+  /* ----------------------------------------
+   * Section Backgrounds
+   * ---------------------------------------- */
+  --section-bg-muted: color-mix(in srgb, var(--muted) 30%, transparent);
+  --section-bg-gradient: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--muted) 40%, transparent),
+    color-mix(in srgb, var(--muted) 20%, transparent),
+    transparent
+  );
+
+  /* ----------------------------------------
+   * Status Badges
+   * ---------------------------------------- */
+  --badge-success-bg: var(--status-success-bg);
+  --badge-success-text: var(--status-success-text);
+
+  --badge-warning-bg: var(--status-warning-bg);
+  --badge-warning-text: var(--status-warning-text);
+
+  --badge-danger-bg: var(--status-danger-bg);
+  --badge-danger-text: var(--status-danger-text);
+
+  --badge-info-bg: var(--status-info-bg);
+  --badge-info-text: var(--status-info-text);
+
+  /* Neutral badge */
+  --badge-neutral-bg: var(--muted);
+  --badge-neutral-text: var(--muted-foreground);
+
+  /* ----------------------------------------
+   * Toggles & Switches
+   * ---------------------------------------- */
+  --toggle-bg-off: var(--muted);
+  --toggle-bg-on: var(--primary);
+  --toggle-knob: var(--card);
+
+  /* ----------------------------------------
+   * Accessibility Widget
+   * ---------------------------------------- */
+  --a11y-backdrop: var(--backdrop);
+  --a11y-panel-bg: var(--background);
+  --a11y-panel-border: var(--border);
+
+  /* ----------------------------------------
+   * Blog Placeholder Gradients (using brand colors)
+   * ---------------------------------------- */
+  --blog-placeholder-1: linear-gradient(to bottom right, var(--primitive-green-50), var(--primitive-green-300));
+  --blog-placeholder-2: linear-gradient(to bottom right, var(--primitive-cyan-300), var(--primitive-cyan-500));
+  --blog-placeholder-3: linear-gradient(to bottom right, var(--primitive-green-300), var(--primitive-green-400));
+  --blog-placeholder-4: linear-gradient(to bottom right, var(--primitive-pink-300), var(--primitive-pink-600));
+}
+
+/* Dark mode component overrides */
+.dark {
+  --button-inverted-bg: var(--primitive-green-1000);
+  --button-inverted-fg: var(--primitive-white);
+  --button-inverted-hover: rgba(1, 26, 12, 0.9);
+
+  --card-bg-subtle: color-mix(in srgb, var(--card) 60%, transparent);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  --header-bg: rgba(1, 26, 12, 0.8);
+
+  --hero-pattern-opacity: 0.05;
+}

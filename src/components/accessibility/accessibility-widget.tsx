@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Accessibility, Plus, Minus, X, Sun, Moon, Type, RotateCcw } from 'lucide-react';
+import { Accessibility, Plus, Minus, X, Type, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface AccessibilitySettings {
@@ -30,7 +30,7 @@ export function AccessibilityWidget() {
     }
   }, []);
 
-  // Apply settings to the document
+  // Apply all settings to the document
   const applySettings = (newSettings: AccessibilitySettings) => {
     // Font size
     document.documentElement.style.fontSize = `${newSettings.fontSize}%`;
@@ -98,7 +98,7 @@ export function AccessibilityWidget() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40 bg-black/20"
+            className="fixed inset-0 z-40 bg-backdrop"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
@@ -159,32 +159,21 @@ export function AccessibilityWidget() {
             </div>
 
             {/* High Contrast Toggle */}
-            <div className="mb-4">
+            <div className="mb-3">
               <button
                 onClick={toggleHighContrast}
-                className={`w-full flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                  settings.highContrast
-                    ? 'border-primary bg-primary/10 text-foreground'
-                    : 'border-border text-muted-foreground hover:bg-muted'
-                }`}
+                className="w-full flex items-center justify-between py-2 text-sm text-foreground hover:text-primary transition-colors"
                 aria-pressed={settings.highContrast}
               >
-                <span className="flex items-center gap-2">
-                  {settings.highContrast ? (
-                    <Moon className="h-4 w-4" />
-                  ) : (
-                    <Sun className="h-4 w-4" />
-                  )}
-                  High Contrast
-                </span>
+                <span>High Contrast</span>
                 <span
-                  className={`w-10 h-6 rounded-full transition-colors ${
-                    settings.highContrast ? 'bg-primary' : 'bg-muted'
+                  className={`w-9 h-5 rounded-full transition-colors ${
+                    settings.highContrast ? 'bg-primary' : 'bg-border'
                   } relative`}
                 >
                   <span
-                    className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                      settings.highContrast ? 'translate-x-5' : 'translate-x-1'
+                    className={`absolute top-0.5 w-4 h-4 rounded-full bg-card shadow-sm transition-transform ${
+                      settings.highContrast ? 'translate-x-4' : 'translate-x-0.5'
                     }`}
                   />
                 </span>
@@ -195,24 +184,18 @@ export function AccessibilityWidget() {
             <div className="mb-4">
               <button
                 onClick={toggleReducedMotion}
-                className={`w-full flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                  settings.reducedMotion
-                    ? 'border-primary bg-primary/10 text-foreground'
-                    : 'border-border text-muted-foreground hover:bg-muted'
-                }`}
+                className="w-full flex items-center justify-between py-2 text-sm text-foreground hover:text-primary transition-colors"
                 aria-pressed={settings.reducedMotion}
               >
-                <span className="flex items-center gap-2">
-                  Reduced Motion
-                </span>
+                <span>Reduced Motion</span>
                 <span
-                  className={`w-10 h-6 rounded-full transition-colors ${
-                    settings.reducedMotion ? 'bg-primary' : 'bg-muted'
+                  className={`w-9 h-5 rounded-full transition-colors ${
+                    settings.reducedMotion ? 'bg-primary' : 'bg-border'
                   } relative`}
                 >
                   <span
-                    className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                      settings.reducedMotion ? 'translate-x-5' : 'translate-x-1'
+                    className={`absolute top-0.5 w-4 h-4 rounded-full bg-card shadow-sm transition-transform ${
+                      settings.reducedMotion ? 'translate-x-4' : 'translate-x-0.5'
                     }`}
                   />
                 </span>

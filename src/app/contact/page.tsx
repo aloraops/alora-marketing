@@ -143,7 +143,7 @@ export default function ContactPage() {
                 <CardContent>
                   {formState === 'success' ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-status-success-bg text-status-success-text mb-4">
                         <CheckCircle2 className="h-8 w-8" />
                       </div>
                       <h3 className="text-lg font-semibold text-foreground">
@@ -209,7 +209,7 @@ export default function ContactPage() {
                         />
                       </div>
                       {formState === 'error' && (
-                        <p className="text-sm text-red-600">
+                        <p className="text-sm text-destructive">
                           Something went wrong. Please try again or email us directly.
                         </p>
                       )}

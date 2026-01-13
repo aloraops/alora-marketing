@@ -1,0 +1,259 @@
+/**
+ * Alora Design System - Semantic Tokens
+ *
+ * These tokens provide meaningful names that reference primitives.
+ * USE THESE in components, not primitives directly.
+ *
+ * Structure:
+ * - Light mode (:root)
+ * - Dark mode (.dark)
+ * - High contrast mode (.high-contrast)
+ *
+ * Source: Figma export (shared/Tokens/Light mode.tokens.json, Dark mode.tokens.json)
+ * Last updated: 2026-01-13
+ */
+
+/* ============================================
+ * LIGHT MODE (Default)
+ * ============================================ */
+:root {
+  /* ----------------------------------------
+   * Core Surface & Text
+   * ---------------------------------------- */
+  --background: var(--primitive-white);
+  --foreground: var(--primitive-green-1000);
+
+  --card: var(--primitive-white);
+  --card-foreground: var(--primitive-green-1000);
+
+  --popover: var(--primitive-white);
+  --popover-foreground: var(--primitive-green-1000);
+
+  /* ----------------------------------------
+   * Brand Colors
+   * ---------------------------------------- */
+  --primary: var(--primitive-green-600);
+  --primary-foreground: var(--primitive-white);
+
+  --secondary: var(--primitive-green-50);
+  --secondary-foreground: var(--primitive-green-800);
+
+  --accent: var(--primitive-green-50);
+  --accent-foreground: var(--primitive-green-600);
+
+  /* ----------------------------------------
+   * Muted/Subtle
+   * ---------------------------------------- */
+  --muted: var(--primitive-green-50);
+  --muted-foreground: var(--primitive-green-800);
+
+  /* ----------------------------------------
+   * Feedback & Status
+   * ---------------------------------------- */
+  --destructive: var(--primitive-danger-600);
+  --destructive-foreground: var(--primitive-white);
+
+  --success: var(--primitive-success-600);
+  --success-foreground: var(--primitive-white);
+
+  --warning: var(--primitive-warning-600);
+  --warning-foreground: var(--primitive-white);
+
+  --info: var(--primitive-info-600);
+  --info-foreground: var(--primitive-white);
+
+  /* Status badge backgrounds (subtle) */
+  --status-success-bg: var(--primitive-success-50);
+  --status-success-text: var(--primitive-success-700);
+
+  --status-warning-bg: var(--primitive-warning-50);
+  --status-warning-text: var(--primitive-warning-700);
+
+  --status-danger-bg: var(--primitive-danger-50);
+  --status-danger-text: var(--primitive-danger-700);
+
+  --status-info-bg: var(--primitive-info-50);
+  --status-info-text: var(--primitive-info-700);
+
+  /* ----------------------------------------
+   * Borders & Inputs
+   * ---------------------------------------- */
+  --border: var(--primitive-green-300);
+  --input: var(--primitive-green-300);
+  --ring: var(--primitive-green-500);
+
+  /* ----------------------------------------
+   * Charts (Data Visualization)
+   * ---------------------------------------- */
+  --chart-1: var(--primitive-green-600);
+  --chart-2: var(--primitive-green-500);
+  --chart-3: var(--primitive-green-400);
+  --chart-4: var(--primitive-cyan-500);
+  --chart-5: var(--primitive-pink-600);
+
+  /* ----------------------------------------
+   * Sidebar
+   * ---------------------------------------- */
+  --sidebar: var(--primitive-green-50);
+  --sidebar-foreground: var(--primitive-green-1000);
+  --sidebar-primary: var(--primitive-green-600);
+  --sidebar-primary-foreground: var(--primitive-white);
+  --sidebar-accent: var(--primitive-green-300);
+  --sidebar-accent-foreground: var(--primitive-green-1000);
+  --sidebar-border: var(--primitive-green-300);
+  --sidebar-ring: var(--primitive-green-500);
+
+  /* ----------------------------------------
+   * Overlays & Backdrops
+   * ---------------------------------------- */
+  --backdrop: rgba(0, 0, 0, 0.2);
+  --backdrop-blur: rgba(255, 255, 255, 0.8);
+
+  /* ----------------------------------------
+   * Brand Accents
+   * ---------------------------------------- */
+  --brand-cyan: var(--primitive-cyan-500);
+  --brand-cyan-foreground: var(--primitive-green-1000);
+  --brand-pink: var(--primitive-pink-600);
+  --brand-pink-foreground: var(--primitive-white);
+
+  /* ----------------------------------------
+   * Hero Gradient
+   * ---------------------------------------- */
+  --gradient-hero: linear-gradient(
+    145deg,
+    var(--primitive-gradient-hero-1) 0%,
+    var(--primitive-gradient-hero-2) 35%,
+    var(--primitive-gradient-hero-3) 65%,
+    var(--primitive-gradient-hero-4) 100%
+  );
+
+  /* ----------------------------------------
+   * Spacing & Sizing (for reference)
+   * ---------------------------------------- */
+  --radius: 0.5rem;
+}
+
+/* ============================================
+ * DARK MODE
+ * ============================================ */
+.dark {
+  /* Core Surface & Text */
+  --background: var(--primitive-green-1000);
+  --foreground: var(--primitive-white);
+
+  /* Brand Accents (lighter for dark mode) */
+  --brand-cyan: var(--primitive-cyan-300);
+  --brand-cyan-foreground: var(--primitive-green-1000);
+  --brand-pink: var(--primitive-pink-300);
+  --brand-pink-foreground: var(--primitive-green-1000);
+
+  --card: var(--primitive-green-800);
+  --card-foreground: var(--primitive-white);
+
+  --popover: var(--primitive-green-800);
+  --popover-foreground: var(--primitive-white);
+
+  /* Brand Colors */
+  --primary: var(--primitive-green-500);
+  --primary-foreground: var(--primitive-white);
+
+  --secondary: var(--primitive-green-800);
+  --secondary-foreground: var(--primitive-green-50);
+
+  --accent: var(--primitive-green-800);
+  --accent-foreground: var(--primitive-green-50);
+
+  /* Muted/Subtle */
+  --muted: var(--primitive-green-800);
+  --muted-foreground: var(--primitive-green-300);
+
+  /* Feedback & Status */
+  --destructive: var(--primitive-danger-500);
+  --destructive-foreground: var(--primitive-white);
+
+  --success: var(--primitive-success-500);
+  --success-foreground: var(--primitive-white);
+
+  --warning: var(--primitive-warning-500);
+  --warning-foreground: var(--primitive-black);
+
+  --info: var(--primitive-info-500);
+  --info-foreground: var(--primitive-white);
+
+  /* Status badge backgrounds (darker variants) */
+  --status-success-bg: rgba(34, 197, 94, 0.2);
+  --status-success-text: var(--primitive-success-100);
+
+  --status-warning-bg: rgba(245, 158, 11, 0.2);
+  --status-warning-text: var(--primitive-warning-100);
+
+  --status-danger-bg: rgba(239, 68, 68, 0.2);
+  --status-danger-text: var(--primitive-danger-100);
+
+  --status-info-bg: rgba(59, 130, 246, 0.2);
+  --status-info-text: var(--primitive-info-100);
+
+  /* Borders & Inputs */
+  --border: var(--primitive-green-600);
+  --input: var(--primitive-green-600);
+  --ring: var(--primitive-green-400);
+
+  /* Charts */
+  --chart-1: var(--primitive-green-400);
+  --chart-2: var(--primitive-green-300);
+  --chart-3: var(--primitive-cyan-300);
+  --chart-4: var(--primitive-cyan-500);
+  --chart-5: var(--primitive-pink-300);
+
+  /* Sidebar */
+  --sidebar: var(--primitive-green-800);
+  --sidebar-foreground: var(--primitive-white);
+  --sidebar-primary: var(--primitive-green-500);
+  --sidebar-primary-foreground: var(--primitive-white);
+  --sidebar-accent: var(--primitive-green-600);
+  --sidebar-accent-foreground: var(--primitive-white);
+  --sidebar-border: var(--primitive-green-600);
+  --sidebar-ring: var(--primitive-green-400);
+
+  /* Overlays & Backdrops */
+  --backdrop: rgba(0, 0, 0, 0.5);
+  --backdrop-blur: rgba(1, 26, 12, 0.8);
+
+  /* Hero Gradient (lighter for dark mode) */
+  --gradient-hero: linear-gradient(
+    145deg,
+    var(--primitive-green-800) 0%,
+    var(--primitive-green-600) 35%,
+    var(--primitive-green-500) 65%,
+    var(--primitive-green-400) 100%
+  );
+}
+
+/* ============================================
+ * HIGH CONTRAST MODE
+ * ============================================ */
+.high-contrast {
+  --background: var(--primitive-white);
+  --foreground: var(--primitive-black);
+  --muted-foreground: var(--primitive-black);
+  --primary: var(--primitive-green-800);
+  --border: var(--primitive-black);
+
+  --status-success-bg: var(--primitive-success-100);
+  --status-success-text: var(--primitive-black);
+
+  --status-warning-bg: var(--primitive-warning-100);
+  --status-warning-text: var(--primitive-black);
+
+  --status-danger-bg: var(--primitive-danger-100);
+  --status-danger-text: var(--primitive-black);
+}
+
+.high-contrast .text-muted-foreground {
+  color: #333333;
+}
+
+.high-contrast a {
+  text-decoration: underline;
+}

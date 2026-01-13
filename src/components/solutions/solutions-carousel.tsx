@@ -3,10 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import {
-  ChevronLeft,
-  ChevronRight,
   ClipboardList,
   Package,
   Users,
@@ -49,10 +46,10 @@ export function SolutionsCarousel() {
   const isScrolling = useRef(false);
 
   const paginate = useCallback((newDirection: number) => {
-    const newPage = page + newDirection;
-    if (newPage >= 0 && newPage < carousel.solutions.length) {
-      setPage([newPage, newDirection]);
-    }
+    const totalSlides = carousel.solutions.length;
+    // Wrap around: going past the end wraps to start, going before start wraps to end
+    const newPage = (page + newDirection + totalSlides) % totalSlides;
+    setPage([newPage, newDirection]);
   }, [page]);
 
   const goToSlide = useCallback((index: number) => {
@@ -83,21 +80,20 @@ export function SolutionsCarousel() {
       }
 
       if (Math.abs(delta) > 20) {
-        const canGoNext = delta > 0 && page < carousel.solutions.length - 1;
-        const canGoPrev = delta < 0 && page > 0;
-
         // Always prevent default for horizontal scrolls in the carousel area
         e.preventDefault();
         e.stopPropagation();
 
-        if (canGoNext || canGoPrev) {
-          isScrolling.current = true;
-          setPage([page + (canGoNext ? 1 : -1), canGoNext ? 1 : -1]);
-          // Debounce
-          setTimeout(() => {
-            isScrolling.current = false;
-          }, 500);
-        }
+        const totalSlides = carousel.solutions.length;
+        const newDirection = delta > 0 ? 1 : -1;
+        const newPage = (page + newDirection + totalSlides) % totalSlides;
+
+        isScrolling.current = true;
+        setPage([newPage, newDirection]);
+        // Debounce
+        setTimeout(() => {
+          isScrolling.current = false;
+        }, 500);
       }
     };
 
@@ -108,40 +104,33 @@ export function SolutionsCarousel() {
   // Handle drag/swipe gestures
   const handleDragEnd = useCallback((e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold && page < carousel.solutions.length - 1) {
-      paginate(1);
-    } else if (info.offset.x > swipeThreshold && page > 0) {
-      paginate(-1);
+    if (info.offset.x < -swipeThreshold) {
+      paginate(1); // Swipe left = go to next (wraps around)
+    } else if (info.offset.x > swipeThreshold) {
+      paginate(-1); // Swipe right = go to previous (wraps around)
     }
-  }, [page, paginate]);
+  }, [paginate]);
 
   const solution = carousel.solutions[page];
   const Icon = icons[solution.icon as IconName];
 
   return (
     <div className="relative">
-      {/* Navigation Arrows */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-4 lg:-translate-x-12">
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-12 w-12 rounded-full shadow-lg bg-background disabled:opacity-30"
-          onClick={() => paginate(-1)}
-          disabled={page === 0}
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </Button>
-      </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-4 lg:translate-x-12">
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-12 w-12 rounded-full shadow-lg bg-background disabled:opacity-30"
-          onClick={() => paginate(1)}
-          disabled={page === carousel.solutions.length - 1}
-        >
-          <ChevronRight className="h-6 w-6" />
-        </Button>
+      {/* Solution Chip Tabs */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        {carousel.solutions.map((s, i) => (
+          <button
+            key={s.id}
+            onClick={() => goToSlide(i)}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+              i === page
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
+            }`}
+          >
+            {s.title}
+          </button>
+        ))}
       </div>
 
       {/* Carousel Content */}
@@ -241,10 +230,10 @@ export function SolutionsCarousel() {
                                 <span
                                   className={`text-xs font-medium px-2 py-1 rounded ${
                                     item.risk === 'High'
-                                      ? 'bg-red-100 text-red-700'
+                                      ? 'badge-danger'
                                       : item.risk === 'Medium'
-                                        ? 'bg-yellow-100 text-yellow-700'
-                                        : 'bg-green-100 text-green-700'
+                                        ? 'badge-warning'
+                                        : 'badge-success'
                                   }`}
                                 >
                                   {item.risk}
@@ -270,10 +259,10 @@ export function SolutionsCarousel() {
                                 <span
                                   className={`text-xs font-medium px-2 py-1 rounded ${
                                     item.status === 'At Risk'
-                                      ? 'bg-red-100 text-red-700'
+                                      ? 'badge-danger'
                                       : item.status === 'Review'
-                                        ? 'bg-yellow-100 text-yellow-700'
-                                        : 'bg-green-100 text-green-700'
+                                        ? 'badge-warning'
+                                        : 'badge-success'
                                   }`}
                                 >
                                   {item.status}
@@ -299,10 +288,10 @@ export function SolutionsCarousel() {
                                 <TrendingUp
                                   className={`h-4 w-4 ${
                                     item.trend === 'up'
-                                      ? 'text-green-600'
+                                      ? 'text-success'
                                       : item.trend === 'down'
-                                        ? 'text-red-600 rotate-180'
-                                        : 'text-yellow-600 rotate-90'
+                                        ? 'text-destructive rotate-180'
+                                        : 'text-warning rotate-90'
                                   }`}
                                 />
                                 <span className="text-lg font-bold text-foreground">{item.score}</span>
@@ -319,34 +308,6 @@ export function SolutionsCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Dot Indicators */}
-      <div className="flex justify-center gap-2 mt-8">
-        {carousel.solutions.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goToSlide(i)}
-            className={`h-2 rounded-full transition-all ${
-              i === page ? 'w-8 bg-primary' : 'w-2 bg-border hover:bg-muted-foreground'
-            }`}
-            aria-label={`Go to solution ${i + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Solution Labels */}
-      <div className="flex justify-center gap-4 mt-4">
-        {carousel.solutions.map((s, i) => (
-          <button
-            key={s.id}
-            onClick={() => goToSlide(i)}
-            className={`text-sm font-medium transition-colors ${
-              i === page ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            {s.title}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }

@@ -1,0 +1,18 @@
+/**
+ * Alora Design System - Token Index
+ *
+ * This file imports all token layers in the correct order.
+ * Import this file once in your main stylesheet.
+ *
+ * Architecture:
+ * 1. Primitives - Raw color values (never use directly)
+ * 2. Semantic - Meaningful names mapped to modes
+ * 3. Components - Component-specific tokens
+ *
+ * Usage in globals.css:
+ *   @import "./tokens/index.css";
+ */
+
+@import "./primitives.css";
+@import "./semantic.css";
+@import "./components.css";

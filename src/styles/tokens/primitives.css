@@ -1,0 +1,80 @@
+/**
+ * Alora Design System - Primitive Tokens
+ *
+ * These are the raw color values from the Figma design system.
+ * NEVER use these directly in components - always use semantic tokens.
+ *
+ * Source: Figma export (shared/Mode 1.tokens.json)
+ * Last updated: 2026-01-13
+ */
+
+:root {
+  /* ========================================
+   * GREEN PALETTE (Brand Primary)
+   * ======================================== */
+  --primitive-green-50: #F0F7F3;
+  --primitive-green-300: #D1EDDC;
+  --primitive-green-400: #7AB292;
+  --primitive-green-500: #4D996D;  /* Primary */
+  --primitive-green-600: #3A7352;
+  --primitive-green-800: #264C36;
+  --primitive-green-1000: #011A0C;
+
+  /* ========================================
+   * CYAN PALETTE (Accent)
+   * ======================================== */
+  --primitive-cyan-300: #7CE3CB;
+  --primitive-cyan-500: #51DABA;
+  --primitive-cyan-800: #0D3C40;
+
+  /* ========================================
+   * PINK PALETTE (Accent)
+   * ======================================== */
+  --primitive-pink-300: #FFA5B1;
+  --primitive-pink-600: #CC707C;
+
+  /* ========================================
+   * NEUTRAL PALETTE
+   * ======================================== */
+  --primitive-white: #FFFFFF;
+  --primitive-black: #000000;
+
+  /* ========================================
+   * STATUS COLORS (Semantic primitives)
+   * ======================================== */
+  /* Success - Green tones */
+  --primitive-success-50: #DCFCE7;
+  --primitive-success-100: #BBF7D0;
+  --primitive-success-500: #22C55E;
+  --primitive-success-600: #16A34A;
+  --primitive-success-700: #166534;
+
+  /* Warning - Amber tones */
+  --primitive-warning-50: #FFFBEB;
+  --primitive-warning-100: #FEF3C7;
+  --primitive-warning-500: #F59E0B;
+  --primitive-warning-600: #D97706;
+  --primitive-warning-700: #B45309;
+
+  /* Danger - Red tones */
+  --primitive-danger-50: #FEF2F2;
+  --primitive-danger-100: #FEE2E2;
+  --primitive-danger-500: #EF4444;
+  --primitive-danger-600: #DC2626;
+  --primitive-danger-700: #B91C1C;
+
+  /* Info - Blue tones */
+  --primitive-info-50: #EFF6FF;
+  --primitive-info-100: #DBEAFE;
+  --primitive-info-500: #3B82F6;
+  --primitive-info-600: #2563EB;
+  --primitive-info-700: #1D4ED8;
+
+  /* ========================================
+   * GRADIENT STOPS
+   * ======================================== */
+  --primitive-gradient-hero-1: #1a3a28;
+  --primitive-gradient-hero-2: #264C36;
+  --primitive-gradient-hero-3: #3A7352;
+  --primitive-gradient-hero-4: #4D996D;
+}

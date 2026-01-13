@@ -26,14 +26,13 @@ interface BlogListProps {
 
 const POSTS_PER_PAGE = 12;
 
-// Get a subtle placeholder gradient
+// Get a subtle placeholder gradient using design tokens
 function getPlaceholderGradient(title: string): string {
   const gradients = [
-    'from-emerald-50 to-teal-100',
-    'from-blue-50 to-indigo-100',
-    'from-slate-50 to-gray-100',
-    'from-green-50 to-emerald-100',
-    'from-sky-50 to-blue-100',
+    'blog-placeholder-1',
+    'blog-placeholder-2',
+    'blog-placeholder-3',
+    'blog-placeholder-4',
   ];
   const index = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return gradients[index % gradients.length];
@@ -174,7 +173,7 @@ export function BlogList({ posts, categories }: BlogListProps) {
                       />
                     ) : (
                       <div
-                        className={`w-full h-full bg-gradient-to-br ${getPlaceholderGradient(post.title)} group-hover:scale-105 transition-transform duration-300`}
+                        className={`w-full h-full ${getPlaceholderGradient(post.title)} group-hover:scale-105 transition-transform duration-300`}
                       />
                     )}
                     {/* Latest badge on first post */}

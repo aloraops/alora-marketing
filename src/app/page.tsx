@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
@@ -55,13 +56,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Gradient Background */}
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              'linear-gradient(145deg, #1a3a28 0%, #2b553c 35%, #3d6b4f 65%, #4d8060 100%)',
-          }}
-        />
+        <div className="absolute inset-0 -z-10 bg-hero-gradient" />
         {/* Pattern Overlay */}
         <div
           className="absolute inset-0 -z-10 opacity-[0.03]"
@@ -73,18 +68,18 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
-              <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-semibold tracking-tight text-hero-text sm:text-5xl lg:text-6xl">
                 {content.hero.headline}{' '}
-                <span className="text-white/80">{content.hero.headlineAccent}</span>
+                <span className="text-hero-accent">{content.hero.headlineAccent}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="mt-6 text-lg leading-8 text-white/70 sm:text-xl">
+              <p className="mt-6 text-lg leading-8 text-hero-text-secondary sm:text-xl">
                 {content.hero.subheading}
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="mt-4 text-sm font-medium text-white/50">
+              <p className="mt-4 text-sm font-medium text-hero-text-muted">
                 {content.hero.icpLine}
               </p>
             </FadeIn>
@@ -93,10 +88,10 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-primary hover:bg-white/90"
+                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90"
                 >
-                  <Link href="/contact">
-                    {content.hero.primaryCta}
+                  <Link href="/solutions">
+                    See How It Works
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -160,16 +155,6 @@ export default function HomePage() {
                             <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
                               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                               {option}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                      {step.actions && (
-                        <ul className="mt-4 space-y-2">
-                          {step.actions.map((action, j) => (
-                            <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                              {action}
                             </li>
                           ))}
                         </ul>
@@ -243,7 +228,7 @@ export default function HomePage() {
             <StaggerContainer className="grid gap-6 lg:grid-cols-4 lg:pt-12" staggerDelay={0.1}>
               {content.adoptionJourney.weeks.map((week) => (
                 <StaggerItem key={week.period}>
-                  <Card className="group h-full border border-border/40 bg-white/60 shadow-sm transition-all duration-200 hover:bg-white hover:border-border/60 hover:shadow-md">
+                  <Card className="group h-full border border-border/40 bg-card/60 shadow-sm transition-all duration-200 hover:bg-card hover:border-border/60 hover:shadow-md">
                     <CardContent className="pt-6 text-center flex flex-col">
                       <span className="text-sm font-semibold text-primary">
                         {week.period}
@@ -279,7 +264,7 @@ export default function HomePage() {
               const Icon = icons[stat.icon as IconName];
               return (
                 <StaggerItem key={stat.label}>
-                  <Card className="group text-center border border-border/40 shadow-none h-full bg-white/50 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300">
+                  <Card className="group text-center border border-border/40 shadow-none h-full bg-card/50 hover:bg-card hover:border-border/60 hover:shadow-sm transition-all duration-300">
                     <CardContent className="pt-8 pb-8 flex flex-col h-full">
                       {Icon && (
                         <div className="mx-auto mb-5">
@@ -320,7 +305,7 @@ export default function HomePage() {
               const Icon = icons[industry.icon as IconName];
               return (
                 <StaggerItem key={industry.name} className="h-full">
-                  <div className="group rounded-lg border border-border/40 bg-white/50 p-6 hover:bg-white hover:border-border/60 hover:shadow-sm transition-all duration-300 text-center h-full flex flex-col">
+                  <div className="group rounded-lg border border-border/40 bg-card/50 p-6 hover:bg-card hover:border-border/60 hover:shadow-sm transition-all duration-300 text-center h-full flex flex-col">
                     {Icon && (
                       <Icon className="h-5 w-5 text-primary/50 group-hover:text-primary transition-colors duration-300 mb-3 mx-auto" />
                     )}
@@ -359,7 +344,7 @@ export default function HomePage() {
           <StaggerContainer className="mx-auto mt-12 grid max-w-2xl gap-3" staggerDelay={0.1}>
             {content.trustAndSecurity.items.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="group flex items-center gap-4 rounded-lg border border-border/40 bg-white/60 p-4 shadow-sm transition-all duration-200 hover:bg-white hover:border-border/60 hover:shadow-md">
+                <div className="group flex items-center gap-4 rounded-lg border border-border/40 bg-card/60 p-4 shadow-sm transition-all duration-200 hover:bg-card hover:border-border/60 hover:shadow-md">
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 group-hover:bg-primary/15 transition-colors duration-200">
                     <CheckCircle className="h-4 w-4 text-primary" />
                   </div>
@@ -411,78 +396,100 @@ export default function HomePage() {
           </div>
 
           {/* FAQ Accordion */}
-          <div className="mx-auto mt-10 max-w-3xl">
-            <div className="space-y-3">
-              {content.faq.groups[activeFaqGroup]?.items.map((item, itemIndex) => {
-                const key = `${activeFaqGroup}-${itemIndex}`;
-                const isOpen = openFaqItems[key];
-                return (
-                  <div
-                    key={itemIndex}
-                    className={`rounded-lg border overflow-hidden transition-all duration-300 ease-out ${
-                      isOpen
-                        ? 'border-border bg-white shadow-sm'
-                        : 'border-border/50 bg-white/50 hover:border-border/80 hover:bg-white/80'
-                    }`}
-                  >
-                    <button
-                      onClick={() => toggleFaq(activeFaqGroup, itemIndex)}
-                      className="flex w-full items-center justify-between p-5 text-left group"
-                    >
-                      <span className={`font-medium pr-4 transition-colors duration-200 ${
-                        isOpen ? 'text-foreground' : 'text-foreground/80 group-hover:text-foreground'
-                      }`}>
-                        {item.question}
-                      </span>
-                      <div className={`rounded-full p-1 transition-all duration-300 ease-out ${
-                        isOpen ? 'bg-primary/10' : 'bg-transparent'
-                      }`}>
-                        <ChevronDown
-                          className={`h-4 w-4 shrink-0 transition-all duration-300 ease-out ${
-                            isOpen ? 'rotate-180 text-primary' : 'text-muted-foreground'
-                          }`}
-                        />
-                      </div>
-                    </button>
+          <div className="mx-auto mt-10 max-w-3xl relative animate-height overflow-hidden">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={activeFaqGroup}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, position: 'absolute', top: 0, left: 0, right: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="space-y-3"
+              >
+                {content.faq.groups[activeFaqGroup]?.items.map((item, itemIndex) => {
+                  const key = `${activeFaqGroup}-${itemIndex}`;
+                  const isOpen = openFaqItems[key];
+                  return (
                     <div
-                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                        isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                      key={itemIndex}
+                      className={`rounded-lg border overflow-hidden transition-all duration-300 ease-out ${
+                        isOpen
+                          ? 'border-border bg-card shadow-sm'
+                          : 'border-border/50 bg-card/50 hover:border-border/80 hover:bg-card/80'
                       }`}
                     >
-                      <div className="overflow-hidden">
-                        <div className={`transition-opacity duration-300 ease-out ${
-                          isOpen ? 'opacity-100' : 'opacity-0'
+                      <button
+                        onClick={() => toggleFaq(activeFaqGroup, itemIndex)}
+                        className="flex w-full items-center justify-between p-5 text-left group"
+                      >
+                        <span className={`font-medium pr-4 transition-colors duration-200 ${
+                          isOpen ? 'text-foreground' : 'text-foreground/80 group-hover:text-foreground'
                         }`}>
-                          <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
-                            {item.answer}
-                          </p>
+                          {item.question}
+                        </span>
+                        <div className={`rounded-full p-1 transition-all duration-300 ease-out ${
+                          isOpen ? 'bg-primary/10' : 'bg-transparent'
+                        }`}>
+                          <ChevronDown
+                            className={`h-4 w-4 shrink-0 transition-all duration-300 ease-out ${
+                              isOpen ? 'rotate-180 text-primary' : 'text-muted-foreground'
+                            }`}
+                          />
+                        </div>
+                      </button>
+                      <div
+                        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className={`transition-opacity duration-300 ease-out ${
+                            isOpen ? 'opacity-100' : 'opacity-0'
+                          }`}>
+                            <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                              {item.answer}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 lg:py-28">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
+        {/* Dark Gradient Background */}
+        <div className="absolute inset-0 -z-10 bg-hero-gradient" />
+        {/* Pattern Overlay */}
+        <div
+          className="absolute inset-0 -z-10 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-hero-text sm:text-4xl">
                 {content.finalCta.title}
               </h2>
-              <p className="mt-6 text-lg text-muted-foreground">
+              <p className="mt-6 text-lg text-hero-text-secondary">
                 {content.finalCta.description}
               </p>
-              <p className="mt-2 text-sm text-muted-foreground italic">
+              <p className="mt-2 text-sm text-hero-text-muted italic">
                 {content.finalCta.supportingLine}
               </p>
               <div className="mt-10 flex items-center justify-center">
-                <Button asChild size="lg">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90"
+                >
                   <Link href="/contact">
                     {content.finalCta.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
