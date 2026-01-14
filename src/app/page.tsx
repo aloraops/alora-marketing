@@ -24,6 +24,7 @@ import {
 
 // Content imports
 import * as content from '@content/home';
+import { brand } from '@content/shared';
 
 // Icon mapping for dynamic rendering
 const icons = {
@@ -109,7 +110,8 @@ export default function HomePage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.executionLoop.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.executionLoop.title}
               </p>
             </div>
@@ -208,10 +210,10 @@ export default function HomePage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.adoptionJourney.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.adoptionJourney.title}
               </p>
-              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
             </div>
           </FadeIn>
 
@@ -291,13 +293,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.industries.title}
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Built For
               </h2>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                {content.industries.title}
+              </p>
               <p className="mt-4 text-lg text-muted-foreground">
                 {content.industries.subtitle}
               </p>
-              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
             </div>
           </FadeIn>
           <StaggerContainer className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.1}>
@@ -331,10 +336,10 @@ export default function HomePage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.trustAndSecurity.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.trustAndSecurity.title}
               </p>
-              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
               <p className="mt-6 text-lg text-muted-foreground">
                 {content.trustAndSecurity.description}
               </p>
@@ -369,10 +374,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Frequently asked questions
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                FAQ
               </h2>
               <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                Got questions? We've got answers
+              </p>
             </div>
           </FadeIn>
 

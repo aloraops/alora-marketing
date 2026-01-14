@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar, Send, CheckCircle2, Loader2 } from 'lucide-react';
-import { cta } from '@content/shared';
+import { cta, brand } from '@content/shared';
 
 // Note: Metadata must be in a separate file for client components
 // or use generateMetadata in a parent layout
@@ -21,6 +21,18 @@ export default function ContactPage() {
     company: '',
     message: '',
   });
+
+  // Load Calendly widget script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,31 +107,12 @@ export default function ContactPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  {/* Calendly Embed Placeholder */}
-                  <div className="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center min-h-[400px] flex flex-col items-center justify-center">
-                    <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Calendly booking widget will appear here
-                    </p>
-                    <Button variant="outline" asChild>
-                      <a
-                        href="https://calendly.com/YOUR_CALENDLY_LINK"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Open Scheduling Page
-                      </a>
-                    </Button>
-                    {/*
-                    To embed Calendly, replace this div with:
-                    <div
-                      className="calendly-inline-widget"
-                      data-url="https://calendly.com/YOUR_CALENDLY_LINK"
-                      style={{ minWidth: '320px', height: '630px' }}
-                    />
-                    And add the Calendly script to your layout or use react-calendly package
-                    */}
-                  </div>
+                  {/* Calendly Embed Widget */}
+                  <div
+                    className="calendly-inline-widget"
+                    data-url={brand.calendlyUrl}
+                    style={{ minWidth: '320px', height: '630px' }}
+                  />
                 </CardContent>
               </Card>
             </div>
@@ -249,10 +242,10 @@ export default function ContactPage() {
             <p className="mt-4 text-muted-foreground">
               Reach out directly at{' '}
               <a
-                href="mailto:hello@aloraops.ai"
+                href={`mailto:${brand.contactEmail}`}
                 className="font-medium text-primary hover:text-primary/80"
               >
-                hello@aloraops.ai
+                {brand.contactEmail}
               </a>
             </p>
           </div>

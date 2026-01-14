@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
@@ -12,10 +13,12 @@ import {
   Target,
   Users,
   Lightbulb,
+  Linkedin,
 } from 'lucide-react';
 
 // Content imports
 import * as content from '@content/company';
+import { brand } from '@content/shared';
 
 // Icon mapping for dynamic rendering
 const icons = {
@@ -49,13 +52,11 @@ export default function CompanyPage() {
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
-            <div className="mx-auto max-w-3xl">
-              <div className="flex items-center gap-3 justify-center">
-                <Target className="h-6 w-6 text-primary" />
-                <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                  {content.mission.label}
-                </h2>
-              </div>
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                {content.mission.label}
+              </h2>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
               <p className="mt-6 text-2xl font-medium text-foreground text-center leading-relaxed">
                 {content.mission.statement}
               </p>
@@ -111,71 +112,50 @@ export default function CompanyPage() {
           <StaggerContainer className="mx-auto mt-12 grid max-w-6xl gap-8 lg:grid-cols-3" staggerDelay={0.15}>
             {content.team.map((member) => (
               <StaggerItem key={member.name}>
-                <Card className="border-0 shadow-sm h-full">
-                  <CardContent className="pt-6">
-                    {/* Avatar placeholder */}
-                    <div className="mx-auto h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-3xl font-semibold text-primary">
-                        {member.name
-                          .split(' ')
-                          .map((n) => n[0])
-                          .join('')}
-                      </span>
+                <Card className="border border-border/40 shadow-sm h-full hover:border-border/60 hover:shadow-md transition-all duration-200">
+                  <CardContent className="pt-6 text-center flex flex-col h-full">
+                    {/* Profile Image */}
+                    <div className="mx-auto h-32 w-32 rounded-full overflow-hidden ring-4 ring-border/20">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="object-cover w-full h-full"
+                      />
                     </div>
-                    <div className="mt-4 text-center">
-                      <h3 className="text-lg font-semibold text-foreground">
+                    <div className="mt-4">
+                      <h3 className="text-xl font-semibold text-foreground">
                         {member.name}
                       </h3>
-                      <p className="text-sm font-medium text-primary">{member.role}</p>
+                      <p className="text-sm font-medium text-primary mt-1">{member.role}</p>
                     </div>
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed flex-1">
                       {member.bio}
                     </p>
                     <div className="mt-6">
-                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-2">
-                        <GraduationCap className="h-4 w-4" />
-                        {member.education}
-                      </div>
-                      <ul className="space-y-2">
-                        {member.highlights.map((highlight, i) => (
-                          <li
-                            key={i}
-                            className="flex items-start gap-2 text-xs text-muted-foreground"
-                          >
-                            <Award className="h-3 w-3 shrink-0 mt-0.5 text-primary" />
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                      >
+                        <Link
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          <Linkedin className="h-4 w-4" />
+                          Connect on LinkedIn
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
               </StaggerItem>
             ))}
           </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Shared Background */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {content.sharedBackground.label}
-              </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.sharedBackground.title}
-              </p>
-              <p className="mt-6 text-lg text-muted-foreground">
-                {content.sharedBackground.description}
-              </p>
-              <div className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-                <Award className="h-4 w-4" />
-                {content.sharedBackground.badge}
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
@@ -188,7 +168,8 @@ export default function CompanyPage() {
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                   {content.vision.label}
                 </h2>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+                <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                   {content.vision.title}
                 </p>
               </div>

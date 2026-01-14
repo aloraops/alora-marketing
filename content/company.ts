@@ -41,40 +41,25 @@ export const whyThisTeam = {
 
 export const team = [
   {
-    name: 'Sharon Ilan',
-    role: 'Co-Founder, CEO',
-    bio: 'Sharon brings deep supply chain expertise from building operations departments at surgical robotics companies and managing $200M in supplier deals at Better Place. She knows the customer pain firsthand.',
-    highlights: [
-      '$200M in supplier deals managed',
-      'First employee at Better Place',
-      'Built supply chain operations at Human Xtensions',
-      'Unit 76 Intelligence, Operations Officer',
-    ],
-    education: 'Economics and Management',
-  },
-  {
     name: 'Yuval Blyakhman',
-    role: 'Co-Founder, CPO',
-    bio: 'Yuval rose from first employee to VP R&D at Human Xtensions, a surgical robotics company. He brings product vision and engineering leadership experience from complex, regulated industries.',
-    highlights: [
-      'First employee → VP R&D at Human Xtensions',
-      'Multiple patents in medical instruments',
-      'Surgical robotics product development',
-      'Unit 81 Intelligence, Mechanical Engineer',
-    ],
-    education: 'Mechanical + Biomedical Engineering',
+    role: 'CPO',
+    bio: 'C-level Product and R&D leader with 20+ years of experience developing technological solutions in complex hardware systems',
+    image: '/team/yuval-blyakhman.png',
+    linkedin: 'https://www.linkedin.com/in/yuval-blyakhman-922a1156/',
   },
   {
-    name: 'Idan Ben-Ami',
-    role: 'Co-Founder, CTO',
-    bio: "Idan completed his CS degree at 14.5 and brings PhD-level AI/ML expertise in graph neural networks — directly applicable to supply chain network modeling. He's built high-performance trading systems and cloud infrastructure at scale.",
-    highlights: [
-      'CS B.Sc. completed at age 14.5',
-      "Master's in AI/ML (Graph Neural Networks)",
-      'Built sub-100ns HFT systems',
-      'Talpiot Program (top 50 of 10,000)',
-    ],
-    education: 'Computer Science, AI/ML Specialization',
+    name: 'Sharon Ilan',
+    role: 'CEO',
+    bio: '20+ years of leading complex global supply chain from the ground up, forging key stakeholder partnerships and integrating advanced systems',
+    image: '/team/sharon-ilan.png',
+    linkedin: 'https://www.linkedin.com/in/sharon-ilan/',
+  },
+  {
+    name: 'Idan Ben Ami',
+    role: 'CTO',
+    bio: 'Tech Leader with deep cybersecurity, AI and cloud expertise. Developed secure, scalable systems in defense and fintech',
+    image: '/team/idan-ben-ami.png',
+    linkedin: 'https://www.linkedin.com/in/idan-ben-ami/',
   },
 ];
 

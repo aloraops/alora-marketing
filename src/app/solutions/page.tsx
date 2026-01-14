@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 import { SolutionsCarousel } from '@/components/solutions/solutions-carousel';
+import { brand } from '@content/shared';
 import {
   ArrowRight,
   ClipboardList,
@@ -65,7 +66,8 @@ export default function SolutionsPage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.aiEngine.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.aiEngine.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
@@ -120,7 +122,8 @@ export default function SolutionsPage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.carousel.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.carousel.title}
               </p>
             </div>
@@ -137,7 +140,8 @@ export default function SolutionsPage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.erpIntegration.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.erpIntegration.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">
@@ -175,7 +179,8 @@ export default function SolutionsPage() {
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                   {content.emailIntelligence.label}
                 </h2>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                <div className="mt-4 h-px w-12 bg-primary/40" />
+                <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                   {content.emailIntelligence.title}
                 </p>
                 <p className="mt-6 text-lg text-muted-foreground">
@@ -249,7 +254,8 @@ export default function SolutionsPage() {
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.security.label}
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.security.title}
               </p>
               <p className="mt-6 text-lg text-muted-foreground">

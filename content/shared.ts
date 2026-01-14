@@ -9,7 +9,8 @@ export const brand = {
   tagline: 'AI-powered supply chain operations for complex hardware manufacturers.',
   domain: 'aloraops.ai',
   appUrl: 'https://app.aloraops.com',
-  contactEmail: 'hello@aloraops.ai',
+  contactEmail: 'contact@aloraops.com',
+  calendlyUrl: 'https://calendly.com/sharon-aloraops',
 };
 
 /**
