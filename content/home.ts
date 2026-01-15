@@ -31,7 +31,7 @@ export const hero = {
 
 export const executionLoop = {
   label: 'The Execution Loop',
-  title: 'How execution actually works (when it works)',
+  title: 'How execution actually works',
   steps: [
     {
       number: '1',

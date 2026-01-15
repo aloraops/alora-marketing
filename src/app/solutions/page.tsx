@@ -170,82 +170,6 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Email Intelligence */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-            <FadeIn direction="right">
-              <div>
-                <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                  {content.emailIntelligence.label}
-                </h2>
-                <div className="mt-4 h-px w-12 bg-primary/40" />
-                <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  {content.emailIntelligence.title}
-                </p>
-                <p className="mt-6 text-lg text-muted-foreground">
-                  {content.emailIntelligence.description}
-                </p>
-                <div className="mt-8 space-y-6">
-                  {content.emailIntelligence.features.map((item) => {
-                    const Icon = icons[item.icon as IconName];
-                    return (
-                      <div key={item.title} className="flex gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                          {Icon && <Icon className="h-5 w-5" />}
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground">{item.title}</h3>
-                          <p className="text-sm text-muted-foreground">{item.desc}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn direction="left" delay={0.2}>
-              <div className="relative">
-                <div className="space-y-4">
-                  <Card className="border-0 shadow-sm">
-                    <CardContent className="p-4 flex items-center gap-4">
-                      <Mail className="h-8 w-8 text-muted-foreground" />
-                      <div className="flex-1">
-                        <div className="text-sm font-medium text-foreground">
-                          {content.emailIntelligence.demoEmail.from}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {content.emailIntelligence.demoEmail.subject}
-                        </div>
-                      </div>
-                      <ArrowRight className="h-5 w-5 text-primary" />
-                    </CardContent>
-                  </Card>
-                  <div className="flex justify-center">
-                    <div className="h-8 w-px bg-border" />
-                  </div>
-                  <Card className="border-0 shadow-sm bg-primary/5">
-                    <CardContent className="p-4">
-                      <div className="text-xs font-medium text-primary mb-2">
-                        {content.emailIntelligence.demoExtracted.label}
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        {content.emailIntelligence.demoExtracted.fields.map((field) => (
-                          <div key={field.label}>
-                            <span className="text-muted-foreground">{field.label}:</span>{' '}
-                            <span className="font-medium">{field.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
       {/* Security */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -281,30 +205,6 @@ export default function SolutionsPage() {
               );
             })}
           </StaggerContainer>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.cta.title}
-              </h2>
-              <p className="mt-6 text-lg text-muted-foreground">
-                {content.cta.description}
-              </p>
-              <div className="mt-10">
-                <Button asChild size="lg">
-                  <Link href="/contact">
-                    {content.cta.primaryCta}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
     </>

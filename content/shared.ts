@@ -10,6 +10,7 @@ export const brand = {
   domain: 'aloraops.ai',
   appUrl: 'https://app.aloraops.com',
   contactEmail: 'contact@aloraops.com',
+  adminEmail: 'admin@aloraops.com',
   calendlyUrl: 'https://calendly.com/sharon-aloraops',
 };
 
@@ -18,7 +19,7 @@ export const brand = {
  * Single source of truth for main call-to-action text
  */
 export const cta = {
-  primary: 'Talk to Us',
+  primary: 'Book a Demo',
   secondary: 'Learn More',
   description: "A focused conversation about execution — we'll walk through how it actually works.",
   supportingLine: "We'll start with one real execution flow and see if Alora is a fit.",
@@ -36,9 +37,9 @@ export const navigation = {
 
 export const footer = {
   solutions: [
-    { name: 'PO Risk & Tracking', href: '/solutions#po-risk' },
-    { name: 'Build Readiness', href: '/solutions#build-readiness' },
-    { name: 'Vendor Scoring', href: '/solutions#vendor-scoring' },
+    { name: 'PO Risk & Tracking', href: '/solutions#core-solution' },
+    { name: 'Build Readiness', href: '/solutions#core-solution' },
+    { name: 'Vendor Scoring', href: '/solutions#core-solution' },
   ],
   company: [
     { name: 'About Us', href: '/company' },

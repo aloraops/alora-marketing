@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Metadata } from 'next';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Calendar, Send, CheckCircle2, Loader2 } from 'lucide-react';
-import { cta, brand } from '@content/shared';
+import { Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { brand } from '@content/shared';
 
 // Note: Metadata must be in a separate file for client components
 // or use generateMetadata in a parent layout
@@ -22,41 +21,23 @@ export default function ContactPage() {
     message: '',
   });
 
-  // Load Calendly widget script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormState('loading');
 
-    try {
-      // Formspree submission
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Pilot Request from ${formData.company}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:${brand.contactEmail}?subject=${subject}&body=${body}`;
 
-      if (response.ok) {
-        setFormState('success');
-        setFormData({ name: '', email: '', company: '', message: '' });
-      } else {
-        setFormState('error');
-      }
-    } catch {
-      setFormState('error');
-    }
+    // Open mailto link
+    window.location.href = mailtoLink;
+
+    // Show success state
+    setFormState('success');
+    setFormData({ name: '', email: '', company: '', message: '' });
   };
 
   const handleChange = (
@@ -86,53 +67,25 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Options */}
+      {/* Contact Form */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Calendly - Talk to Us */}
-            <div>
-              <Card className="border-0 shadow-sm h-full">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                      <Calendar className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl">{cta.primary}</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        Schedule a time that works for you
-                      </p>
-                    </div>
+          <div className="mx-auto max-w-2xl">
+            {/* Contact Form - Reach Out */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                    <Send className="h-5 w-5" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  {/* Calendly Embed Widget */}
-                  <div
-                    className="calendly-inline-widget"
-                    data-url={brand.calendlyUrl}
-                    style={{ minWidth: '320px', height: '630px' }}
-                  />
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contact Form - Request a Pilot */}
-            <div>
-              <Card className="border-0 shadow-sm h-full">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                      <Send className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl">Request a Pilot</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        Tell us about your needs
-                      </p>
-                    </div>
+                  <div>
+                    <CardTitle className="text-xl">Reach Out</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      Tell us about your needs
+                    </p>
                   </div>
-                </CardHeader>
+                </div>
+              </CardHeader>
                 <CardContent>
                   {formState === 'success' ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -227,27 +180,6 @@ export default function ContactPage() {
                   )}
                 </CardContent>
               </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Contact Info */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Prefer email?
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              Reach out directly at{' '}
-              <a
-                href={`mailto:${brand.contactEmail}`}
-                className="font-medium text-primary hover:text-primary/80"
-              >
-                {brand.contactEmail}
-              </a>
-            </p>
           </div>
         </div>
       </section>

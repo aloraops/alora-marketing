@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { cta } from '@content/shared';
+import { cta, brand } from '@content/shared';
 
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
@@ -83,7 +83,7 @@ export function Header() {
             Sign In
           </a>
           <Button asChild className="bg-brand-cyan text-brand-cyan-foreground hover:bg-brand-cyan/90">
-            <Link href="/contact">{cta.primary}</Link>
+            <Link href={brand.calendlyUrl} target="_blank" rel="noopener noreferrer">{cta.primary}</Link>
           </Button>
         </div>
       </nav>
@@ -115,7 +115,7 @@ export function Header() {
                 Sign In
               </a>
               <Button asChild className="w-full bg-brand-cyan text-brand-cyan-foreground hover:bg-brand-cyan/90">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                <Link href={brand.calendlyUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                   {cta.primary}
                 </Link>
               </Button>

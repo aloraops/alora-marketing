@@ -53,8 +53,8 @@ export const aiEngine = {
 };
 
 export const carousel = {
-  label: 'Core Solutions',
-  title: 'Three modules, one engine',
+  label: 'Solutions',
+  title: 'Multiple modules, one engine',
   solutions: [
     {
       id: 'po-risk',

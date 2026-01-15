@@ -192,7 +192,7 @@ export default function HomePage() {
           <FadeIn delay={0.6}>
             <div className="mt-10 flex justify-center">
               <Button asChild size="lg">
-                <Link href="/contact">
+                <Link href={brand.calendlyUrl} target="_blank" rel="noopener noreferrer">
                   {content.hero.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -484,13 +484,10 @@ export default function HomePage() {
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-semibold tracking-tight text-hero-text sm:text-4xl">
-                {content.finalCta.title}
+                Talk to us
               </h2>
               <p className="mt-6 text-lg text-hero-text-secondary">
                 {content.finalCta.description}
-              </p>
-              <p className="mt-2 text-sm text-hero-text-muted italic">
-                {content.finalCta.supportingLine}
               </p>
               <div className="mt-10 flex items-center justify-center">
                 <Button
@@ -498,11 +495,22 @@ export default function HomePage() {
                   size="lg"
                   className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90"
                 >
-                  <Link href="/contact">
+                  <Link href={brand.calendlyUrl} target="_blank" rel="noopener noreferrer">
                     {content.finalCta.primaryCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
+              </div>
+              <div className="mt-8">
+                <p className="text-base font-medium text-hero-text-secondary">
+                  Prefer email?
+                </p>
+                <p className="mt-2 text-sm text-hero-text-muted">
+                  Reach out directly at{' '}
+                  <Link href="/contact" className="text-hero-text-secondary hover:text-hero-text underline">
+                    {brand.contactEmail}
+                  </Link>
+                </p>
               </div>
             </div>
           </FadeIn>
