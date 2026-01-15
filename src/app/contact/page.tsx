@@ -6,38 +6,68 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, CheckCircle2, Loader2 } from 'lucide-react';
-import { brand } from '@content/shared';
+import { Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
 // Note: Metadata must be in a separate file for client components
 // or use generateMetadata in a parent layout
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     message: '',
+    website: '', // Honeypot field - see explanation below
   });
 
-
-  const handleSubmit = (e: React.FormEvent) => {
+  /**
+   * Handle form submission
+   *
+   * Sends form data to our API route which handles:
+   * - Rate limiting (prevents spam)
+   * - Honeypot validation (catches bots)
+   * - Email sending via Resend
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormState('loading');
+    setErrorMessage('');
 
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Pilot Request from ${formData.company}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:${brand.contactEmail}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Open mailto link
-    window.location.href = mailtoLink;
+      const data = await response.json();
 
-    // Show success state
-    setFormState('success');
-    setFormData({ name: '', email: '', company: '', message: '' });
+      if (!response.ok) {
+        // Handle specific error cases
+        if (response.status === 429) {
+          // Rate limited
+          setErrorMessage(
+            data.retryAfter
+              ? `Too many submissions. Please try again in ${data.retryAfter} minutes.`
+              : 'Too many submissions. Please try again later.'
+          );
+        } else {
+          setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        }
+        setFormState('error');
+        return;
+      }
+
+      // Success!
+      setFormState('success');
+      setFormData({ name: '', email: '', company: '', message: '', website: '' });
+    } catch {
+      // Network error or other unexpected failure
+      setErrorMessage('Unable to send message. Please check your connection and try again.');
+      setFormState('error');
+    }
   };
 
   const handleChange = (
@@ -86,100 +116,137 @@ export default function ContactPage() {
                   </div>
                 </div>
               </CardHeader>
-                <CardContent>
-                  {formState === 'success' ? (
-                    <div className="flex flex-col items-center justify-center py-12 text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-status-success-bg text-status-success-text mb-4">
-                        <CheckCircle2 className="h-8 w-8" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        Message sent!
-                      </h3>
-                      <p className="mt-2 text-muted-foreground">
-                        We&apos;ll get back to you within 24 hours.
-                      </p>
-                      <Button
-                        variant="outline"
-                        className="mt-6"
-                        onClick={() => setFormState('idle')}
-                      >
-                        Send another message
-                      </Button>
+              <CardContent>
+                {formState === 'success' ? (
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-status-success-bg text-status-success-text mb-4">
+                      <CheckCircle2 className="h-8 w-8" />
                     </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                        />
+                    <h3 className="text-lg font-semibold text-foreground">
+                      Message sent!
+                    </h3>
+                    <p className="mt-2 text-muted-foreground">
+                      We&apos;ll get back to you within 24 hours.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-6"
+                      onClick={() => setFormState('idle')}
+                    >
+                      Send another message
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/*
+                      Honeypot Field
+
+                      This is a spam protection technique. The field is:
+                      - Hidden from real users (visually hidden + negative tabIndex)
+                      - NOT using display:none or visibility:hidden (bots detect that)
+                      - Named something bots love to fill (like "website" or "url")
+
+                      How it works:
+                      - Real users never see it, so they never fill it
+                      - Bots auto-fill all fields, including this hidden one
+                      - Server rejects submissions where this field has a value
+
+                      Note: We use CSS to hide it instead of display:none because
+                      sophisticated bots check for display:none and skip those fields.
+                    */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute opacity-0 h-0 w-0 overflow-hidden pointer-events-none"
+                      style={{ position: 'absolute', left: '-9999px' }}
+                    >
+                      <Label htmlFor="website">Website</Label>
+                      <Input
+                        type="text"
+                        id="website"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="you@company.com"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="company">Company</Label>
+                      <Input
+                        id="company"
+                        name="company"
+                        placeholder="Your company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell us about your supply chain challenges and what you're looking for..."
+                        rows={4}
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+
+                    {/* Error Message */}
+                    {formState === 'error' && (
+                      <div className="flex items-start gap-2 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+                        <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <span>{errorMessage}</span>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="you@company.com"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="company">Company</Label>
-                        <Input
-                          id="company"
-                          name="company"
-                          placeholder="Your company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="message">Message</Label>
-                        <Textarea
-                          id="message"
-                          name="message"
-                          placeholder="Tell us about your supply chain challenges and what you're looking for..."
-                          rows={4}
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      {formState === 'error' && (
-                        <p className="text-sm text-destructive">
-                          Something went wrong. Please try again or email us directly.
-                        </p>
+                    )}
+
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={formState === 'loading'}
+                    >
+                      {formState === 'loading' ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="ml-2 h-4 w-4" />
+                        </>
                       )}
-                      <Button
-                        type="submit"
-                        className="w-full"
-                        disabled={formState === 'loading'}
-                      >
-                        {formState === 'loading' ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            Send Message
-                            <Send className="ml-2 h-4 w-4" />
-                          </>
-                        )}
-                      </Button>
-                    </form>
-                  )}
-                </CardContent>
-              </Card>
+                    </Button>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

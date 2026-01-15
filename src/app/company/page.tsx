@@ -133,23 +133,16 @@ export default function CompanyPage() {
                     <p className="mt-4 text-sm text-muted-foreground leading-relaxed flex-1">
                       {member.bio}
                     </p>
-                    <div className="mt-6">
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
+                    <div className="mt-6 flex justify-center">
+                      <Link
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                        aria-label={`${member.name} on LinkedIn`}
                       >
-                        <Link
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2"
-                        >
-                          <Linkedin className="h-4 w-4" />
-                          Connect on LinkedIn
-                        </Link>
-                      </Button>
+                        <Linkedin className="h-4 w-4" />
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
