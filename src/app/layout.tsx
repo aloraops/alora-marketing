@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://aloraops.ai'),
   title: {
     default: 'Alora | AI-Powered Supply Chain Operations',
     template: '%s | Alora',
