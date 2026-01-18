@@ -17,8 +17,7 @@ export default async function Image() {
     (
       <div
         style={{
-          fontSize: 60,
-          background: 'linear-gradient(135deg, #0f766e 0%, #134e4a 100%)',
+          background: 'linear-gradient(135deg, #011A0C 0%, #3A7352 35%, #4D996D 65%, #D1EDDC 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -27,48 +26,77 @@ export default async function Image() {
           justifyContent: 'center',
           color: 'white',
           fontFamily: 'sans-serif',
+          padding: '80px',
         }}
       >
+        {/* Logo Symbol - Three circles forming triangle shape */}
         <div
           style={{
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            gap: '20px',
-            marginBottom: '30px',
+            marginBottom: '40px',
           }}
         >
-          {/* Triangle Logo Symbol */}
-          <svg
-            width="120"
-            height="120"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M50 20 L80 70 L20 70 Z"
-              fill="#5eead4"
-              stroke="#5eead4"
-              strokeWidth="2"
-            />
-          </svg>
+          {/* Top circle */}
           <div
             style={{
-              fontSize: 80,
-              fontWeight: 600,
-              letterSpacing: '-0.02em',
+              width: '140px',
+              height: '140px',
+              borderRadius: '70px',
+              background: 'rgba(209, 237, 220, 0.9)',
+              marginBottom: '-40px',
+            }}
+          />
+          <div
+            style={{
+              display: 'flex',
+              gap: '20px',
             }}
           >
-            Alora
+            {/* Bottom left circle */}
+            <div
+              style={{
+                width: '140px',
+                height: '140px',
+                borderRadius: '70px',
+                background: 'rgba(209, 237, 220, 0.9)',
+              }}
+            />
+            {/* Bottom right circle */}
+            <div
+              style={{
+                width: '140px',
+                height: '140px',
+                borderRadius: '70px',
+                background: 'rgba(209, 237, 220, 0.9)',
+              }}
+            />
           </div>
         </div>
+
+        {/* Alora Text */}
         <div
           style={{
-            fontSize: 32,
+            fontSize: '120px',
+            fontWeight: 600,
+            letterSpacing: '-0.02em',
+            color: '#D1EDDC',
+            marginTop: '20px',
+          }}
+        >
+          Alora
+        </div>
+
+        {/* Tagline */}
+        <div
+          style={{
+            fontSize: '32px',
             fontWeight: 400,
             maxWidth: '800px',
             textAlign: 'center',
-            opacity: 0.9,
+            color: 'rgba(209, 237, 220, 0.9)',
+            marginTop: '20px',
           }}
         >
           AI-Powered Supply Chain Operations
