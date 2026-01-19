@@ -250,41 +250,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Impact / KPIs Section */}
+      {/* Execution Impact Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-muted/20 to-transparent">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.metrics.title}
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                {content.metrics.label}
               </h2>
               <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                {content.metrics.title}
+              </p>
             </div>
           </FadeIn>
-          <StaggerContainer className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-8 lg:grid-cols-4" staggerDelay={0.1}>
-            {content.metrics.items.map((stat) => {
-              const Icon = icons[stat.icon as IconName];
-              return (
-                <StaggerItem key={stat.label}>
-                  <Card className="group text-center border border-border/40 shadow-none h-full bg-card/50 hover:bg-card hover:border-border/60 hover:shadow-sm transition-all duration-300">
-                    <CardContent className="pt-8 pb-8 flex flex-col h-full">
-                      {Icon && (
-                        <div className="mx-auto mb-5">
-                          <Icon className="h-5 w-5 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-                        </div>
-                      )}
-                      <h3 className="text-base font-semibold text-foreground">
-                        {stat.label}
-                      </h3>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                        {stat.detail}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+
+          {/* Timeline */}
+          <div className="mx-auto mt-16 max-w-5xl">
+            {/* Timeline line - visible on lg screens */}
+            <div className="hidden lg:block relative">
+              <div className="absolute top-6 left-[12.5%] right-[12.5%] h-0.5 bg-border/60" />
+              <div className="absolute top-6 left-[12.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 left-[37.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 left-[62.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+              <div className="absolute top-6 right-[12.5%] w-2.5 h-2.5 -mt-[4px] rounded-full bg-primary shadow-sm" />
+            </div>
+            <StaggerContainer className="grid gap-6 lg:grid-cols-4 lg:pt-12" staggerDelay={0.1}>
+              {content.metrics.stages.map((stage) => {
+                const Icon = icons[stage.icon as IconName];
+                return (
+                  <StaggerItem key={stage.phase}>
+                    <Card className="group h-full border border-border/40 bg-card/60 shadow-sm transition-all duration-200 hover:bg-card hover:border-border/60 hover:shadow-md">
+                      <CardContent className="pt-6 text-center flex flex-col">
+                        {Icon && (
+                          <div className="mx-auto mb-3">
+                            <Icon className="h-5 w-5 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+                          </div>
+                        )}
+                        <span className="text-sm font-semibold text-primary">
+                          {stage.phase}
+                        </span>
+                        <h3 className="mt-2 text-lg font-semibold text-foreground/80 group-hover:text-foreground transition-colors duration-200">
+                          {stage.title}
+                        </h3>
+                        <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
+                          {stage.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
 
