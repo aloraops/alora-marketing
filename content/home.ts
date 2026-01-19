@@ -122,32 +122,28 @@ export const adoptionJourney = {
 export const metrics = {
   label: 'Execution Impact',
   title: 'How teams transform execution',
-  stages: [
+  items: [
     {
-      phase: 'Immediate',
-      title: 'Decisions that stick',
-      description:
+      label: 'Decisions that stick',
+      detail:
         'Signals grounded to BOM and business impact replace alignment loops with confident, actionable decisions.',
       icon: 'CheckCircle',
     },
     {
-      phase: 'Ongoing',
-      title: 'Less manual work',
-      description:
+      label: 'Less manual work',
+      detail:
         'Automated tracking, follow-ups, and data alignment drive ~50% less manual execution work and materially shorten execution cycle times.',
       icon: 'Clock',
     },
     {
-      phase: 'Sustained',
-      title: 'Execution unblocked',
-      description:
+      label: 'Execution unblocked',
+      detail:
         'Early detection of PO–OC–Invoice discrepancies prevents blocked approvals, last-minute expedites, and avoidable production stops.',
       icon: 'Unlock',
     },
     {
-      phase: 'Long-term',
-      title: 'Revenue protected',
-      description:
+      label: 'Revenue protected',
+      detail:
         'Early reaction to what actually matters helps preserve ~4% of revenue at risk by avoiding late execution failures.',
       icon: 'Shield',
     },
