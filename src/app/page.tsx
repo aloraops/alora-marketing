@@ -70,21 +70,24 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="text-4xl font-semibold tracking-tight text-hero-text sm:text-5xl lg:text-6xl">
-                {content.hero.headline}{' '}
-                <span className="text-hero-accent">{content.hero.headlineAccent}</span>
+                {content.hero.headlineRow1}
+                <br />
+                {content.hero.headlineRow2Start}{' '}
+                <span className="text-hero-accent">{content.hero.headlineAccent1}</span>
+                {' '}{content.hero.headlineMiddle}{' '}
+                <span className="text-hero-accent">{content.hero.headlineAccent2}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="mt-6 text-lg leading-8 text-hero-text-secondary sm:text-xl">
-                {content.hero.subheading}
+                {content.hero.subheadingLine1}
+                <br />
+                {content.hero.subheadingLine2}
+                <br />
+                {content.hero.subheadingLine3}
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="mt-4 text-sm font-medium text-hero-text-muted">
-                {content.hero.icpLine}
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3}>
               <div className="mt-10 flex items-center justify-center">
                 <Button
                   asChild

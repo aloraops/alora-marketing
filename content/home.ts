@@ -10,21 +10,25 @@
 import { cta as sharedCta } from './shared';
 
 export const hero = {
-  // Primary headline option (can swap between alternatives)
-  headline: 'Where supply-chain risks become',
-  headlineAccent: 'clear, ranked, and actionable',
+  // Primary headline split for color styling (2 rows)
+  headlineRow1: 'Where supply chain risks',
+  headlineRow2Start: 'become',
+  headlineAccent1: 'clear',
+  headlineMiddle: 'and',
+  headlineAccent2: 'actionable',
   // Alternative headlines (for A/B testing or future use):
   // - "Prevent supply-chain issues before they break execution"
   // - "Prevent execution breakdowns by making supply-chain risk clear and actionable"
   // - "Prevent supply-chain issues by turning every signal into action"
 
-  subheading:
-    'Alora continuously evaluates execution signals at the part and BOM level, connects them to business impact, and guides teams to the right actions before issues escalate.',
+  // Subheading split into 3 rows
+  subheadingLine1: 'Alora continuously evaluates signals at the part and BOM level,',
+  subheadingLine2: 'connects issues directly to cost and delivery, and',
+  subheadingLine3: 'prioritizes the few actions that actually matter.',
   // Alternative subheadings:
   // - "Every change creates risk. Alora captures it, measures its impact across BOMs, and drives the next best action – so teams always know what to handle first"
   // - "Alora detects and prioritizes execution risk across parts, BOMs, and customer commitments – so teams act early, not in firefighting mode."
 
-  icpLine: 'Built for complex, BOM-driven manufacturers where small changes cascade fast',
   primaryCta: sharedCta.primary,
   secondaryCta: sharedCta.secondary,
 };
