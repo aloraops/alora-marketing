@@ -31,6 +31,7 @@ export const navigation = {
     { name: 'Company', href: '/company' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
+    { name: 'FAQ', href: '/faq' },
   ],
   signIn: { name: 'Sign In', href: 'https://app.aloraops.com' },
 };

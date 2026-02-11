@@ -7,27 +7,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 import {
   ArrowRight,
-  Briefcase,
-  GraduationCap,
-  Award,
-  Target,
-  Users,
-  Lightbulb,
   Linkedin,
 } from 'lucide-react';
 
 // Content imports
 import * as content from '@content/company';
 import { brand } from '@content/shared';
-
-// Icon mapping for dynamic rendering
-const icons = {
-  Briefcase,
-  Lightbulb,
-  Users,
-} as const;
-
-type IconName = keyof typeof icons;
 
 export default function CompanyPage() {
   return (
@@ -65,42 +50,8 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      {/* Why This Team */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.whyThisTeam.title}
-              </h2>
-              <p className="mt-6 text-lg text-muted-foreground">
-                {content.whyThisTeam.subtitle}
-              </p>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3" staggerDelay={0.15}>
-            {content.whyThisTeam.items.map((item) => {
-              const Icon = icons[item.icon as IconName];
-              return (
-                <StaggerItem key={item.title}>
-                  <div className="text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      {Icon && <Icon className="h-6 w-6" />}
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
       {/* Team Bios */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-muted/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
@@ -149,6 +100,12 @@ export default function CompanyPage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+          {/* Credibility one-liner */}
+          <FadeIn delay={0.3}>
+            <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground">
+              {content.credibilityLine}
+            </p>
+          </FadeIn>
         </div>
       </section>
 

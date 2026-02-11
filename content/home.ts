@@ -39,17 +39,19 @@ export const executionLoop = {
   steps: [
     {
       number: '1',
-      title: 'Changes are captured early — wherever they appear',
+      title: 'Capture',
+      subtitle: 'Changes detected early',
       description:
-        "Changes don't need to be hunted. Supplier updates, EOL notices, price shifts, shortages, logistics disruptions, internal changes, market events — they're continuously captured as they happen, across the execution surface.",
+        "Supplier updates, EOL notices, price shifts, shortages, and disruptions are continuously captured as they happen — no hunting required.",
       emphasis: 'Execution starts early — by default.',
       icon: 'Radio',
     },
     {
       number: '2',
-      title: 'Context and risk are built automatically, in minutes',
+      title: 'Analyze',
+      subtitle: 'Risk built in minutes',
       description:
-        'Every change is immediately analyzed at the part level, then grounded upward:',
+        'Every change is analyzed at the part level and grounded upward to BOMs, builds, and customers exposed.',
       emphasis: 'Impact is clear — in minutes, not weeks.',
       details: [
         'Which BOMs are affected',
@@ -60,9 +62,10 @@ export const executionLoop = {
     },
     {
       number: '3',
-      title: 'Decisions are evaluated, not guessed',
+      title: 'Evaluate',
+      subtitle: 'Decisions, not guesses',
       description:
-        'With context and risk understood, teams can finally work the problem — not just react to it. Options are evaluated:',
+        'With context and risk understood, teams work the problem — not just react. Options are evaluated and the right priorities surface.',
       emphasis: 'Not everything is urgent — but the right things become obvious.',
       options: [
         'Expedite or wait',
@@ -74,16 +77,15 @@ export const executionLoop = {
     },
     {
       number: '4',
-      title: 'Execution moves — with leverage',
-      description: "From there, execution doesn't stall. Teams get:",
+      title: 'Execute',
+      subtitle: 'Move with leverage',
+      description:
+        "Teams get prioritized actions, suggested resolution paths, and the ability to act immediately — supplier outreach, internal routing, or next steps.",
+      emphasis: 'Actions execute automatically — always with a human in control.',
       details: [
         'Clearly prioritized actions',
         'Suggested resolution paths',
-        'And the ability to act immediately',
-      ],
-      closing: [
-        'Whether that means: Triggering supplier outreach, Routing work internally or Coordinating next steps.',
-        'Actions can be executed automatically — always with a human in control.',
+        'Ability to act immediately',
       ],
       icon: 'Zap',
     },
@@ -208,21 +210,18 @@ export const industries = {
   ],
 };
 
-export const trustAndSecurity = {
-  label: 'Trust & Control',
-  title: 'Built for sensitive operations',
-  description:
-    'Alora is designed for environments where data control, traceability, and execution authority matter.',
-  items: [
-    'Read-only by default during onboarding',
-    'Isolated customer environments and strict access boundaries',
-    'No model training on customer data',
-    'Human approval required for execution actions',
-  ],
-  footnote: 'Security and architecture details available on request.',
-};
+// Trust & Security - removed from site per Anubha's feedback (re-add when SOC2 is complete)
+// export const trustAndSecurity = { ... };
 
-// Removed old teamTeaser - can add back if needed for a different page
+export const partners = {
+  label: 'Our Partners',
+  title: 'Working with industry leaders',
+  logos: [
+    { name: 'Odem', logo: '/partners/odem.png', needsDarkBg: false },
+    { name: 'Octal Corporation', logo: '/partners/octal.svg', needsDarkBg: false },
+    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', needsDarkBg: true },
+  ],
+};
 
 export const finalCta = {
   title: sharedCta.primary,

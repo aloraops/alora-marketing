@@ -63,6 +63,9 @@ export const team = [
   },
 ];
 
+export const credibilityLine =
+  'Combined: 40+ years across supply chain operations, AI/ML, cybersecurity, and enterprise software. All three founders served in elite Israeli military intelligence units.';
+
 export const sharedBackground = {
   label: 'Shared Background',
   title: 'Elite military intelligence',
