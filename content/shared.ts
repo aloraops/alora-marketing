@@ -29,9 +29,6 @@ export const navigation = {
   main: [
     { name: 'Solutions', href: '/solutions' },
     { name: 'Company', href: '/company' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'FAQ', href: '/faq' },
   ],
   signIn: { name: 'Sign In', href: 'https://app.aloraops.com' },
 };
@@ -44,7 +41,6 @@ export const footer = {
   ],
   company: [
     { name: 'About Us', href: '/company' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
