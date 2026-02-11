@@ -420,15 +420,15 @@ export default function HomePage() {
       </section>
 
       {/* Partners Section — Scrolling Marquee */}
-      <section className="py-16 lg:py-20 bg-gradient-to-b from-muted/30 via-muted/20 to-transparent overflow-hidden">
+      <section className="py-16 lg:py-20 bg-[#0a1a12] overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-[#51DABA]">
                 {content.partners.label}
               </h2>
-              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
-              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <div className="mx-auto mt-4 h-px w-12 bg-[#51DABA]/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 {content.partners.title}
               </p>
             </div>
@@ -437,26 +437,32 @@ export default function HomePage() {
         {/* Marquee container */}
         <div className="relative mt-12">
           {/* Fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[#0a1a12] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[#0a1a12] to-transparent" />
           {/* Scrolling track */}
-          <div className="flex animate-marquee gap-16 items-center">
-            {/* Duplicate logos 4x to create seamless loop */}
+          <div className="flex animate-marquee gap-12 items-center">
             {[...Array(4)].flatMap((_, setIndex) =>
               content.partners.logos.map((partner) => (
                 <div
                   key={`${setIndex}-${partner.name}`}
-                  className={`flex h-16 min-w-[180px] items-center justify-center px-6 shrink-0 rounded-lg ${
-                    partner.needsDarkBg ? 'bg-[#1a1a2e]' : ''
-                  }`}
+                  className="flex flex-col items-center gap-3 shrink-0"
                 >
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={160}
-                    height={56}
-                    className="max-h-14 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-                  />
+                  <div className={`flex h-20 w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border ${
+                    partner.lightLogo
+                      ? 'bg-[#1a1a2e] border-white/10'
+                      : 'bg-white/95 border-white/10'
+                  }`}>
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={160}
+                      height={56}
+                      className="max-h-12 w-auto object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-white/50 tracking-wide uppercase">
+                    {partner.name}
+                  </span>
                 </div>
               ))
             )}

@@ -217,9 +217,9 @@ export const partners = {
   label: 'Our Partners',
   title: 'Working with industry leaders',
   logos: [
-    { name: 'Odem', logo: '/partners/odem.png', needsDarkBg: false },
-    { name: 'Octal Corporation', logo: '/partners/octal.svg', needsDarkBg: false },
-    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', needsDarkBg: true },
+    { name: 'Odem', logo: '/partners/odem.png', lightLogo: false },
+    { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false },
+    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', lightLogo: true },
   ],
 };
 
