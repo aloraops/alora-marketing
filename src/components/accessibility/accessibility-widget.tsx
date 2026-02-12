@@ -18,17 +18,15 @@ const defaultSettings: AccessibilitySettings = {
 
 export function AccessibilityWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [settings, setSettings] = useState<AccessibilitySettings>(defaultSettings);
-
-  // Load settings from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('accessibility-settings');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setSettings(parsed);
-      applySettings(parsed);
+  const [settings, setSettings] = useState<AccessibilitySettings>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('accessibility-settings');
+      if (saved) {
+        return JSON.parse(saved);
+      }
     }
-  }, []);
+    return defaultSettings;
+  });
 
   // Apply all settings to the document
   const applySettings = (newSettings: AccessibilitySettings) => {
@@ -49,6 +47,11 @@ export function AccessibilityWidget() {
       document.documentElement.classList.remove('reduce-motion');
     }
   };
+
+  // Apply settings on mount
+  useEffect(() => {
+    applySettings(settings);
+  }, []);
 
   // Save and apply settings
   const updateSettings = (newSettings: AccessibilitySettings) => {

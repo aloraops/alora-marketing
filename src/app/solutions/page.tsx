@@ -24,7 +24,6 @@ import {
   Target,
   TrendingUp,
   AlertTriangle,
-  ChevronRight,
 } from 'lucide-react';
 
 // Content imports
@@ -55,10 +54,48 @@ const icons = {
 type IconName = keyof typeof icons;
 
 /* ============================================
+ * TYPE DEFINITIONS
+ * ============================================ */
+
+interface POItem {
+  po: string;
+  part: string;
+  vendor: string;
+  risk: string;
+  dueDate: string;
+  daysOverdue: number;
+  action: string;
+}
+
+interface BuildItem {
+  project: string;
+  customer: string;
+  status: string;
+  partsReady: number;
+  partsTotal: number;
+  revenue: string;
+  missing: string;
+}
+
+interface BuildData {
+  summary: { atRisk: number; onTrack: number; review: number };
+  builds: BuildItem[];
+}
+
+interface VendorItem {
+  vendor: string;
+  score: number;
+  onTime: string;
+  avgDelay: string;
+  trend: string;
+  reliability: string;
+}
+
+/* ============================================
  * MOCK UI COMPONENTS
  * ============================================ */
 
-function POTable({ data }: { data: any[] }) {
+function POTable({ data }: { data: POItem[] }) {
   return (
     <div className="rounded-xl bg-[#1a3a28] border border-[#51DABA]/20 overflow-hidden shadow-2xl shadow-[#51DABA]/5">
       {/* Header */}
@@ -77,7 +114,7 @@ function POTable({ data }: { data: any[] }) {
         <span className="text-right w-20">Action</span>
       </div>
       {/* Rows */}
-      {data.map((item: any, i: number) => (
+      {data.map((item, i) => (
         <div
           key={i}
           className="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
@@ -119,7 +156,7 @@ function POTable({ data }: { data: any[] }) {
   );
 }
 
-function BuildDashboard({ data }: { data: any }) {
+function BuildDashboard({ data }: { data: BuildData }) {
   return (
     <div className="rounded-xl bg-white border border-border/60 overflow-hidden shadow-xl">
       {/* Header */}
@@ -147,7 +184,7 @@ function BuildDashboard({ data }: { data: any }) {
       </div>
       {/* Build Cards */}
       <div className="px-5 py-2">
-        {data.builds.map((build: any, i: number) => (
+        {data.builds.map((build, i) => (
           <div key={i} className="py-3.5 border-b border-border/30 last:border-0">
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -191,7 +228,7 @@ function BuildDashboard({ data }: { data: any }) {
   );
 }
 
-function VendorScoreCards({ data }: { data: any[] }) {
+function VendorScoreCards({ data }: { data: VendorItem[] }) {
   return (
     <div className="rounded-xl bg-[#1a3a28] border border-[#51DABA]/20 overflow-hidden shadow-2xl shadow-[#51DABA]/5">
       {/* Header */}
@@ -203,7 +240,7 @@ function VendorScoreCards({ data }: { data: any[] }) {
         <span className="text-xs text-white/40">Last 90 days</span>
       </div>
       {/* Vendor Rows */}
-      {data.map((item: any, i: number) => (
+      {data.map((item, i) => (
         <div key={i} className="px-5 py-4 border-b border-white/5 last:border-0">
           <div className="flex items-center justify-between mb-2">
             <div>
@@ -395,13 +432,13 @@ function FeatureSection({
           <div className={isReversed ? 'lg:col-start-1' : ''}>
             <FadeIn delay={0.2}>
               {section.id === 'po-risk' && (
-                <POTable data={section.mockData as any[]} />
+                <POTable data={section.mockData as POItem[]} />
               )}
               {section.id === 'build-readiness' && (
-                <BuildDashboard data={section.mockData} />
+                <BuildDashboard data={section.mockData as BuildData} />
               )}
               {section.id === 'vendor-scoring' && (
-                <VendorScoreCards data={section.mockData as any[]} />
+                <VendorScoreCards data={section.mockData as VendorItem[]} />
               )}
             </FadeIn>
           </div>

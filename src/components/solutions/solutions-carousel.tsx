@@ -178,7 +178,7 @@ export function SolutionsCarousel() {
                     {solution.subtitle}
                   </p>
                   <ul className="mt-8 space-y-4">
-                    {solution.features.map((item: any, i: number) => (
+                    {solution.features.map((item: string, i: number) => (
                       <motion.li
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
@@ -214,7 +214,7 @@ export function SolutionsCarousel() {
                           </span>
                         </div>
                         {solution.id === 'po-risk' &&
-                          solution.mockData.map((item: any, i: number) => (
+                          solution.mockData.map((item, i) => (
                             <motion.div
                               key={i}
                               initial={{ opacity: 0, y: 10 }}
@@ -243,7 +243,7 @@ export function SolutionsCarousel() {
                             </motion.div>
                           ))}
                         {solution.id === 'build-readiness' &&
-                          solution.mockData.map((item: any, i: number) => (
+                          solution.mockData.map((item, i) => (
                             <motion.div
                               key={i}
                               initial={{ opacity: 0, y: 10 }}
@@ -272,7 +272,7 @@ export function SolutionsCarousel() {
                             </motion.div>
                           ))}
                         {solution.id === 'vendor-scoring' &&
-                          solution.mockData.map((item: any, i: number) => (
+                          solution.mockData.map((item, i) => (
                             <motion.div
                               key={i}
                               initial={{ opacity: 0, y: 10 }}

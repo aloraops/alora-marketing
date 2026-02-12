@@ -56,7 +56,7 @@ export const aiEngine = {
 export const carousel = {
   label: 'Solutions',
   title: 'Multiple modules, one engine',
-  solutions: [] as any[],
+  solutions: [] as { id: string; icon: string; number: number; title: string; subtitle: string; features: string[]; cardTitle: string; cardSubtitle: string; mockData: Record<string, string | number>[] }[],
 };
 
 /* ============================================
