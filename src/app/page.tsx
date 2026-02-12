@@ -419,8 +419,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Partners Section — Scrolling Marquee */}
-      <section className="py-16 lg:py-20 bg-[#0a1a12] overflow-hidden">
+      {/* Partners Section — Static Logos */}
+      <section className="py-16 lg:py-20 bg-[#0a1a12]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
@@ -433,20 +433,10 @@ export default function HomePage() {
               </p>
             </div>
           </FadeIn>
-        </div>
-        {/* Marquee container */}
-        <div className="relative mt-12">
-          {/* Fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[#0a1a12] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[#0a1a12] to-transparent" />
-          {/* Scrolling track */}
-          <div className="flex animate-marquee gap-12 items-center">
-            {[...Array(4)].flatMap((_, setIndex) =>
-              content.partners.logos.map((partner) => (
-                <div
-                  key={`${setIndex}-${partner.name}`}
-                  className="flex flex-col items-center gap-3 shrink-0"
-                >
+          <StaggerContainer className="mt-12 flex flex-wrap items-center justify-center gap-10 lg:gap-16" staggerDelay={0.15}>
+            {content.partners.logos.map((partner) => (
+              <StaggerItem key={partner.name}>
+                <div className="flex flex-col items-center gap-3">
                   <div className={`flex h-20 w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border ${
                     partner.lightLogo
                       ? 'bg-[#1a1a2e] border-white/10'
@@ -464,9 +454,9 @@ export default function HomePage() {
                     {partner.name}
                   </span>
                 </div>
-              ))
-            )}
-          </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 

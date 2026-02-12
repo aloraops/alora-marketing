@@ -178,7 +178,7 @@ export function SolutionsCarousel() {
                     {solution.subtitle}
                   </p>
                   <ul className="mt-8 space-y-4">
-                    {solution.features.map((item, i) => (
+                    {solution.features.map((item: any, i: number) => (
                       <motion.li
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
