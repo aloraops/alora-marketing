@@ -109,8 +109,65 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      {/* Vision Section */}
+      {/* Advisory Board */}
       <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <FadeIn>
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Advisory Board
+              </h2>
+              <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
+              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                Guided by industry leaders
+              </p>
+            </div>
+          </FadeIn>
+          <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2" staggerDelay={0.15}>
+            {content.advisoryBoard.map((member) => (
+              <StaggerItem key={member.name}>
+                <Card className="border border-border/40 shadow-sm h-full hover:border-border/60 hover:shadow-md transition-all duration-200">
+                  <CardContent className="pt-6 text-center flex flex-col h-full">
+                    {/* Profile Image */}
+                    <div className="mx-auto h-32 w-32 rounded-full overflow-hidden ring-4 ring-border/20">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {member.name}
+                      </h3>
+                      <p className="text-sm font-medium text-primary mt-1">{member.role}</p>
+                    </div>
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed flex-1">
+                      {member.bio}
+                    </p>
+                    <div className="mt-6 flex justify-center">
+                      <Link
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                        aria-label={`${member.name} on LinkedIn`}
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="bg-muted/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <FadeIn>

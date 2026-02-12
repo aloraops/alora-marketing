@@ -55,12 +55,13 @@ export default function HomePage() {
           }}
         />
 
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
-              <h1 className="text-4xl font-semibold tracking-tight text-hero-text sm:text-5xl lg:text-6xl">
+              <h1 className="text-3xl font-semibold tracking-tight text-hero-text sm:text-5xl lg:text-6xl">
                 {content.hero.headlineRow1}
-                <br />
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>
                 {content.hero.headlineRow2Start}{' '}
                 <span className="text-hero-accent">{content.hero.headlineAccent1}</span>
                 {' '}{content.hero.headlineMiddle}{' '}
@@ -68,20 +69,18 @@ export default function HomePage() {
               </h1>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="mt-6 text-lg leading-8 text-hero-text-secondary sm:text-xl">
-                {content.hero.subheadingLine1}
-                <br />
-                {content.hero.subheadingLine2}
-                <br />
+              <p className="mt-4 text-base leading-7 text-hero-text-secondary sm:mt-6 sm:text-xl sm:leading-8">
+                {content.hero.subheadingLine1}{' '}
+                {content.hero.subheadingLine2}{' '}
                 {content.hero.subheadingLine3}
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <div className="mt-10 flex items-center justify-center">
+              <div className="mt-8 sm:mt-10 flex items-center justify-center">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90"
+                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90 w-full sm:w-auto"
                 >
                   <Link href="/solutions">
                     See How It Works
@@ -95,17 +94,17 @@ export default function HomePage() {
       </section>
 
       {/* Execution Engine — Data Flow Visual */}
-      <section className="relative py-20 lg:py-28 overflow-hidden bg-[#011A0C]">
+      <section className="relative py-14 sm:py-20 lg:py-28 overflow-hidden bg-[#011A0C]">
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 40L40 0M-10 10L10-10M30 50L50 30' stroke='%2351DABA' stroke-width='0.5'/%3E%3C/svg%3E")` }} />
 
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-widest text-[#51DABA]">
                 {content.executionLoop.label}
               </h2>
-              <p className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <p className="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
                 {content.executionLoop.title}
               </p>
             </div>
@@ -114,33 +113,35 @@ export default function HomePage() {
           {/* ===== DESKTOP: Data Flow Diagram ===== */}
           <div className="hidden lg:block mt-16">
             <div className="relative mx-auto max-w-5xl">
-              {/* SVG flow lines */}
+              {/* SVG flow lines — lines connect from center-right of left boxes to center of AI engine, and from center of AI engine to center-left of right boxes */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet">
-                <path d="M 160 100 Q 280 100 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
+                {/* Left inputs → Center (all converge to center of AI engine) */}
+                <path d="M 180 85 C 270 85, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 160 210 L 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
+                <path d="M 180 210 L 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 160 320 Q 280 320 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
+                <path d="M 180 335 C 270 335, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 650 210 L 840 100" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
+                {/* Center → Right outputs (all diverge from center of AI engine) */}
+                <path d="M 650 210 C 720 210, 730 85, 820 85" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 650 210 L 840 210" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
+                <path d="M 650 210 L 820 210" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 650 210 L 840 320" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
+                <path d="M 650 210 C 720 210, 730 335, 820 335" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
                 {/* Animated data dots */}
-                <circle r="3" fill="#51DABA"><animateMotion dur="3s" repeatCount="indefinite" path="M 160 100 Q 280 100 350 210" /></circle>
-                <circle r="3" fill="#51DABA"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 160 210 L 350 210" /></circle>
-                <circle r="3" fill="#51DABA"><animateMotion dur="3.5s" repeatCount="indefinite" path="M 160 320 Q 280 320 350 210" /></circle>
-                <circle r="3" fill="#4D996D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 650 210 L 840 100" /></circle>
-                <circle r="3" fill="#4D996D"><animateMotion dur="3s" repeatCount="indefinite" path="M 650 210 L 840 210" /></circle>
-                <circle r="3" fill="#4D996D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M 650 210 L 840 320" /></circle>
+                <circle r="3" fill="#51DABA"><animateMotion dur="3s" repeatCount="indefinite" path="M 180 85 C 270 85, 280 210, 350 210" /></circle>
+                <circle r="3" fill="#51DABA"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 180 210 L 350 210" /></circle>
+                <circle r="3" fill="#51DABA"><animateMotion dur="3.5s" repeatCount="indefinite" path="M 180 335 C 270 335, 280 210, 350 210" /></circle>
+                <circle r="3" fill="#4D996D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 85, 820 85" /></circle>
+                <circle r="3" fill="#4D996D"><animateMotion dur="3s" repeatCount="indefinite" path="M 650 210 L 820 210" /></circle>
+                <circle r="3" fill="#4D996D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 335, 820 335" /></circle>
               </svg>
 
               <div className="relative grid grid-cols-[180px_1fr_300px_1fr_180px] items-center gap-0" style={{ minHeight: 420 }}>
@@ -222,7 +223,7 @@ export default function HomePage() {
           </div>
 
           {/* ===== MOBILE: Simplified vertical flow ===== */}
-          <div className="lg:hidden mt-12">
+          <div className="lg:hidden mt-8 sm:mt-12">
             <FadeIn>
               <div className="grid grid-cols-3 gap-2 mb-6">
                 {['ERP Data', 'Supplier Email', 'Market Signals'].map((src) => (
@@ -282,7 +283,7 @@ export default function HomePage() {
                 What the engine drives
               </p>
             </FadeIn>
-            <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-4" staggerDelay={0.1}>
+            <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.1}>
               {content.executionLoop.steps.map((step) => {
                 const Icon = icons[step.icon as IconName];
                 const isActive = activeStep === step.number;
@@ -360,7 +361,7 @@ export default function HomePage() {
           </div>
 
           <FadeIn delay={0.5}>
-            <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-white/30">
+            <p className="mx-auto mt-10 max-w-2xl text-center text-base font-medium text-[#51DABA]/80">
               {content.executionLoop.closingLine}
             </p>
           </FadeIn>
@@ -379,20 +380,20 @@ export default function HomePage() {
       </section>
 
       {/* Impact / KPIs Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-muted/20 to-transparent">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-14 sm:py-20 lg:py-28 bg-gradient-to-b from-transparent via-muted/20 to-transparent">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.metrics.label}
               </h2>
               <div className="mx-auto mt-4 h-px w-12 bg-primary/40" />
-              <p className="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <p className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {content.metrics.title}
               </p>
             </div>
           </FadeIn>
-          <StaggerContainer className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-8 lg:grid-cols-4" staggerDelay={0.1}>
+          <StaggerContainer className="mx-auto mt-10 sm:mt-14 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4" staggerDelay={0.1}>
             {content.metrics.items.map((stat) => {
               const Icon = icons[stat.icon as IconName];
               return (
@@ -420,24 +421,24 @@ export default function HomePage() {
       </section>
 
       {/* Partners Section — Static Logos */}
-      <section className="py-16 lg:py-20 bg-[#0a1a12]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 bg-[#0a1a12]">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-[#51DABA]">
                 {content.partners.label}
               </h2>
               <div className="mx-auto mt-4 h-px w-12 bg-[#51DABA]/40" />
-              <p className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <p className="mt-6 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
                 {content.partners.title}
               </p>
             </div>
           </FadeIn>
-          <StaggerContainer className="mt-12 flex flex-wrap items-center justify-center gap-10 lg:gap-16" staggerDelay={0.15}>
+          <StaggerContainer className="mt-10 sm:mt-12 grid grid-cols-1 gap-6 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-10 lg:gap-16" staggerDelay={0.15}>
             {content.partners.logos.map((partner) => (
               <StaggerItem key={partner.name}>
                 <div className="flex flex-col items-center gap-3">
-                  <div className={`flex h-20 w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border ${
+                  <div className={`flex h-16 sm:h-20 w-full sm:w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border ${
                     partner.lightLogo
                       ? 'bg-[#1a1a2e] border-white/10'
                       : 'bg-white/95 border-white/10'
@@ -447,7 +448,7 @@ export default function HomePage() {
                       alt={partner.name}
                       width={160}
                       height={56}
-                      className="max-h-12 w-auto object-contain"
+                      className="max-h-10 sm:max-h-12 w-auto object-contain"
                     />
                   </div>
                   <span className="text-xs font-medium text-white/50 tracking-wide uppercase">
@@ -461,7 +462,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-14 sm:py-20 lg:py-28 overflow-hidden">
         {/* Dark Gradient Background */}
         <div className="absolute inset-0 -z-10 bg-hero-gradient" />
         {/* Pattern Overlay */}
@@ -471,20 +472,20 @@ export default function HomePage() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-hero-text sm:text-4xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-hero-text sm:text-4xl">
                 Talk to us
               </h2>
-              <p className="mt-6 text-lg text-hero-text-secondary">
+              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-hero-text-secondary">
                 {content.finalCta.description}
               </p>
-              <div className="mt-10 flex items-center justify-center">
+              <div className="mt-8 sm:mt-10 flex items-center justify-center">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90"
+                  className="bg-hero-button-bg text-hero-button-text hover:bg-hero-button-bg/90 w-full sm:w-auto"
                 >
                   <Link href={brand.calendlyUrl} target="_blank" rel="noopener noreferrer">
                     {content.finalCta.primaryCta}

@@ -55,8 +55,8 @@ export const executionLoop = {
       emphasis: 'Impact is clear — in minutes, not weeks.',
       details: [
         'Which BOMs are affected',
-        'Which builds and customers are exposed',
         'What the execution risk actually is',
+        'Which builds and customers are exposed',
       ],
       icon: 'Layers',
     },
@@ -214,8 +214,8 @@ export const industries = {
 // export const trustAndSecurity = { ... };
 
 export const partners = {
-  label: 'Our Partners',
-  title: 'Working with industry leaders',
+  label: 'Trusted By',
+  title: 'Built for complex hardware manufacturers',
   logos: [
     { name: 'Odem', logo: '/partners/odem.png', lightLogo: false },
     { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false },

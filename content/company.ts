@@ -64,7 +64,24 @@ export const team = [
 ];
 
 export const credibilityLine =
-  'Combined: 40+ years across supply chain operations, AI/ML, cybersecurity, and enterprise software. All three founders served in elite Israeli military intelligence units.';
+  'Combined: 50+ years across supply chain operations, AI/ML, cybersecurity, and enterprise software. All three founders served in elite Israeli military intelligence units.';
+
+export const advisoryBoard = [
+  {
+    name: 'Mike Chaney',
+    role: 'Advisory Board Member',
+    bio: 'Retired P&G Senior VP with 38+ years leading global supply chain operations across Grooming, Baby Care, Health & Pet Care. Serves on multiple boards advising on supply chain strategy and M&A.',
+    image: '/team/mike-chaney.jpeg',
+    linkedin: 'https://www.linkedin.com/in/mike-chaney/',
+  },
+  {
+    name: 'Anubha Bhadauria',
+    role: 'Advisory Board Member',
+    bio: 'Supply chain leader with 15 years shaping future-ready supply chains at Tesla, Rivian, and Xylem. MIT Manufacturing Engineering background, operating at the intersection of technology, innovation, and execution.',
+    image: '/team/anubha-bhadauria.jpg',
+    linkedin: 'https://www.linkedin.com/in/anubha-bhadauria/',
+  },
+];
 
 export const sharedBackground = {
   label: 'Shared Background',

@@ -210,8 +210,8 @@ function VendorScoreCards({ data }: { data: any[] }) {
               <div className="text-sm font-medium text-white">{item.vendor}</div>
               <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${
                 item.reliability === 'Excellent' ? 'bg-green-500/15 text-green-400' :
-                item.reliability === 'Good' ? 'bg-blue-500/15 text-blue-400' :
-                item.reliability === 'Needs attention' ? 'bg-yellow-500/15 text-yellow-400' :
+                item.reliability === 'Good' ? 'bg-green-500/10 text-green-300' :
+                item.reliability === 'Needs attention' ? 'bg-orange-500/15 text-orange-400' :
                 'bg-red-500/15 text-red-400'
               }`}>
                 {item.reliability}
@@ -221,8 +221,8 @@ function VendorScoreCards({ data }: { data: any[] }) {
               <div className="flex items-center gap-1.5">
                 <span className={`text-3xl font-bold ${
                   item.score >= 90 ? 'text-green-400' :
-                  item.score >= 80 ? 'text-blue-400' :
-                  item.score >= 70 ? 'text-yellow-400' :
+                  item.score >= 80 ? 'text-green-300' :
+                  item.score >= 70 ? 'text-orange-400' :
                   'text-red-400'
                 }`}>
                   {item.score}
@@ -230,7 +230,7 @@ function VendorScoreCards({ data }: { data: any[] }) {
                 <TrendingUp className={`h-4 w-4 ${
                   item.trend === 'up' ? 'text-green-400' :
                   item.trend === 'down' ? 'text-red-400 rotate-180' :
-                  'text-yellow-400 rotate-90'
+                  'text-orange-400 rotate-90'
                 }`} />
               </div>
             </div>
@@ -252,8 +252,8 @@ function VendorScoreCards({ data }: { data: any[] }) {
                 <div
                   className={`h-full rounded-full ${
                     item.score >= 90 ? 'bg-green-400' :
-                    item.score >= 80 ? 'bg-blue-400' :
-                    item.score >= 70 ? 'bg-yellow-400' :
+                    item.score >= 80 ? 'bg-green-300' :
+                    item.score >= 70 ? 'bg-orange-400' :
                     'bg-red-400'
                   }`}
                   style={{ width: `${item.score}%` }}

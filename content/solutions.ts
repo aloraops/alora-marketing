@@ -69,7 +69,7 @@ export const featureSections = [
     number: 1,
     icon: 'ClipboardList',
     title: 'PO Risk & Tracking',
-    subtitle: 'Turn open POs into a ranked TODO list, not a static report.',
+    subtitle: 'Automatically turn open POs into a ranked TODO list, not a static report.',
     description:
       'Every PO line is scored by risk and business impact. Alora surfaces what needs attention first, suggests next moves, and tracks confirmation gaps — so your team works the right items, not just the loudest.',
     features: [
@@ -176,10 +176,10 @@ export const featureSections = [
     ],
     metric: { value: '92%', label: 'Prediction accuracy on delays', sublabel: 'based on vendor behavior' },
     mockData: [
-      { vendor: 'Precision Parts Co', score: 94, onTime: '97%', avgDelay: '+0.3 days', trend: 'up', reliability: 'Excellent' },
-      { vendor: 'Global Electronics', score: 72, onTime: '78%', avgDelay: '+5.2 days', trend: 'down', reliability: 'Needs attention' },
-      { vendor: 'Industrial Supply', score: 86, onTime: '91%', avgDelay: '+1.1 days', trend: 'stable', reliability: 'Good' },
-      { vendor: 'TechSense Ltd', score: 68, onTime: '72%', avgDelay: '+7.8 days', trend: 'down', reliability: 'At risk' },
+      { vendor: 'Precision Parts Co', score: 94, onTime: '97%', avgDelay: '+1 day', trend: 'up', reliability: 'Excellent' },
+      { vendor: 'Global Electronics', score: 72, onTime: '78%', avgDelay: '+5 days', trend: 'down', reliability: 'Needs attention' },
+      { vendor: 'Industrial Supply', score: 86, onTime: '91%', avgDelay: '+1 day', trend: 'up', reliability: 'Good' },
+      { vendor: 'TechSense Ltd', score: 58, onTime: '62%', avgDelay: '+7 days', trend: 'down', reliability: 'At risk' },
     ],
   },
 ];
