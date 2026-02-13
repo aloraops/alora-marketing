@@ -56,7 +56,7 @@ function PasswordForm() {
         setError('Incorrect password. Please try again.');
         setPassword('');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);

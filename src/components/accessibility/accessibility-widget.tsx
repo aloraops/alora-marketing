@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Accessibility, Plus, Minus, X, Type, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -29,7 +29,7 @@ export function AccessibilityWidget() {
   });
 
   // Apply all settings to the document
-  const applySettings = (newSettings: AccessibilitySettings) => {
+  const applySettings = useCallback((newSettings: AccessibilitySettings) => {
     // Font size
     document.documentElement.style.fontSize = `${newSettings.fontSize}%`;
 
@@ -46,12 +46,12 @@ export function AccessibilityWidget() {
     } else {
       document.documentElement.classList.remove('reduce-motion');
     }
-  };
+  }, []);
 
   // Apply settings on mount
   useEffect(() => {
     applySettings(settings);
-  }, []);
+  }, [applySettings, settings]);
 
   // Save and apply settings
   const updateSettings = (newSettings: AccessibilitySettings) => {

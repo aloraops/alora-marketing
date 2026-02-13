@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -123,10 +124,13 @@ const components = {
   hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className="my-6 border-border" {...props} />
   ),
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img
+  img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <Image
+      src={typeof src === 'string' ? src : ''}
+      alt={alt || ''}
+      width={800}
+      height={450}
       className="rounded-lg shadow-md my-6 w-full"
-      {...props}
     />
   ),
 };
