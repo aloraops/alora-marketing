@@ -217,9 +217,9 @@ export const partners = {
   label: 'Trusted By',
   title: 'Built for complex hardware manufacturers',
   logos: [
-    { name: 'Odem', logo: '/partners/odem.png', lightLogo: false },
-    { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false },
-    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', lightLogo: true },
+    { name: 'Odem', logo: '/partners/odem.png', lightLogo: false, url: 'https://odemltd.com' },
+    { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false, url: 'https://octalcorporation.com' },
+    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', lightLogo: true, url: 'https://gt-technologies.com' },
   ],
 };
 

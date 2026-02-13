@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
+import { MobileFlowConnector } from '@/components/mobile-flow-connector';
 import {
   ArrowRight,
   Radio,
@@ -116,32 +117,32 @@ export default function HomePage() {
               {/* SVG flow lines — lines connect from center-right of left boxes to center of AI engine, and from center of AI engine to center-left of right boxes */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet">
                 {/* Left inputs → Center (all converge to center of AI engine) */}
-                <path d="M 180 85 C 270 85, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
+                <path d="M 180 125 C 270 125, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
                 <path d="M 180 210 L 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 180 335 C 270 335, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
+                <path d="M 180 295 C 270 295, 280 210, 350 210" stroke="#51DABA" strokeWidth="1.5" fill="none" opacity="0.3" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
                 {/* Center → Right outputs (all diverge from center of AI engine) */}
-                <path d="M 650 210 C 720 210, 730 85, 820 85" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
+                <path d="M 650 210 C 720 210, 730 125, 820 125" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
                 <path d="M 650 210 L 820 210" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
-                <path d="M 650 210 C 720 210, 730 335, 820 335" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
+                <path d="M 650 210 C 720 210, 730 295, 820 295" stroke="#4D996D" strokeWidth="1.5" fill="none" opacity="0.4" strokeDasharray="4 4">
                   <animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite" />
                 </path>
                 {/* Animated data dots */}
-                <circle r="3" fill="#51DABA"><animateMotion dur="3s" repeatCount="indefinite" path="M 180 85 C 270 85, 280 210, 350 210" /></circle>
+                <circle r="3" fill="#51DABA"><animateMotion dur="3s" repeatCount="indefinite" path="M 180 125 C 270 125, 280 210, 350 210" /></circle>
                 <circle r="3" fill="#51DABA"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 180 210 L 350 210" /></circle>
-                <circle r="3" fill="#51DABA"><animateMotion dur="3.5s" repeatCount="indefinite" path="M 180 335 C 270 335, 280 210, 350 210" /></circle>
-                <circle r="3" fill="#4D996D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 85, 820 85" /></circle>
+                <circle r="3" fill="#51DABA"><animateMotion dur="3.5s" repeatCount="indefinite" path="M 180 295 C 270 295, 280 210, 350 210" /></circle>
+                <circle r="3" fill="#4D996D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 125, 820 125" /></circle>
                 <circle r="3" fill="#4D996D"><animateMotion dur="3s" repeatCount="indefinite" path="M 650 210 L 820 210" /></circle>
-                <circle r="3" fill="#4D996D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 335, 820 335" /></circle>
+                <circle r="3" fill="#4D996D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M 650 210 C 720 210, 730 295, 820 295" /></circle>
               </svg>
 
               <div className="relative grid grid-cols-[180px_1fr_300px_1fr_180px] items-center gap-0" style={{ minHeight: 420 }}>
@@ -233,12 +234,7 @@ export default function HomePage() {
                 ))}
               </div>
             </FadeIn>
-            <div className="flex justify-center mb-4">
-              <div className="flex flex-col items-center gap-1">
-                <div className="h-8 w-px bg-gradient-to-b from-[#51DABA]/40 to-[#51DABA]/10" />
-                <ArrowRight className="h-3 w-3 text-[#51DABA]/40 rotate-90" />
-              </div>
-            </div>
+            <MobileFlowConnector direction="converge" color="#51DABA" opacity={0.3} />
             <FadeIn>
               <div className="rounded-2xl border-2 border-[#51DABA]/30 bg-gradient-to-br from-[#264C36] to-[#1a3a28] p-5 mb-4">
                 <div className="text-center">
@@ -259,12 +255,7 @@ export default function HomePage() {
                 </div>
               </div>
             </FadeIn>
-            <div className="flex justify-center mb-4">
-              <div className="flex flex-col items-center gap-1">
-                <div className="h-8 w-px bg-gradient-to-b from-[#4D996D]/40 to-[#4D996D]/10" />
-                <ArrowRight className="h-3 w-3 text-[#4D996D]/40 rotate-90" />
-              </div>
-            </div>
+            <MobileFlowConnector direction="diverge" color="#4D996D" opacity={0.4} />
             <FadeIn>
               <div className="grid grid-cols-3 gap-2 mb-8">
                 {['BOMs', 'Builds', 'Customers'].map((out) => (
@@ -437,8 +428,8 @@ export default function HomePage() {
           <StaggerContainer className="mt-10 sm:mt-12 grid grid-cols-1 gap-6 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-10 lg:gap-16" staggerDelay={0.15}>
             {content.partners.logos.map((partner) => (
               <StaggerItem key={partner.name}>
-                <div className="flex flex-col items-center gap-3">
-                  <div className={`flex h-16 sm:h-20 w-full sm:w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border ${
+                <a href={partner.url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-3 group">
+                  <div className={`flex h-16 sm:h-20 w-full sm:w-[200px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border transition-shadow group-hover:shadow-xl group-hover:shadow-[#51DABA]/10 ${
                     partner.lightLogo
                       ? 'bg-[#1a1a2e] border-white/10'
                       : 'bg-white/95 border-white/10'
@@ -451,10 +442,10 @@ export default function HomePage() {
                       className="max-h-10 sm:max-h-12 w-auto object-contain"
                     />
                   </div>
-                  <span className="text-xs font-medium text-white/50 tracking-wide uppercase">
+                  <span className="text-xs font-medium text-white/50 tracking-wide uppercase group-hover:text-white/70 transition-colors">
                     {partner.name}
                   </span>
-                </div>
+                </a>
               </StaggerItem>
             ))}
           </StaggerContainer>
