@@ -14,3 +14,4 @@ export * as home from './home';
 export * as solutions from './solutions';
 export * as company from './company';
 export * as shared from './shared';
+export * as video from './video';
