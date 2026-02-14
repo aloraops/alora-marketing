@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -41,6 +41,18 @@ type IconName = keyof typeof icons;
 
 export default function HomePage() {
   const [activeStep, setActiveStep] = useState<string | null>(null);
+  const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const handleStepClick = useCallback((stepNumber: string) => {
+    const isClosing = activeStep === stepNumber;
+    setActiveStep(isClosing ? null : stepNumber);
+    if (!isClosing) {
+      // Scroll the tapped card into view after the detail expands
+      setTimeout(() => {
+        stepRefs.current[stepNumber]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [activeStep]);
 
   return (
     <>
@@ -274,15 +286,15 @@ export default function HomePage() {
                 What the engine drives
               </p>
             </FadeIn>
-            {/* MOBILE: Steps with inline expandable detail */}
+            {/* MOBILE: Steps with inline expandable detail — always single column */}
             <div className="lg:hidden">
-              <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2" staggerDelay={0.1}>
+              <div className="mx-auto max-w-5xl flex flex-col gap-3">
                 {content.executionLoop.steps.map((step) => {
                   const Icon = icons[step.icon as IconName];
                   const isActive = activeStep === step.number;
                   return (
-                    <StaggerItem key={step.number}>
-                      <button onClick={() => setActiveStep(isActive ? null : step.number)} className="w-full text-left">
+                    <div key={step.number} ref={(el) => { stepRefs.current[step.number] = el; }} className="scroll-mt-4">
+                      <button onClick={() => handleStepClick(step.number)} className="w-full text-left">
                         <div className={`group relative rounded-xl border p-4 transition-all duration-300 ${
                           isActive
                             ? 'border-[#51DABA]/50 bg-[#51DABA]/10 shadow-lg shadow-[#51DABA]/5'
@@ -335,10 +347,10 @@ export default function HomePage() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </StaggerItem>
+                    </div>
                   );
                 })}
-              </StaggerContainer>
+              </div>
             </div>
 
             {/* DESKTOP: Steps grid with separate detail panel below */}
