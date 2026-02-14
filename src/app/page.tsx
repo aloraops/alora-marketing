@@ -274,81 +274,151 @@ export default function HomePage() {
                 What the engine drives
               </p>
             </FadeIn>
-            <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.1}>
-              {content.executionLoop.steps.map((step) => {
-                const Icon = icons[step.icon as IconName];
-                const isActive = activeStep === step.number;
-                return (
-                  <StaggerItem key={step.number}>
-                    <button onClick={() => setActiveStep(isActive ? null : step.number)} className="w-full text-left">
-                      <div className={`group relative rounded-xl border p-4 transition-all duration-300 ${
-                        isActive
-                          ? 'border-[#51DABA]/50 bg-[#51DABA]/10 shadow-lg shadow-[#51DABA]/5'
-                          : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20'
-                      }`}>
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className={`flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-300 ${
-                            isActive ? 'bg-[#51DABA] text-[#011A0C]' : 'bg-white/10 text-white/60 group-hover:text-white/80'
-                          }`}>
-                            {Icon && <Icon className="h-4 w-4" />}
+            {/* MOBILE: Steps with inline expandable detail */}
+            <div className="lg:hidden">
+              <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2" staggerDelay={0.1}>
+                {content.executionLoop.steps.map((step) => {
+                  const Icon = icons[step.icon as IconName];
+                  const isActive = activeStep === step.number;
+                  return (
+                    <StaggerItem key={step.number}>
+                      <button onClick={() => setActiveStep(isActive ? null : step.number)} className="w-full text-left">
+                        <div className={`group relative rounded-xl border p-4 transition-all duration-300 ${
+                          isActive
+                            ? 'border-[#51DABA]/50 bg-[#51DABA]/10 shadow-lg shadow-[#51DABA]/5'
+                            : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20'
+                        }`}>
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className={`flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-300 ${
+                              isActive ? 'bg-[#51DABA] text-[#011A0C]' : 'bg-white/10 text-white/60 group-hover:text-white/80'
+                            }`}>
+                              {Icon && <Icon className="h-4 w-4" />}
+                            </div>
+                            <span className={`text-xs font-mono font-bold ${isActive ? 'text-[#51DABA]' : 'text-white/20'}`}>0{step.number}</span>
                           </div>
-                          <span className={`text-xs font-mono font-bold ${isActive ? 'text-[#51DABA]' : 'text-white/20'}`}>0{step.number}</span>
+                          <h3 className={`text-sm font-semibold transition-colors ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white/90'}`}>{step.title}</h3>
+                          <p className={`mt-1 text-xs leading-relaxed transition-colors ${isActive ? 'text-white/60' : 'text-white/30 group-hover:text-white/40'}`}>{step.subtitle}</p>
                         </div>
-                        <h3 className={`text-sm font-semibold transition-colors ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white/90'}`}>{step.title}</h3>
-                        <p className={`mt-1 text-xs leading-relaxed transition-colors ${isActive ? 'text-white/60' : 'text-white/30 group-hover:text-white/40'}`}>{step.subtitle}</p>
-                      </div>
-                    </button>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerContainer>
+                      </button>
+                      {/* Inline expanded detail — opens right below the tapped card */}
+                      <AnimatePresence mode="wait">
+                        {isActive && (
+                          <motion.div
+                            key={`detail-${step.number}`}
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="relative rounded-xl border border-[#51DABA]/20 bg-[#51DABA]/[0.04] p-5 mt-3">
+                              <button onClick={() => setActiveStep(null)} className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full text-white/30 hover:text-white/60 hover:bg-white/10 transition-colors">
+                                <X className="h-3.5 w-3.5" />
+                              </button>
+                              <div>
+                                <p className="text-sm text-white/50 leading-relaxed">{step.description}</p>
+                                {(step.details || step.options) && (
+                                  <ul className="mt-3 grid gap-1.5">
+                                    {(step.details || step.options)?.map((item, j) => (
+                                      <li key={j} className="flex items-center gap-2 text-xs text-white/40">
+                                        <CheckCircle className="h-3 w-3 text-[#51DABA] shrink-0" />
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                {step.emphasis && (
+                                  <p className="mt-3 text-xs font-medium text-[#51DABA] border-l-2 border-[#51DABA]/30 pl-3">{step.emphasis}</p>
+                                )}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </StaggerItem>
+                  );
+                })}
+              </StaggerContainer>
+            </div>
 
-            {/* Expanded detail */}
-            <AnimatePresence mode="wait">
-              {activeStep && (
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="mx-auto mt-4 max-w-3xl"
-                >
-                  {content.executionLoop.steps.filter((s) => s.number === activeStep).map((step) => {
-                    const Icon = icons[step.icon as IconName];
-                    return (
-                      <div key={step.number} className="relative rounded-xl border border-[#51DABA]/20 bg-[#51DABA]/[0.04] p-6">
-                        <button onClick={() => setActiveStep(null)} className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full text-white/30 hover:text-white/60 hover:bg-white/10 transition-colors">
-                          <X className="h-3.5 w-3.5" />
-                        </button>
-                        <div className="flex items-start gap-4">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#51DABA] text-[#011A0C]">
-                            {Icon && <Icon className="h-5 w-5" />}
+            {/* DESKTOP: Steps grid with separate detail panel below */}
+            <div className="hidden lg:block">
+              <StaggerContainer className="mx-auto grid max-w-5xl grid-cols-4 gap-3" staggerDelay={0.1}>
+                {content.executionLoop.steps.map((step) => {
+                  const Icon = icons[step.icon as IconName];
+                  const isActive = activeStep === step.number;
+                  return (
+                    <StaggerItem key={step.number}>
+                      <button onClick={() => setActiveStep(isActive ? null : step.number)} className="w-full text-left">
+                        <div className={`group relative rounded-xl border p-4 transition-all duration-300 ${
+                          isActive
+                            ? 'border-[#51DABA]/50 bg-[#51DABA]/10 shadow-lg shadow-[#51DABA]/5'
+                            : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20'
+                        }`}>
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className={`flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-300 ${
+                              isActive ? 'bg-[#51DABA] text-[#011A0C]' : 'bg-white/10 text-white/60 group-hover:text-white/80'
+                            }`}>
+                              {Icon && <Icon className="h-4 w-4" />}
+                            </div>
+                            <span className={`text-xs font-mono font-bold ${isActive ? 'text-[#51DABA]' : 'text-white/20'}`}>0{step.number}</span>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-base font-semibold text-white">{step.title}</h4>
-                            <p className="mt-2 text-sm text-white/50 leading-relaxed">{step.description}</p>
-                            {(step.details || step.options) && (
-                              <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                                {(step.details || step.options)?.map((item, j) => (
-                                  <li key={j} className="flex items-center gap-2 text-xs text-white/40">
-                                    <CheckCircle className="h-3 w-3 text-[#51DABA] shrink-0" />
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                            {step.emphasis && (
-                              <p className="mt-3 text-xs font-medium text-[#51DABA] border-l-2 border-[#51DABA]/30 pl-3">{step.emphasis}</p>
-                            )}
+                          <h3 className={`text-sm font-semibold transition-colors ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white/90'}`}>{step.title}</h3>
+                          <p className={`mt-1 text-xs leading-relaxed transition-colors ${isActive ? 'text-white/60' : 'text-white/30 group-hover:text-white/40'}`}>{step.subtitle}</p>
+                        </div>
+                      </button>
+                    </StaggerItem>
+                  );
+                })}
+              </StaggerContainer>
+
+              {/* Desktop expanded detail */}
+              <AnimatePresence mode="wait">
+                {activeStep && (
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    className="mx-auto mt-4 max-w-3xl"
+                  >
+                    {content.executionLoop.steps.filter((s) => s.number === activeStep).map((step) => {
+                      const Icon = icons[step.icon as IconName];
+                      return (
+                        <div key={step.number} className="relative rounded-xl border border-[#51DABA]/20 bg-[#51DABA]/[0.04] p-6">
+                          <button onClick={() => setActiveStep(null)} className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full text-white/30 hover:text-white/60 hover:bg-white/10 transition-colors">
+                            <X className="h-3.5 w-3.5" />
+                          </button>
+                          <div className="flex items-start gap-4">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#51DABA] text-[#011A0C]">
+                              {Icon && <Icon className="h-5 w-5" />}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-base font-semibold text-white">{step.title}</h4>
+                              <p className="mt-2 text-sm text-white/50 leading-relaxed">{step.description}</p>
+                              {(step.details || step.options) && (
+                                <ul className="mt-3 grid gap-1.5 grid-cols-2">
+                                  {(step.details || step.options)?.map((item, j) => (
+                                    <li key={j} className="flex items-center gap-2 text-xs text-white/40">
+                                      <CheckCircle className="h-3 w-3 text-[#51DABA] shrink-0" />
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              {step.emphasis && (
+                                <p className="mt-3 text-xs font-medium text-[#51DABA] border-l-2 border-[#51DABA]/30 pl-3">{step.emphasis}</p>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           <FadeIn delay={0.5}>
