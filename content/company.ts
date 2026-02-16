@@ -81,6 +81,13 @@ export const advisoryBoard = [
     image: '/team/anubha-bhadauria.jpg',
     linkedin: 'https://www.linkedin.com/in/anubha-bhadauria/',
   },
+  {
+    name: 'Terri Alpert',
+    role: 'Advisory Board Member',
+    bio: 'Serial entrepreneur and consumer marketer who built two direct-to-consumer companies from the ground up. Brown University graduate with recent Stanford AI/ML certifications, now advising startups as Venture Partner at I-Lab Angels and Senior Advisor at ArkMalibu.',
+    image: '/team/terri-alpert.jpg',
+    linkedin: 'https://www.linkedin.com/in/terrialpert/',
+  },
 ];
 
 export const sharedBackground = {

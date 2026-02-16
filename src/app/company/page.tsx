@@ -123,7 +123,7 @@ export default function CompanyPage() {
               </p>
             </div>
           </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2" staggerDelay={0.15}>
+          <StaggerContainer className="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.15}>
             {content.advisoryBoard.map((member) => (
               <StaggerItem key={member.name}>
                 <Card className="border border-border/40 shadow-sm h-full hover:border-border/60 hover:shadow-md transition-all duration-200">

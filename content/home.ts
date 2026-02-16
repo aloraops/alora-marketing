@@ -22,7 +22,7 @@ export const hero = {
   // - "Prevent supply-chain issues by turning every signal into action"
 
   // Subheading split into 3 rows
-  subheadingLine1: 'Alora continuously evaluates signals at the part and BOM level,',
+  subheadingLine1: 'Alora continuously evaluates signals at the part and Bill of Materials (BOM) level,',
   subheadingLine2: 'connects issues directly to cost and delivery, and',
   subheadingLine3: 'prioritizes the few actions that actually matter.',
   // Alternative subheadings:
