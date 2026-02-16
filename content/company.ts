@@ -72,14 +72,14 @@ export const advisoryBoard = [
     role: 'Advisory Board Member',
     bio: 'Retired P&G Senior VP with 38+ years leading global supply chain operations across Grooming, Baby Care, Health & Pet Care. Serves on multiple boards advising on supply chain strategy and M&A.',
     image: '/team/mike-chaney.jpeg',
-    linkedin: 'https://www.linkedin.com/in/mike-chaney/',
+    linkedin: 'https://www.linkedin.com/in/mike-chaney-5577935/',
   },
   {
     name: 'Anubha Bhadauria',
     role: 'Advisory Board Member',
     bio: 'Supply chain leader with 15 years shaping future-ready supply chains at Tesla, Rivian, and Xylem. MIT Manufacturing Engineering background, operating at the intersection of technology, innovation, and execution.',
     image: '/team/anubha-bhadauria.jpg',
-    linkedin: 'https://www.linkedin.com/in/anubha-bhadauria/',
+    linkedin: 'https://www.linkedin.com/in/anubha-bhadauria-3370583a/',
   },
   {
     name: 'Terri Alpert',
