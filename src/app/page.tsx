@@ -40,7 +40,7 @@ const icons = {
 type IconName = keyof typeof icons;
 
 export default function HomePage() {
-  const [activeStep, setActiveStep] = useState<string | null>(null);
+  const [activeStep, setActiveStep] = useState<string | null>('1');
   const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const handleStepClick = useCallback((stepNumber: string) => {
