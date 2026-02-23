@@ -10,6 +10,7 @@ import { cta, brand } from '@content/shared';
 
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
+  { name: 'Resources', href: '/resources' },
   { name: 'Company', href: '/company' },
 ];
 
