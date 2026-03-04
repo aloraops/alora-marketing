@@ -122,6 +122,45 @@ If the build fails, fix the errors before committing. Common issues:
 - Import errors (missing files, wrong paths)
 - Unused variables or imports
 
+## SEO
+
+### Current State
+- **Canonical domain:** `www.aloraops.ai` (all other domains 301 redirect here)
+- **robots.txt:** `src/app/robots.ts`
+- **sitemap.xml:** `src/app/sitemap.ts`
+- **Structured data (JSON-LD):** Organization + SoftwareApplication in `src/app/layout.tsx`, FAQPage in `src/app/faq/layout.tsx`, Article in `src/app/blog/[slug]/page.tsx`
+- **Per-page metadata:** Handled via `layout.tsx` files in each route directory (because page.tsx files are `'use client'` and can't export metadata)
+
+### Blog: Currently Noindexed (Mock Content)
+
+The blog infrastructure is complete but contains **placeholder/mock content**. All blog pages have `robots: { index: false, follow: false }` and are excluded from the sitemap.
+
+**When real blog content is ready, do these 3 things:**
+
+1. **Remove noindex from blog listing** — `src/app/blog/page.tsx`: delete the `robots` block from metadata
+2. **Remove noindex from blog posts** — `src/app/blog/[slug]/page.tsx`: delete the `robots` block from `generateMetadata()`
+3. **Re-add blog to sitemap** — `src/app/sitemap.ts`: uncomment/re-add blog URLs:
+   ```ts
+   import { getAllSlugs } from '@/lib/blog';
+   // Then in the return array, add:
+   { url: `${baseUrl}/blog`, changeFrequency: 'weekly', priority: 0.8 },
+   // And spread blog post URLs:
+   ...getAllSlugs().map((slug) => ({
+     url: `${baseUrl}/blog/${slug}`,
+     changeFrequency: 'monthly' as const,
+     priority: 0.6,
+   }))
+   ```
+
+### Domain Configuration (Vercel Dashboard)
+
+| Domain | Redirect |
+|--------|----------|
+| `www.aloraops.ai` | Production (serves the site) |
+| `aloraops.ai` | 301 → `www.aloraops.ai` |
+| `aloraops.com` | 301 → `www.aloraops.ai` |
+| `www.aloraops.com` | 301 → `www.aloraops.ai` |
+
 ## Tech Stack
 
 - **Framework:** Next.js 14 (App Router)
