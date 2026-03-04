@@ -3,9 +3,15 @@ import Image from 'next/image';
 
 const footerNavigation = {
   solutions: [
-    { name: 'PO Risk & Tracking', href: '/solutions#po-risk' },
-    { name: 'Build Readiness', href: '/solutions#build-readiness' },
-    { name: 'Vendor Scoring', href: '/solutions#vendor-scoring' },
+    { name: 'PO Risk & Tracking', href: '/solutions/po-risk-tracking' },
+    { name: 'Build Readiness', href: '/solutions/build-readiness' },
+    { name: 'Vendor Scoring', href: '/solutions/vendor-scoring' },
+  ],
+  industries: [
+    { name: 'Medical Devices', href: '/industries/medical-devices' },
+    { name: 'Defense & Aerospace', href: '/industries/defense-aerospace' },
+    { name: 'Robotics & Automation', href: '/industries/robotics-automation' },
+    { name: 'Industrial Equipment', href: '/industries/industrial-equipment' },
   ],
   company: [
     { name: 'About Us', href: '/company' },
@@ -39,38 +45,53 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Solutions</h3>
-                <ul role="list" className="mt-4 space-y-3">
-                  {footerNavigation.solutions.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold text-foreground">Company</h3>
-                <ul role="list" className="mt-4 space-y-3">
-                  {footerNavigation.company.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 md:grid-cols-3">
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Solutions</h3>
+              <ul role="list" className="mt-4 space-y-3">
+                {footerNavigation.solutions.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Industries column hidden until partner review
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Industries</h3>
+              <ul role="list" className="mt-4 space-y-3">
+                {footerNavigation.industries.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            */}
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Company</h3>
+              <ul role="list" className="mt-4 space-y-3">
+                {footerNavigation.company.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-foreground">Legal</h3>

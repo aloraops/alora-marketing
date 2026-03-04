@@ -266,6 +266,63 @@ Add a "Blog" link to the site header/footer navigation so users can discover blo
 
 **This is configured in the Vercel dashboard, not in code.** The `next.config.ts` has no redirect rules — Vercel handles domain-level redirects before the Next.js app is invoked.
 
+## SEO Growth (March 2026)
+
+The site has been expanded from 5 to 14 indexable pages to target long-tail keywords. Full strategy documented in `docs/seo-strategy.md`.
+
+### Page Architecture
+
+| Page | URL | Content File |
+|------|-----|-------------|
+| Homepage | `/` | `content/home.ts` |
+| Solutions Overview | `/solutions` | `content/solutions.ts` |
+| PO Risk & Tracking | `/solutions/po-risk-tracking` | `content/solutions/po-risk-tracking.ts` |
+| Build Readiness | `/solutions/build-readiness` | `content/solutions/build-readiness.ts` |
+| Vendor Scoring | `/solutions/vendor-scoring` | `content/solutions/vendor-scoring.ts` |
+| Industries Index | `/industries` | `content/industries/index.ts` |
+| Medical Devices | `/industries/medical-devices` | `content/industries/medical-devices.ts` |
+| Defense & Aerospace | `/industries/defense-aerospace` | `content/industries/defense-aerospace.ts` |
+| Robotics & Automation | `/industries/robotics-automation` | `content/industries/robotics-automation.ts` |
+| Industrial Equipment | `/industries/industrial-equipment` | `content/industries/industrial-equipment.ts` |
+| Company | `/company` | `content/company.ts` |
+| Resources | `/resources` | `content/resources.ts` |
+| FAQ | `/faq` | `content/home.ts` (faq section) |
+| Contact | `/contact` | inline |
+
+### Adding New Solution/Industry Pages
+
+**Solution sub-page checklist:**
+1. Create `content/solutions/[slug].ts` (hero, challenges, features, howItWorks, useCases, metric, crossLinks, cta, seo)
+2. Create `src/app/solutions/[slug]/layout.tsx` (metadata + JSON-LD)
+3. Create `src/app/solutions/[slug]/page.tsx` (use `SolutionPageTemplate`)
+4. Add URL to `src/app/sitemap.ts`
+5. Update footer in `src/components/layout/footer.tsx`
+6. Update cross-links in other solution content files
+7. `npm run build`
+
+**Industry page checklist:**
+1. Create `content/industries/[slug].ts` (hero, painPoints, capabilities, relevantModules, cta, seo)
+2. Create `src/app/industries/[slug]/layout.tsx` (metadata + JSON-LD)
+3. Create `src/app/industries/[slug]/page.tsx` (use `IndustryPageTemplate`)
+4. Add to industries array in `content/industries/index.ts`
+5. Add URL to `src/app/sitemap.ts`
+6. Update footer
+7. `npm run build`
+
+### Shared Components
+
+| Component | File | Used By |
+|-----------|------|---------|
+| `SolutionPageTemplate` | `src/components/solutions/solution-page-template.tsx` | All solution sub-pages |
+| `IndustryPageTemplate` | `src/components/industries/industry-page-template.tsx` | All industry sub-pages |
+| `POTable` | `src/components/solutions/po-table.tsx` | Solutions overview + PO Risk page |
+| `BuildDashboard` | `src/components/solutions/build-dashboard.tsx` | Solutions overview + Build Readiness page |
+| `VendorScoreCards` | `src/components/solutions/vendor-score-cards.tsx` | Solutions overview + Vendor Scoring page |
+
+### Social Media Guidelines
+
+See `docs/social-media-guidelines.md` for LinkedIn posting playbook for founders and advisors.
+
 ## Tech Stack
 
 - **Framework:** Next.js 14 (App Router)

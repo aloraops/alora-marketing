@@ -15,7 +15,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/solutions/po-risk-tracking`,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/solutions/build-readiness`,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/solutions/vendor-scoring`,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    // Industry pages hidden from sitemap until partner review.
+    // To re-enable: uncomment the industry URLs below.
+    // { url: `${baseUrl}/industries`, changeFrequency: 'monthly', priority: 0.8 },
+    // { url: `${baseUrl}/industries/medical-devices`, changeFrequency: 'monthly', priority: 0.75 },
+    // { url: `${baseUrl}/industries/defense-aerospace`, changeFrequency: 'monthly', priority: 0.75 },
+    // { url: `${baseUrl}/industries/robotics-automation`, changeFrequency: 'monthly', priority: 0.75 },
+    // { url: `${baseUrl}/industries/industrial-equipment`, changeFrequency: 'monthly', priority: 0.75 },
+    {
       url: `${baseUrl}/company`,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/resources`,
       changeFrequency: 'monthly',
       priority: 0.7,
     },

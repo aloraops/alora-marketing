@@ -54,255 +54,12 @@ const icons = {
 type IconName = keyof typeof icons;
 
 /* ============================================
- * TYPE DEFINITIONS
+ * SHARED UI COMPONENTS
  * ============================================ */
 
-interface POItem {
-  po: string;
-  part: string;
-  vendor: string;
-  risk: string;
-  dueDate: string;
-  daysOverdue: number;
-  action: string;
-}
-
-interface BuildItem {
-  project: string;
-  customer: string;
-  status: string;
-  partsReady: number;
-  partsTotal: number;
-  revenue: string;
-  missing: string;
-}
-
-interface BuildData {
-  summary: { atRisk: number; onTrack: number; review: number };
-  builds: BuildItem[];
-}
-
-interface VendorItem {
-  vendor: string;
-  score: number;
-  onTime: string;
-  avgDelay: string;
-  trend: string;
-  reliability: string;
-}
-
-/* ============================================
- * MOCK UI COMPONENTS
- * ============================================ */
-
-function POTable({ data }: { data: POItem[] }) {
-  return (
-    <div className="rounded-xl bg-[#1a3a28] border border-[#51DABA]/20 overflow-hidden shadow-2xl shadow-[#51DABA]/5">
-      {/* Header */}
-      <div className="px-5 py-3 border-b border-[#51DABA]/10 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-[#51DABA] animate-pulse" />
-          <span className="text-sm font-semibold text-white">PO Lines by Risk</span>
-        </div>
-        <span className="text-xs text-white/40">Updated 2 min ago</span>
-      </div>
-      {/* Column Headers */}
-      <div className="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-2.5 border-b border-white/5 text-[10px] font-medium text-white/30 uppercase tracking-wider">
-        <span>PO / Part</span>
-        <span className="text-center w-16">Risk</span>
-        <span className="text-center w-16">Due</span>
-        <span className="text-right w-20">Action</span>
-      </div>
-      {/* Rows */}
-      {data.map((item, i) => (
-        <div
-          key={i}
-          className="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
-        >
-          <div>
-            <div className="text-sm font-medium text-white">{item.po}</div>
-            <div className="text-xs text-white/40 mt-0.5">{item.part}</div>
-            <div className="text-[10px] text-white/25 mt-0.5">{item.vendor}</div>
-          </div>
-          <div className="flex items-center justify-center w-16">
-            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-              item.risk === 'Critical' ? 'bg-red-500/20 text-red-400' :
-              item.risk === 'High' ? 'bg-orange-500/20 text-orange-400' :
-              item.risk === 'Medium' ? 'bg-yellow-500/20 text-yellow-400' :
-              'bg-green-500/20 text-green-400'
-            }`}>
-              {item.risk}
-            </span>
-          </div>
-          <div className="flex flex-col items-center justify-center w-16">
-            <span className="text-xs text-white/60">{item.dueDate}</span>
-            {item.daysOverdue > 0 && (
-              <span className="text-[10px] text-red-400">+{item.daysOverdue}d late</span>
-            )}
-          </div>
-          <div className="flex items-center justify-end w-20">
-            <span className={`text-[10px] font-medium px-2 py-1 rounded-md cursor-default ${
-              item.action === 'Escalate' ? 'bg-red-500/10 text-red-400 border border-red-500/20' :
-              item.action === 'Follow up' ? 'bg-orange-500/10 text-orange-400 border border-orange-500/20' :
-              item.action === 'Re-confirm' ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
-              'bg-white/5 text-white/40 border border-white/10'
-            }`}>
-              {item.action}
-            </span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function BuildDashboard({ data }: { data: BuildData }) {
-  return (
-    <div className="rounded-xl bg-white border border-border/60 overflow-hidden shadow-xl">
-      {/* Header */}
-      <div className="px-5 py-3 border-b border-border/40 flex items-center justify-between bg-muted/30">
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-sm font-semibold text-foreground">Build Readiness</span>
-        </div>
-        <span className="text-xs text-muted-foreground">This quarter</span>
-      </div>
-      {/* Summary Bar */}
-      <div className="flex gap-3 px-5 py-4 border-b border-border/30">
-        <div className="flex-1 rounded-lg bg-red-50 border border-red-200 p-3 text-center">
-          <div className="text-2xl font-bold text-red-600">{data.summary.atRisk}</div>
-          <div className="text-[10px] uppercase text-red-500/70 font-medium tracking-wide">At Risk</div>
-        </div>
-        <div className="flex-1 rounded-lg bg-green-50 border border-green-200 p-3 text-center">
-          <div className="text-2xl font-bold text-green-600">{data.summary.onTrack}</div>
-          <div className="text-[10px] uppercase text-green-500/70 font-medium tracking-wide">On Track</div>
-        </div>
-        <div className="flex-1 rounded-lg bg-yellow-50 border border-yellow-200 p-3 text-center">
-          <div className="text-2xl font-bold text-yellow-600">{data.summary.review}</div>
-          <div className="text-[10px] uppercase text-yellow-500/70 font-medium tracking-wide">Review</div>
-        </div>
-      </div>
-      {/* Build Cards */}
-      <div className="px-5 py-2">
-        {data.builds.map((build, i) => (
-          <div key={i} className="py-3.5 border-b border-border/30 last:border-0">
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <div className="text-sm font-semibold text-foreground">{build.project}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">{build.customer}</div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground">{build.revenue}</span>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  build.status === 'At Risk' ? 'bg-red-100 text-red-700' :
-                  build.status === 'Review' ? 'bg-yellow-100 text-yellow-700' :
-                  'bg-green-100 text-green-700'
-                }`}>
-                  {build.status}
-                </span>
-              </div>
-            </div>
-            {/* Progress Bar */}
-            <div className="relative h-1.5 rounded-full bg-muted overflow-hidden">
-              <div
-                className={`absolute left-0 top-0 h-full rounded-full transition-all ${
-                  build.partsReady === build.partsTotal ? 'bg-green-500' :
-                  build.partsReady / build.partsTotal > 0.8 ? 'bg-yellow-500' :
-                  'bg-red-500'
-                }`}
-                style={{ width: `${(build.partsReady / build.partsTotal) * 100}%` }}
-              />
-            </div>
-            <div className="flex justify-between mt-1.5">
-              <span className="text-[10px] text-muted-foreground">
-                {build.partsReady}/{build.partsTotal} parts ready
-              </span>
-              {build.missing && (
-                <span className="text-[10px] text-red-600">{build.missing}</span>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function VendorScoreCards({ data }: { data: VendorItem[] }) {
-  return (
-    <div className="rounded-xl bg-[#1a3a28] border border-[#51DABA]/20 overflow-hidden shadow-2xl shadow-[#51DABA]/5">
-      {/* Header */}
-      <div className="px-5 py-3 border-b border-[#51DABA]/10 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-[#51DABA] animate-pulse" />
-          <span className="text-sm font-semibold text-white">Vendor Performance</span>
-        </div>
-        <span className="text-xs text-white/40">Last 90 days</span>
-      </div>
-      {/* Vendor Rows */}
-      {data.map((item, i) => (
-        <div key={i} className="px-5 py-4 border-b border-white/5 last:border-0">
-          <div className="flex items-center justify-between mb-2">
-            <div>
-              <div className="text-sm font-medium text-white">{item.vendor}</div>
-              <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${
-                item.reliability === 'Excellent' ? 'bg-green-500/15 text-green-400' :
-                item.reliability === 'Good' ? 'bg-green-500/10 text-green-300' :
-                item.reliability === 'Needs attention' ? 'bg-orange-500/15 text-orange-400' :
-                'bg-red-500/15 text-red-400'
-              }`}>
-                {item.reliability}
-              </span>
-            </div>
-            <div className="text-right">
-              <div className="flex items-center gap-1.5">
-                <span className={`text-3xl font-bold ${
-                  item.score >= 90 ? 'text-green-400' :
-                  item.score >= 80 ? 'text-green-300' :
-                  item.score >= 70 ? 'text-orange-400' :
-                  'text-red-400'
-                }`}>
-                  {item.score}
-                </span>
-                <TrendingUp className={`h-4 w-4 ${
-                  item.trend === 'up' ? 'text-green-400' :
-                  item.trend === 'down' ? 'text-red-400 rotate-180' :
-                  'text-orange-400 rotate-90'
-                }`} />
-              </div>
-            </div>
-          </div>
-          {/* Metrics Bar */}
-          <div className="flex gap-4 mt-2">
-            <div className="flex-1">
-              <div className="text-[10px] text-white/30 uppercase tracking-wide">On-Time</div>
-              <div className="text-xs font-medium text-white/70">{item.onTime}</div>
-            </div>
-            <div className="flex-1">
-              <div className="text-[10px] text-white/30 uppercase tracking-wide">Avg Delay</div>
-              <div className="text-xs font-medium text-white/70">{item.avgDelay}</div>
-            </div>
-            {/* Mini score bar */}
-            <div className="flex-1">
-              <div className="text-[10px] text-white/30 uppercase tracking-wide">Score</div>
-              <div className="mt-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
-                <div
-                  className={`h-full rounded-full ${
-                    item.score >= 90 ? 'bg-green-400' :
-                    item.score >= 80 ? 'bg-green-300' :
-                    item.score >= 70 ? 'bg-orange-400' :
-                    'bg-red-400'
-                  }`}
-                  style={{ width: `${item.score}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+import { POTable, type POItem } from '@/components/solutions/po-table';
+import { BuildDashboard, type BuildData } from '@/components/solutions/build-dashboard';
+import { VendorScoreCards, type VendorItem } from '@/components/solutions/vendor-score-cards';
 
 /* ============================================
  * FEATURE SECTION COMPONENT
@@ -425,6 +182,18 @@ function FeatureSection({
                   </div>
                 </div>
               </div>
+              {/* Learn More Link */}
+              <Link
+                href={`/solutions/${section.id === 'po-risk' ? 'po-risk-tracking' : section.id}`}
+                className={`mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                  isDark
+                    ? 'text-[#51DABA] hover:text-[#51DABA]/80'
+                    : 'text-primary hover:text-primary/80'
+                }`}
+              >
+                Explore {section.title}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </FadeIn>
           </div>
 

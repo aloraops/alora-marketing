@@ -35,9 +35,15 @@ export const navigation = {
 
 export const footer = {
   solutions: [
-    { name: 'PO Risk & Tracking', href: '/solutions#core-solution' },
-    { name: 'Build Readiness', href: '/solutions#core-solution' },
-    { name: 'Vendor Scoring', href: '/solutions#core-solution' },
+    { name: 'PO Risk & Tracking', href: '/solutions/po-risk-tracking' },
+    { name: 'Build Readiness', href: '/solutions/build-readiness' },
+    { name: 'Vendor Scoring', href: '/solutions/vendor-scoring' },
+  ],
+  industries: [
+    { name: 'Medical Devices', href: '/industries/medical-devices' },
+    { name: 'Defense & Aerospace', href: '/industries/defense-aerospace' },
+    { name: 'Robotics & Automation', href: '/industries/robotics-automation' },
+    { name: 'Industrial Equipment', href: '/industries/industrial-equipment' },
   ],
   company: [
     { name: 'About Us', href: '/company' },

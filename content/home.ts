@@ -165,19 +165,19 @@ export const features = {
       title: 'PO Risk & Tracking',
       desc: 'Turn open POs into a ranked TODO list, not a static report. See all PO lines ordered by risk and business impact.',
       icon: 'ClipboardList',
-      href: '/solutions#po-risk',
+      href: '/solutions/po-risk-tracking',
     },
     {
       title: 'CTB & Build Readiness',
       desc: 'Know if you can really build — before the line is exposed. Connect part availability and risk to upcoming builds.',
       icon: 'Package',
-      href: '/solutions#build-readiness',
+      href: '/solutions/build-readiness',
     },
     {
       title: 'Vendor Behavior & Scoring',
       desc: "See how suppliers actually behave, not just what's written on the PO. Track real lead times vs. quoted.",
       icon: 'Users',
-      href: '/solutions#vendor-scoring',
+      href: '/solutions/vendor-scoring',
     },
   ],
 };
@@ -191,21 +191,25 @@ export const industries = {
       name: 'Medical Devices',
       icon: 'HeartPulse',
       desc: 'Regulated, multi-level BOMs where late part changes cascade into production, compliance, and delivery risk.',
+      href: '/industries/medical-devices',
     },
     {
       name: 'Robotics & Automation',
       icon: 'Cpu',
       desc: 'Tight tolerances, long lead times, and complex assemblies with zero slack for execution errors.',
+      href: '/industries/robotics-automation',
     },
     {
       name: 'Defense & Aerospace',
       icon: 'Shield',
       desc: 'Low-volume, high-impact programs where every delay escalates across contracts, suppliers, and stakeholders.',
+      href: '/industries/defense-aerospace',
     },
     {
       name: 'Industrial Equipment',
       icon: 'Factory',
       desc: 'Highly configurable products, supplier variability, and long execution cycles that demand tight operational control.',
+      href: '/industries/industrial-equipment',
     },
   ],
 };
