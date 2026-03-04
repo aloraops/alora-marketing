@@ -124,42 +124,147 @@ If the build fails, fix the errors before committing. Common issues:
 
 ## SEO
 
-### Current State
-- **Canonical domain:** `www.aloraops.ai` (all other domains 301 redirect here)
-- **robots.txt:** `src/app/robots.ts`
-- **sitemap.xml:** `src/app/sitemap.ts`
-- **Structured data (JSON-LD):** Organization + SoftwareApplication in `src/app/layout.tsx`, FAQPage in `src/app/faq/layout.tsx`, Article in `src/app/blog/[slug]/page.tsx`
-- **Per-page metadata:** Handled via `layout.tsx` files in each route directory (because page.tsx files are `'use client'` and can't export metadata)
+### Background: March 2026 Audit & Fixes
+
+An SEO audit was performed against `www.aloraops.ai` (equivalent to what tools like OptimizeBear, Lighthouse, or PageSpeed Insights check). The audit revealed several gaps that were all fixed in commits `28f3f06` through `0004638`.
+
+**What was checked and findings:**
+
+| Check | Before | After |
+|-------|--------|-------|
+| `robots.txt` | 404 (missing) | Proper `robots.txt` via `src/app/robots.ts` |
+| `sitemap.xml` | 404 (missing) | Dynamic sitemap via `src/app/sitemap.ts` (6 URLs) |
+| Per-page `<title>` tags | Only homepage had unique title | All pages have unique titles via `layout.tsx` files |
+| Meta descriptions | Missing on most pages | All pages have descriptions via `layout.tsx` files |
+| Structured data (JSON-LD) | None | Organization + SoftwareApplication (root), FAQPage (FAQ), Article (blog posts) |
+| Canonical domain | Both `.com` and `.ai` serving same content (duplicate) | All `.com` domains 301 redirect to `www.aloraops.ai` |
+| Open Graph tags | Present (via Next.js `metadataBase`) | No change needed — already correct |
+| Blog content quality | 62 mock posts indexed by search engines | Noindexed + removed from sitemap |
+| Heading hierarchy | Proper `<h1>` → `<h2>` structure | No change needed |
+| Image alt attributes | Present on all images | No change needed |
+| ARIA/accessibility | Proper labels and roles | No change needed |
+| Mobile responsive | Fully responsive | No change needed |
+
+**Why these matter:**
+- **robots.txt**: Tells search engines what to crawl. Without it, crawlers guess, and some pages may be missed or over-crawled.
+- **sitemap.xml**: Explicitly lists all pages for Google Search Console. Critical for new sites with few inbound links.
+- **Per-page metadata**: Google uses `<title>` and `<meta description>` to build search result snippets. Without unique metadata, Google generates its own (often poorly).
+- **JSON-LD structured data**: Enables rich search results (FAQ dropdowns, software info cards, article previews). FAQPage schema is especially valuable — it can make FAQ answers appear directly in Google results.
+- **Canonical domain**: Having the same content on multiple domains (`.com` and `.ai`) splits SEO authority. 301 redirects consolidate all link equity to one domain.
+- **Blog noindex**: Mock/placeholder content damages domain credibility with Google. Low-quality pages can drag down the entire domain's ranking.
+
+### Current SEO Architecture
+
+| Asset | File | Purpose |
+|-------|------|---------|
+| robots.txt | `src/app/robots.ts` | Allows all crawlers, references sitemap |
+| sitemap.xml | `src/app/sitemap.ts` | Lists all indexable pages (currently 6) |
+| Root metadata | `src/app/layout.tsx` | `metadataBase`, default title template (`%s \| Alora`), OG defaults |
+| Organization JSON-LD | `src/app/layout.tsx` | Company info for Google Knowledge Panel |
+| SoftwareApplication JSON-LD | `src/app/layout.tsx` | Product info for software-related searches |
+| Solutions metadata | `src/app/solutions/layout.tsx` | Title + description for Solutions page |
+| Company metadata | `src/app/company/layout.tsx` | Title + description for About page |
+| FAQ metadata + JSON-LD | `src/app/faq/layout.tsx` | Title + description + FAQPage schema (22 questions from `content/home.ts`) |
+| Contact metadata | `src/app/contact/layout.tsx` | Title + description for Contact page |
+| Blog listing metadata | `src/app/blog/page.tsx` | Title + description + **noindex** |
+| Blog post metadata + JSON-LD | `src/app/blog/[slug]/page.tsx` | Per-post title/description + Article schema + **noindex** |
+
+**Why `layout.tsx` for metadata:** The page components for Solutions, Company, FAQ, and Contact are all `'use client'` (they use React hooks). Client components cannot export `metadata` in Next.js App Router — only server components can. The `layout.tsx` files in each route directory are server components by default, so metadata is exported from there instead.
+
+**Title template:** Root layout sets `title: { template: '%s | Alora', default: 'Alora | ...' }`. Child pages only set the page-specific part (e.g., `title: 'Solutions'` renders as "Solutions | Alora"). Do NOT include "| Alora" in child page titles — it gets appended automatically.
 
 ### Blog: Currently Noindexed (Mock Content)
 
-The blog infrastructure is complete but contains **placeholder/mock content**. All blog pages have `robots: { index: false, follow: false }` and are excluded from the sitemap.
+The blog infrastructure is fully built and functional but contains **placeholder/mock content** (62 posts generated from templates). All blog pages are:
+- Hidden from site navigation (no link in header/footer)
+- Marked `robots: { index: false, follow: false }` (tells Google not to index)
+- Excluded from `sitemap.xml`
+- Still have Article JSON-LD structured data (ready for when content is real)
 
-**When real blog content is ready, do these 3 things:**
+**Why noindexed:** Google penalizes domains with thin/low-quality content. Mock blog posts with generic text would signal low quality and could hurt the ranking of real pages (homepage, solutions, FAQ). The blog is kept hidden but structurally intact so it can be enabled instantly when real content is ready.
 
-1. **Remove noindex from blog listing** — `src/app/blog/page.tsx`: delete the `robots` block from metadata
-2. **Remove noindex from blog posts** — `src/app/blog/[slug]/page.tsx`: delete the `robots` block from `generateMetadata()`
-3. **Re-add blog to sitemap** — `src/app/sitemap.ts`: uncomment/re-add blog URLs:
-   ```ts
-   import { getAllSlugs } from '@/lib/blog';
-   // Then in the return array, add:
-   { url: `${baseUrl}/blog`, changeFrequency: 'weekly', priority: 0.8 },
-   // And spread blog post URLs:
-   ...getAllSlugs().map((slug) => ({
-     url: `${baseUrl}/blog/${slug}`,
-     changeFrequency: 'monthly' as const,
-     priority: 0.6,
-   }))
-   ```
+### Enabling the Blog (When Real Content Is Ready)
+
+When real blog posts replace the mock data, follow these exact steps:
+
+#### Step 1: Replace mock content
+- Blog posts are markdown files in `content/blog/` (managed via `src/lib/blog.ts`)
+- Replace mock `.md` files with real posts
+- Each post needs frontmatter: `title`, `description`, `date`, `author`, `category`, `readingTime`
+
+#### Step 2: Remove noindex from blog listing
+**File:** `src/app/blog/page.tsx`
+**Action:** Delete the `robots` block from the metadata export:
+```ts
+// DELETE these lines:
+robots: {
+  index: false,
+  follow: false,
+},
+```
+
+#### Step 3: Remove noindex from blog posts
+**File:** `src/app/blog/[slug]/page.tsx`
+**Action:** Delete the `robots` block from the return value of `generateMetadata()`:
+```ts
+// DELETE these lines from the return object:
+robots: {
+  index: false,
+  follow: false,
+},
+```
+
+#### Step 4: Re-add blog to sitemap
+**File:** `src/app/sitemap.ts`
+**Action:** Add import and blog URLs:
+```ts
+import type { MetadataRoute } from 'next';
+import { getAllSlugs } from '@/lib/blog';  // ADD this import
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://aloraops.ai';
+
+  return [
+    { url: baseUrl, changeFrequency: 'weekly', priority: 1 },
+    { url: `${baseUrl}/solutions`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/company`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/faq`, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/contact`, changeFrequency: 'yearly', priority: 0.5 },
+    // ADD these blog entries:
+    { url: `${baseUrl}/blog`, changeFrequency: 'weekly', priority: 0.8 },
+    ...getAllSlugs().map((slug) => ({
+      url: `${baseUrl}/blog/${slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ];
+}
+```
+
+#### Step 5: Add blog link to navigation
+Add a "Blog" link to the site header/footer navigation so users can discover blog content.
+
+#### Step 6: Verify
+1. Run `npm run build` — must pass
+2. Check `localhost:3000/blog` renders correctly
+3. Check page source for absence of `noindex` meta tag
+4. Check `localhost:3000/sitemap.xml` includes blog URLs
+5. After deploy: submit updated sitemap in Google Search Console
 
 ### Domain Configuration (Vercel Dashboard)
 
-| Domain | Redirect |
-|--------|----------|
-| `www.aloraops.ai` | Production (serves the site) |
+**Canonical domain:** `www.aloraops.ai` — chosen because `.ai` is the primary brand identity.
+
+| Domain | Role |
+|--------|------|
+| `www.aloraops.ai` | **Production** (serves the site) |
 | `aloraops.ai` | 301 → `www.aloraops.ai` |
 | `aloraops.com` | 301 → `www.aloraops.ai` |
 | `www.aloraops.com` | 301 → `www.aloraops.ai` |
+
+**Why 301 (not 307):** 301 is a permanent redirect. It tells Google to transfer all SEO authority (link equity, PageRank) from the old URL to the new one. Browsers cache 301s, reducing server load. 307 is temporary — Google keeps both URLs in its index and doesn't transfer authority, which splits SEO value.
+
+**This is configured in the Vercel dashboard, not in code.** The `next.config.ts` has no redirect rules — Vercel handles domain-level redirects before the Next.js app is invoked.
 
 ## Tech Stack
 
