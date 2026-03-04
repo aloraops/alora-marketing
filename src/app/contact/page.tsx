@@ -8,8 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
-// Note: Metadata must be in a separate file for client components
-// or use generateMetadata in a parent layout
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');

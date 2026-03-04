@@ -56,6 +56,38 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Alora',
+  url: 'https://aloraops.ai',
+  logo: 'https://aloraops.ai/images/alora_logo_full.svg',
+  description:
+    'AI-powered supply chain operations platform for complex hardware manufacturers.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@aloraops.com',
+    contactType: 'sales',
+  },
+};
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Alora',
+  url: 'https://aloraops.ai',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'AI-powered operations platform that continuously evaluates supply chain signals at the part and BOM level, prioritizing risks and driving execution.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    description: 'Contact for pricing',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,6 +95,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(softwareJsonLd),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >

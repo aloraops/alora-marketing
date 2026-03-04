@@ -143,8 +143,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Alora',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://aloraops.ai/images/alora_logo_full.svg',
+      },
+    },
+    url: `https://aloraops.ai/blog/${slug}`,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Article Header */}
       <section className="bg-muted/30 py-8 lg:py-12">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
