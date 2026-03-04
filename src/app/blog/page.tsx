@@ -2,9 +2,13 @@ import { getAllPosts } from '@/lib/blog';
 import { BlogList } from '@/components/blog/blog-list';
 
 export const metadata = {
-  title: 'Blog - Insights & Updates | Alora',
+  title: 'Blog - Insights & Updates',
   description:
     'Thoughts on supply chain operations, AI in manufacturing, and building better procurement workflows.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function BlogPage() {
