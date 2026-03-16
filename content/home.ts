@@ -224,6 +224,8 @@ export const partners = {
     { name: 'Odem', logo: '/partners/odem.png', lightLogo: false, url: 'https://odemltd.com' },
     { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false, url: 'https://octalcorporation.com' },
     { name: 'GT Technologies', logo: '/partners/gt-technologies.png', lightLogo: true, url: 'https://gt-technologies.com' },
+    { name: 'Ardan', logo: '/partners/ardan.png', lightLogo: false, url: 'https://www.ardantrafo.com' },
+    { name: 'Ortal', logo: '/partners/ortal.png', lightLogo: true, url: 'https://ortalglobal.com' },
   ],
 };
 
