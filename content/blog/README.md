@@ -80,7 +80,6 @@ Choose ONE from:
 
 - `Sharon Ilan`
 - `Yuval Blyakhman`
-- `Idan Ben-Ami`
 - `Alora Team`
 
 ## Writing Content (Markdown Basics)
@@ -182,7 +181,7 @@ of code here
 title: "5 Ways AI is Transforming Procurement in 2024"
 description: "Discover how artificial intelligence is revolutionizing procurement operations, from automated supplier communication to predictive risk assessment."
 date: "2024-12-15"
-author: "Idan Ben-Ami"
+author: "Alora Team"
 category: "AI & Technology"
 ---
 

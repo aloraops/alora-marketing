@@ -54,17 +54,10 @@ export const team = [
     image: '/team/sharon-ilan.png',
     linkedin: 'https://www.linkedin.com/in/sharon-ilan/',
   },
-  {
-    name: 'Idan Ben Ami',
-    role: 'CTO',
-    bio: 'Tech Leader with deep cybersecurity, AI and cloud expertise. Developed secure, scalable systems in defense and fintech',
-    image: '/team/idan-ben-ami.png',
-    linkedin: 'https://www.linkedin.com/in/idan-ben-ami/',
-  },
 ];
 
 export const credibilityLine =
-  'Combined: 50+ years across supply chain operations, AI/ML, cybersecurity, and enterprise software. All three founders served in elite Israeli military intelligence units.';
+  'Combined: 40+ years across supply chain operations, product leadership, and enterprise software. Both founders served in elite Israeli military intelligence units.';
 
 export const advisoryBoard = [
   {
@@ -94,8 +87,7 @@ export const sharedBackground = {
   label: 'Shared Background',
   title: 'Elite military intelligence',
   description:
-    'All three founders served in elite Israeli military intelligence units (Unit 81/8153, Unit 76). This background instilled a culture of innovation, problem-solving, and high-stakes decision-making.',
-  badge: 'Talpiot Program Graduate (Top 50 of 10,000)',
+    'Both founders served in elite Israeli military intelligence units (Unit 81/8153, Unit 76). This background instilled a culture of innovation, problem-solving, and high-stakes decision-making.',
 };
 
 export const vision = {
