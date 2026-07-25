@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback, useMemo } from 'react';
+import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,20 @@ const icons = {
 } as const;
 
 type IconName = keyof typeof icons;
+
+/**
+ * Signature motif: faint concentric rings echoing the tactical-to-strategy
+ * circle. Purely decorative — rendered behind content at low opacity.
+ */
+function RingsMotif({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 600 600" fill="none" aria-hidden="true">
+      {[80, 160, 240, 298].map((r) => (
+        <circle key={r} cx="300" cy="300" r={r} stroke="currentColor" strokeWidth="1" />
+      ))}
+    </svg>
+  );
+}
 
 /**
  * Interactive pain finder: visitors select the symptoms they recognize and a
@@ -100,7 +114,8 @@ function PainFinder() {
 
       {/* Live result panel */}
       <div className="lg:sticky lg:top-24">
-        <div className="rounded-2xl border-2 border-[#51DABA]/30 bg-gradient-to-br from-[#264C36] to-[#1a3a28] p-6 shadow-2xl shadow-[#51DABA]/10">
+        <div className="relative overflow-hidden rounded-2xl border-2 border-[#51DABA]/30 bg-gradient-to-br from-[#264C36] to-[#1a3a28] p-6 shadow-2xl shadow-[#51DABA]/10">
+          <RingsMotif className="pointer-events-none absolute -right-28 -top-28 h-64 w-64 text-[#51DABA]/10" />
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-[#51DABA]" />
             <span className="text-[11px] font-bold uppercase tracking-widest text-[#51DABA]">
@@ -252,9 +267,45 @@ export default function HowWeWorkPage() {
   const [activeStep, setActiveStep] = useState<string | null>('1');
   const [activeRing, setActiveRing] = useState<string>('1');
   const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const desktopStepsRef = useRef<HTMLDivElement | null>(null);
+  const userClickedStep = useRef(false);
+
+  // Scroll choreography: when the desktop timeline first enters view, walk
+  // through the five steps once so the section presents itself. Any click
+  // takes over immediately.
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth < 1024) return;
+    const el = desktopStepsRef.current;
+    if (!el) return;
+    let played = false;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || played) return;
+        played = true;
+        const order = ['1', '2', '3', '4', '5', '1'];
+        let i = 0;
+        intervalId = setInterval(() => {
+          i++;
+          if (i >= order.length || userClickedStep.current) {
+            if (intervalId) clearInterval(intervalId);
+            return;
+          }
+          setActiveStep(order[i]);
+        }, 1800);
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, []);
 
   const handleStepClick = useCallback(
     (stepNumber: string) => {
+      userClickedStep.current = true;
       const isClosing = activeStep === stepNumber;
       setActiveStep(isClosing ? null : stepNumber);
       if (!isClosing) {
@@ -277,7 +328,9 @@ export default function HowWeWorkPage() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <RingsMotif className="pointer-events-none absolute -right-72 -top-72 h-[720px] w-[720px] text-[#51DABA]/10" />
+        <RingsMotif className="pointer-events-none absolute -bottom-80 -left-80 h-[640px] w-[640px] text-[#51DABA]/[0.06]" />
+        <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="text-3xl font-semibold tracking-tight text-hero-text sm:text-5xl">
@@ -309,24 +362,45 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* Manifesto — the point of view */}
-      <section className="py-14 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-2xl font-semibold tracking-tight text-foreground sm:text-4xl leading-tight">
-                {content.manifesto.statement}{' '}
-                <span className="text-primary">{content.manifesto.statementAccent}</span>
-              </p>
-              <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                {content.manifesto.body}
-              </p>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-3" staggerDelay={0.12}>
+      {/* Manifesto — the point of view, staged */}
+      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
+        <RingsMotif className="pointer-events-none absolute -left-64 top-1/2 h-[640px] w-[640px] -translate-y-1/2 text-primary/[0.07]" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl leading-[1.1]">
+              <motion.span
+                className="block text-foreground"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              >
+                {content.manifesto.statement}
+              </motion.span>
+              <motion.span
+                className="block text-primary mt-2"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+              >
+                {content.manifesto.statementAccent}
+              </motion.span>
+            </h2>
+            <motion.p
+              className="mx-auto mt-8 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              {content.manifesto.body}
+            </motion.p>
+          </div>
+          <StaggerContainer className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3" staggerDelay={0.12}>
             {content.manifesto.principles.map((principle, i) => (
               <StaggerItem key={principle.title}>
-                <div className="h-full rounded-xl border border-border/40 bg-card/50 p-5 hover:border-primary/30 hover:shadow-sm transition-all duration-300">
+                <div className="h-full border-t-2 border-primary/30 pt-4">
                   <span className="text-xs font-mono font-bold text-primary/60">0{i + 1}</span>
                   <h3 className="mt-2 text-base font-semibold text-foreground">{principle.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{principle.desc}</p>
@@ -379,7 +453,7 @@ export default function HowWeWorkPage() {
 
           {/* DESKTOP: horizontal timeline with animated connector */}
           <div className="hidden lg:block mt-16">
-            <div className="relative mx-auto max-w-6xl">
+            <div className="relative mx-auto max-w-6xl" ref={desktopStepsRef}>
               {/* Animated connector line behind the cards */}
               <svg
                 className="absolute left-0 right-0 top-[52px] w-full pointer-events-none"
@@ -401,7 +475,7 @@ export default function HowWeWorkPage() {
                   const isActive = activeStep === step.number;
                   return (
                     <StaggerItem key={step.number}>
-                      <button onClick={() => setActiveStep(isActive ? null : step.number)} className="w-full text-left">
+                      <button onClick={() => { userClickedStep.current = true; setActiveStep(isActive ? null : step.number); }} className="w-full text-left">
                         <div
                           className={`group relative rounded-xl border p-4 transition-all duration-300 ${
                             isActive

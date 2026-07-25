@@ -9,7 +9,7 @@
 export const hero = {
   title: 'Start AI where it actually pays',
   description:
-    'Every operations team is under pressure to bring AI in. Few know where it should start. We map how execution actually works in your operation, find where the pain is, and give you a grounded first step — before you commit to anything.',
+    'Every operations team is under pressure to bring AI in. Few know where it should start. We map your execution, find the pain, and give you a grounded first step — before you commit.',
   doors: [
     {
       title: 'I have a specific pain',
@@ -27,7 +27,7 @@ export const hero = {
 export const manifesto = {
   statement: "AI in operations doesn't start with a platform.",
   statementAccent: 'It starts with the workstream that hurts.',
-  body: "Most AI initiatives stall at the starting point, not the technology — they start where it demos well, not where it pays. We've mapped execution inside complex, BOM-driven manufacturers: the failure patterns repeat, and so do the places where AI actually earns its keep. And we don't automate the 80% that already works — we go after the 20% of exceptions that break it.",
+  body: "Most AI initiatives stall at the starting point, not the technology — they start where it demos well, not where it pays. We've mapped execution inside complex, BOM-driven manufacturers: the patterns repeat. And we don't automate the 80% that works — we go after the 20% of exceptions that break it.",
   principles: [
     {
       title: 'Start where it hurts',
@@ -223,7 +223,7 @@ export const stories = {
   label: 'How We Map',
   title: 'Stories, not questionnaires',
   subtitle:
-    'The map is built from concrete stories — each owner walks us through real cases from last week. Every story gets the same treatment: what actually happens, and what it costs. A few we hear almost everywhere:',
+    'Each owner walks us through real cases from last week — what actually happens, and what it costs. A few we hear almost everywhere:',
   items: [
     {
       name: 'The unconfirmed PO',
@@ -261,7 +261,7 @@ export const stories = {
 export const leaders = {
   label: 'Who Sits With Your Team',
   title: 'Led by people who owned execution',
-  body: "The mapping isn't run by analysts with a questionnaire. It's led by operators who spent 20+ years inside complex hardware supply chains — managing global suppliers, hundreds of millions in commitments, and the builds that depended on them. We've sat on your side of the table. That's why the mapping moves fast: we recognize the patterns, ask the right questions, and know what a workstream costs before the spreadsheet proves it.",
+  body: "The mapping isn't run by analysts with a questionnaire. It's led by operators who spent 20+ years inside complex hardware supply chains. We've sat on your side of the table — we recognize the patterns, ask the right questions, and know what a workstream costs before the spreadsheet proves it.",
   credentials: [
     {
       title: 'Supply chain operators',
