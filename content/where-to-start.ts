@@ -1,7 +1,7 @@
 /**
- * How We Work Page Content
+ * Where to Start Page Content
  *
- * Edit this file to update the "How we work" page copy without touching the layout.
+ * Edit this file to update the "Where to Start" page copy without touching the layout.
  * Covers the AI-journey framing, the interactive pain finder, the mapping process
  * (pre-pilot discovery), and the tactical-to-strategy circle.
  */
@@ -28,20 +28,6 @@ export const manifesto = {
   statement: "AI in operations doesn't start with a platform.",
   statementAccent: 'It starts with the workstream that hurts.',
   body: "Most AI initiatives stall at the starting point, not the technology — they start where it demos well, not where it pays. We've mapped execution inside complex, BOM-driven manufacturers: the patterns repeat. And we don't automate the 80% that works — we go after the 20% of exceptions that break it.",
-  principles: [
-    {
-      title: 'Start where it hurts',
-      desc: 'Not where it demos well. The first workstream must pay for itself.',
-    },
-    {
-      title: 'Sequence beats speed',
-      desc: 'The right first step makes every next step faster. The wrong one stalls the whole program.',
-    },
-    {
-      title: 'Owned, not outsourced',
-      desc: 'We map, you decide. Your team ends up running it — not depending on us.',
-    },
-  ],
 };
 
 export const painFinder = {
@@ -224,26 +210,11 @@ export const stories = {
   title: 'Stories, not questionnaires',
   subtitle:
     'Each owner walks us through real cases from last week — what actually happens, and what it costs. A few we hear almost everywhere:',
-  items: [
-    {
-      name: 'The unconfirmed PO',
-      what: 'A PO goes out. Two weeks pass — no confirmation. The buyer chases, or planning quietly assumes the delivery date is real.',
-      cost: 'Daily chase time · a wrong date reaching planning',
-    },
-    {
-      name: 'The buried Excel confirmation',
-      what: 'A supplier confirms 20 line changes in an Excel attachment. Someone opens the ERP and re-types every line by hand.',
-      cost: '~40 minutes per PO · multiplied across buyers, every week',
-    },
-    {
-      name: 'The morning rebuild',
-      what: 'Every cycle, a planner pulls ERP reports and rebuilds the priority Excel by hand. By afternoon it is already stale.',
-      cost: 'A full working day per cycle · decisions made on stale data',
-    },
-  ],
   closing: 'If one of these sounds like last week — that recognition is exactly how the mapping starts.',
-  moreIntro: 'A few more we hear every week:',
   more: [
+    { name: 'The unconfirmed PO', hook: 'A PO goes out. Two weeks pass — no confirmation. The buyer chases, or planning assumes the date is real.' },
+    { name: 'The buried Excel confirmation', hook: 'A supplier confirms 20 line changes in an Excel attachment. Someone re-types every line into the ERP.' },
+    { name: 'The morning rebuild', hook: 'Every cycle, a planner rebuilds the priority Excel by hand. By afternoon it is already stale.' },
     { name: 'The stale delivery date', hook: 'A supplier confirms a 3-week slip by email. Nobody updates the ERP — planning promises on the old date.' },
     { name: "The 'on-time' that isn't", hook: 'The ERP says on-time. The supplier flagged a slip two days ago — nobody connected the two.' },
     { name: 'The PDF that doesn’t match', hook: 'Two prices and a quantity off versus the ERP — caught by eye, while the shipment is already moving.' },
@@ -262,16 +233,6 @@ export const leaders = {
   label: 'Who Sits With Your Team',
   title: 'Led by people who owned execution',
   body: "The mapping isn't run by analysts with a questionnaire. It's led by operators who spent 20+ years inside complex hardware supply chains. We've sat on your side of the table — we recognize the patterns, ask the right questions, and know what a workstream costs before the spreadsheet proves it.",
-  credentials: [
-    {
-      title: 'Supply chain operators',
-      desc: '20+ years leading global supply chains from the ground up — supplier negotiations, ERP integrations, and $200M in supplier deals.',
-    },
-    {
-      title: 'Complex hardware product leaders',
-      desc: '20+ years building regulated, BOM-driven products — surgical robotics, medical devices, complex assemblies with zero slack.',
-    },
-  ],
 };
 
 export const ownership = {

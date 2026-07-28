@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 // Content imports
-import * as content from '@content/how-we-work';
+import * as content from '@content/where-to-start';
 import { brand } from '@content/shared';
 
 // Icon mapping for dynamic rendering
@@ -397,17 +397,6 @@ export default function HowWeWorkPage() {
               {content.manifesto.body}
             </motion.p>
           </div>
-          <StaggerContainer className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3" staggerDelay={0.12}>
-            {content.manifesto.principles.map((principle, i) => (
-              <StaggerItem key={principle.title}>
-                <div className="h-full border-t-2 border-primary/30 pt-4">
-                  <span className="text-xs font-mono font-bold text-primary/60">0{i + 1}</span>
-                  <h3 className="mt-2 text-base font-semibold text-foreground">{principle.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{principle.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
         </div>
       </section>
 
@@ -640,26 +629,8 @@ export default function HowWeWorkPage() {
                 </p>
               </div>
             </FadeIn>
-            <StaggerContainer className="mx-auto mt-8 grid gap-4 lg:grid-cols-3" staggerDelay={0.12}>
-              {content.stories.items.map((story) => (
-                <StaggerItem key={story.name}>
-                  <div className="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-[#51DABA]/30 transition-all duration-300">
-                    <h4 className="text-base font-semibold text-white">{story.name}</h4>
-                    <p className="mt-2 flex-1 text-sm text-white/50 leading-relaxed">{story.what}</p>
-                    <p className="mt-4 border-t border-white/10 pt-3 text-xs font-medium text-[#51DABA]/80">
-                      {story.cost}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-            {/* Scrolling strip of additional stories */}
-            <FadeIn delay={0.2}>
-              <p className="mt-10 text-center text-xs font-semibold uppercase tracking-widest text-white/30">
-                {content.stories.moreIntro}
-              </p>
-            </FadeIn>
-            <div className="mt-5 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            {/* Scrolling strip of story archetypes */}
+            <div className="mt-8 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
               <div className="flex animate-marquee gap-4 w-max">
                 {[...content.stories.more, ...content.stories.more].map((story, i) => (
                   <div
@@ -792,16 +763,6 @@ export default function HowWeWorkPage() {
                 </p>
               </div>
             </FadeIn>
-            <StaggerContainer className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2" staggerDelay={0.12}>
-              {content.leaders.credentials.map((cred) => (
-                <StaggerItem key={cred.title}>
-                  <div className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                    <h4 className="text-sm font-semibold text-white">{cred.title}</h4>
-                    <p className="mt-2 text-xs text-white/45 leading-relaxed">{cred.desc}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
           </div>
 
           {/* Ownership arc */}

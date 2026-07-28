@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // { url: `${baseUrl}/industries/robotics-automation`, changeFrequency: 'monthly', priority: 0.75 },
     // { url: `${baseUrl}/industries/industrial-equipment`, changeFrequency: 'monthly', priority: 0.75 },
     {
-      url: `${baseUrl}/how-we-work`,
+      url: `${baseUrl}/where-to-start`,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
