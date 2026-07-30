@@ -172,6 +172,18 @@ export const mappingProcess = {
     'The output is a findings report your team can stand behind internally: what breaks, what it costs, and where AI should start.',
 };
 
+export const mappingLink = {
+  text: 'See the full mapping process',
+  href: '/mapping',
+};
+
+export const mappingHero = {
+  label: 'The Mapping',
+  title: 'How the mapping works',
+  description:
+    'The method behind the findings report — how we listen, what the map captures, and who owns what along the way.',
+};
+
 export const mapCaptures = {
   label: 'What The Map Captures',
   title: 'Two things most process maps miss',
