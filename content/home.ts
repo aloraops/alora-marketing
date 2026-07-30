@@ -217,16 +217,12 @@ export const industries = {
 // Trust & Security - removed from site per Anubha's feedback (re-add when SOC2 is complete)
 // export const trustAndSecurity = { ... };
 
+// Customer logos removed per founder decision (Jul 2026) — small-company logos
+// undersold the product to enterprise leads. References shared in conversation.
 export const partners = {
-  label: 'Trusted By',
-  title: 'Built for complex hardware manufacturers',
-  logos: [
-    { name: 'Odem', logo: '/partners/odem.png', lightLogo: false, url: 'https://odemltd.com' },
-    { name: 'Octal Corporation', logo: '/partners/octal.svg', lightLogo: false, url: 'https://octalcorporation.com' },
-    { name: 'GT Technologies', logo: '/partners/gt-technologies.png', lightLogo: true, url: 'https://gt-technologies.com' },
-    { name: 'Ardan', logo: '/partners/ardan.png', lightLogo: false, url: 'https://www.ardantrafo.com' },
-    { name: 'Ortal', logo: '/partners/ortal.png', lightLogo: true, url: 'https://ortalglobal.com' },
-  ],
+  label: 'In Production',
+  title: 'Running live with complex hardware manufacturers',
+  body: 'Alora processes real supplier traffic in production — every day.',
 };
 
 export const finalCta = {

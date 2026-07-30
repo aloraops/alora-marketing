@@ -507,30 +507,12 @@ export default function HomePage() {
               </p>
             </div>
           </FadeIn>
-          <div className="mt-10 sm:mt-12 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex animate-marquee gap-12 sm:gap-16 w-max">
-              {[...content.partners.logos, ...content.partners.logos].map((partner, i) => (
-                <a key={`${partner.name}-${i}`} href={partner.url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-3 group flex-shrink-0">
-                  <div className={`flex h-14 sm:h-16 w-[160px] sm:w-[180px] items-center justify-center rounded-xl px-6 shadow-lg shadow-black/20 border transition-shadow group-hover:shadow-xl group-hover:shadow-[#51DABA]/10 ${
-                    partner.lightLogo
-                      ? 'bg-[#1a1a2e] border-white/10'
-                      : 'bg-white/95 border-white/10'
-                  }`}>
-                    <Image
-                      src={partner.logo}
-                      alt={partner.name}
-                      width={140}
-                      height={48}
-                      className="max-h-8 sm:max-h-10 w-auto object-contain"
-                    />
-                  </div>
-                  <span className="text-xs font-medium text-white/50 tracking-wide uppercase group-hover:text-white/70 transition-colors">
-                    {partner.name}
-                  </span>
-                </a>
-              ))}
+          <FadeIn delay={0.1}>
+            <div className="mt-8 flex items-center justify-center gap-2.5">
+              <div className="h-2 w-2 rounded-full bg-[#51DABA] animate-pulse" />
+              <p className="text-base text-white/60">{content.partners.body}</p>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
