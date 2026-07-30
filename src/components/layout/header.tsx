@@ -11,6 +11,7 @@ import { cta, brand } from '@content/shared';
 const navigation = [
   { name: 'Solutions', href: '/solutions' },
   // { name: 'Industries', href: '/industries' }, // Hidden until partner review
+  { name: 'Where to Start', href: '/where-to-start' },
   { name: 'Resources', href: '/resources' },
   { name: 'Company', href: '/company' },
 ];
